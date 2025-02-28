@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="./favicon.svg" type="image/x-icon" />
+    <title>NA words</title>
+    <style>
+      :root {
+        --title-color: #b6a2f9;
+        --bg-color: linear-gradient(180deg, rgba(41, 29, 39, 1) 0%, rgba(32, 31, 36, 1) 100%);
+        --gradient-color: linear-gradient(128.87deg, #9780e5 14.05%, #53ceda 89.3%);
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 1.2svh;
+        font-family: sans-serif;
+        font-weight: 900;
+      }
+
+      *:focus,
+      *:active {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html,
+      body,
+      #wrap,
+      #navTop,
+      #navBottom,
+      #navTop > div,
+      #navBottom > div,
+      #div1,
+      #div2,
+      #div3,
+      #div1 > span,
+      #div2 > span,
+      #div3 > span,
+      #navModes > div,
+      #achievement40Words {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        background: var(--bg-color);
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      #wrap {
+        width: 97%;
+        height: 97%;
+        max-width: 500px;
+        flex-direction: column;
+      }
+
+      #navTop {
+        width: 100%;
+        height: 8svh;
+        flex-direction: row;
+        gap: 2svh;
+      }
+
+      #navTop > div {
+        height: 100%;
+        cursor: pointer;
+        background: #372237;
+        font-size: 3svh;
+        aspect-ratio: 2.1/1;
+      }
+
+      #navBottom {
+        width: 100%;
+        height: 15.9svh;
+        flex-direction: row;
+        gap: 2svh;
+      }
+
+      #navBottom > div {
+        height: 100%;
+        cursor: pointer;
+        font-size: 4svh;
+        aspect-ratio: 1/1;
+      }
+
+      #navTop > div:active,
+      #navModes > div:active,
+      #navBottom > div:active,
+      #buttonShowTranslation > div:active {
+        opacity: 0.5;
+      }
+
+      #buttonAddWord {
+        background: #372237;
+      }
+
+      #buttonCountWord {
+        background: transparent;
+        box-shadow: inset 0 0 0 0.3svh var(--title-color);
+      }
+
+      #buttonNextWord {
+        background: #553674;
+      }
+
+      #buttonShowTranslation {
+        flex: 1;
+        width: 90%;
+        overflow-y: hidden;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        background: transparent;
+      }
+
+      #div1 {
+        flex: 1;
+        width: 100%;
+      }
+
+      #div2 {
+        flex: 1;
+        width: 100%;
+      }
+
+      #div3 {
+        flex: 1;
+        width: 100%;
+      }
+
+      #div1 > span,
+      #div2 > span,
+      #div3 > span {
+        width: 100%;
+        height: 100%;
+        font-size: 7svh;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+        cursor: pointer;
+      }
+
+      #div1 > span {
+        background: var(--gradient-color);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      #div3 > span {
+        color: #ffffff80;
+      }
+
+      #buttonDownload {
+        background: transparent !important;
+        box-shadow: inset 0 0 0 0.3svh var(--title-color);
+      }
+
+      #achievement40Words {
+        position: absolute;
+        left: -10px;
+        top: 8%;
+        padding: 10px;
+        background: #007905;
+        font-size: 4svh;
+        transform: rotate(20deg);
+        text-shadow: 2px 2px 2px #0000005c;
+        transition: 1s;
+        aspect-ratio: 1/1;
+      }
+
+      #navModes {
+        position: fixed;
+        bottom: 0;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: 25svh 25svh;
+        gap: 3svh;
+        transform: translateY(100%);
+        backdrop-filter: blur(8px);
+        background: #1d181ebd;
+        width: 99%;
+        height: 89svh;
+        z-index: 1000;
+      }
+
+      #navModes > div {
+        overflow-wrap: break-word;
+        aspect-ratio: 2/1;
+        font-size: 3svh;
+        background: #372237;
+      }
+
+      .small-font {
+        font-size: 5svh !important;
+      }
+
+      .reverseBG {
+        background: #ff5400 !important;
+      }
+
+      .navVisible {
+        transform: translateY(0%) !important;
+      }
+
+      .visible {
+        display: flex !important;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .textLeft {
+        text-align: left !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="navTop">
+        <div id="buttonNav">1</div>
+        <div id="buttonDownload">DL</div>
+        <div id="buttonReverse">+</div>
+      </div>
+      <div id="buttonShowTranslation">
+        <div id="div1"><span></span></div>
+        <div id="div2"><span></span></div>
+        <div id="div3"><span></span></div>
+      </div>
+      <div id="navBottom">
+        <div id="buttonAddWord">NO</div>
+        <div id="buttonCountWord">0</div>
+        <div id="buttonNextWord">OK</div>
+      </div>
+      <div id="achievement40Words"></div>
+      <div id="navModes">
+        <div id="buttonMode1">1 words</div>
+        <div id="buttonMode2">2 words</div>
+        <div id="buttonMode3">3 question</div>
+        <div id="buttonMode4">4 phrase</div>
+        <div id="buttonMode5">5 verbs</div>
+        <div id="buttonMode6">6 AI</div>
+        <div id="buttonMode7">7 CELPIP</div>
+        <div id="buttonMode8">8 CELPIP.txt</div>
+      </div>
+    </div>
+    <script>
+      // Preload TTS voices
+      window.speechSynthesis.getVoices();
+      let ttsVoices;
+      function populateVoices() {
+        const v = window.speechSynthesis.getVoices();
+        if (v.length > 0) {
+          ttsVoices = v;
+          console.log("Voices populated:", ttsVoices);
+          // You can now use ttsVoices
+          window.speechSynthesis.removeEventListener("voiceschanged", populateVoices); //remove the event listener after it is no longer needed.
+        }
+      }
+
+      // Check if voices are already available (in some cases, they might be)
+      if (window.speechSynthesis.getVoices().length > 0) {
+        ttsVoices = window.speechSynthesis.getVoices();
+        console.log("Voices already available:", ttsVoices);
+      } else {
+        // Listen for the voiceschanged event
+        window.speechSynthesis.addEventListener("voiceschanged", populateVoices);
+      }
+
+      // Arrays
+      const arrayLvl1Words = [
+        ["be", "би", "быть"],
+        ["was", "воз", "был"],
+        ["were", "вЭа", "были"],
+        ["bring", "бринг", "принеси"],
+        ["buy", "бай", "купить"],
+        ["call", "кол", "звонить"],
+        ["cost", "кост", "стоить"],
+        ["do", "ду", "делать"],
+        ["dream", "дрим", "мечтать"],
+        ["drink", "дринк", "пить"],
+        ["drive", "драйв", "водить"],
+        ["eat", "ит", "кушать"],
+        ["feel", "фил", "чувствовую"],
+        ["forget", "фогЭт", "забыть"],
+        ["get", "гэт", "получить"],
+        ["give", "гив", "дать"],
+        ["have", "хэв", "иметь"],
+        ["know", "нОу", "знать"],
+        ["learn", "лёрн", "учусь"],
+        ["make", "мэйк", "сделать"],
+        ["meet", "мит", "встречаю"],
+        ["pay", "пэй", "платить"],
+        ["play", "плэй", "играть"],
+        ["read", "рид", "читать"],
+        ["see", "си", "видеть"],
+        ["sell", "сэл", "продать"],
+        ["send", "сэнд", "слать"],
+        ["sleep", "слип", "спать"],
+        ["speak", "спик", "говорю"],
+        ["take", "тэйк", "брать"],
+        ["teach", "тич", "учить"],
+        ["tell", "тэл", "скажи"],
+        ["think", "синк", "думать"],
+        ["try", "трай", "стараюсь"],
+        ["write", "райт", "пишу"],
+        ["wait", "вэйт", "ждать"],
+        ["become", "бикАм", "стать"],
+        ["begin", "бигИн", "начать"],
+        ["choose", "чуз", "выбрать"],
+        ["come", "кам", "приходи"],
+        ["find", "файнд", "найти"],
+        ["dryer", "дрАер", "сушилка"],
+        ["fly", "флай", "лететь"],
+        ["hear", "хИа", "слышать"],
+        ["hold", "холд", "держать"],
+        ["later", "лЭйтэр", "позже"],
+        ["leave", "лив", "оставить"],
+        ["lie", "лай", "лежать"],
+        ["run", "ран", "бежать"],
+        ["show", "шОу", "показать"],
+        ["sit", "сит", "сидеть"],
+        ["swim", "свим", "плыть"],
+        ["wake up", "вЭйк ап", "проснуться"],
+        ["win", "вин", "выиграть"],
+        ["new", "нью", "новый"],
+        ["now", "нАу", "сейчас"],
+        ["high", "хай", "высокий"],
+        ["old", "олд", "старый"],
+        ["long", "лонг", "длинный"],
+        ["little", "литл", "маленький"],
+        ["best", "бэст", "лучший"],
+        ["right", "райт", "правильно"],
+        ["only", "Онли", "только"],
+        ["low", "лОу", "низкий"],
+        ["early", "Ёрли", "рано"],
+        ["late", "лЭйт", "поздно"],
+        ["hard", "хард", "жесткий"],
+        ["strong", "стронг", "сильный"],
+        ["free", "фри", "свободный"],
+        ["full", "фул", "полный"],
+        ["recently", "рИсэнтли", "недавно"],
+        ["open", "Оупн", "открыть"],
+        ["wrong", "ронг", "неправильно"],
+        ["similar", "сИмилар", "похожий"],
+        ["hot", "хот", "горячий"],
+        ["happy", "хЭпи", "счастлив"],
+        ["ready", "рЭди", "готовый"],
+        ["dark", "дарк", "темный"],
+        ["cold", "колд", "холодный"],
+        ["main", "мэйн", "главный"],
+        ["huge", "хьюдж", "огромный"],
+        ["everything", "Эврисинг", "всё"],
+        ["nothing", "нАсинг", "ничего"],
+        ["every", "Эври", "каждый"],
+        ["thing", "синг", "вещь"],
+        ["all", "ол", "все"],
+        ["happen", "хЭпн", "случается"],
+        ["thread", "трэд", "нить"],
+        ["item", "Айтэм", "предмет"],
+        ["slow", "слОу", "медленный"],
+        ["fast", "фаст", "быстро"],
+        ["sure", "шУа", "конечно"],
+        ["already", "олрЭди", "уже"],
+        ["yet", "йЕт", "еще"],
+        ["ask", "аск", "спросить"],
+        ["spend", "спэнд", "тратить"],
+        ["change", "чейндж", "менять"],
+        ["move", "мув", "двигать"],
+        ["enjoy", "энджОй", "наслаждаться"],
+        ["sometimes", "самтАймс", "иногда"],
+        ["must", "маст", "должен"],
+        ["want", "вОнт", "хотеть"],
+        ["need", "нид", "нужно"],
+        ["week", "вик", "неделя"],
+        ["month", "манс", "месяц"],
+        ["hour", "Ауэр", "час"],
+        ["price", "прайс", "цена"],
+        ["agree", "эгрИ", "согласиться"],
+        ["look for", "лук фор", "искать"],
+        ["funny", "фАни", "забавный"],
+        ["fine", "файн", "хорошо"],
+        ["feed", "фид", "кормить"],
+        ["break", "брэйк", "разбить"],
+        ["anytime", "энитАйм", "в любое время"],
+        ["catch", "кэч", "поймать"],
+        ["use", "юз", "использую"],
+        ["never", "нЭвэр", "никогда"],
+        ["schedule", "скЭджл", "график"],
+        ["believe", "билИв", "верить"],
+        ["seem", "сим", "кажется"],
+        ["continue", "контИнью", "продолжать"],
+        ["offer", "Офэр", "предлагать"],
+        ["stay", "стэй", "останься"],
+        ["carry", "кЭри", "нести"],
+        ["walk", "вок", "гулять"],
+        ["different", "дИфэрэнт", "разный"],
+        ["expensive", "икспЭнсив", "дорогой"],
+        ["flat", "флэт", "плоский"],
+        ["half", "хаф", "половина"],
+        ["cucumber", "кьЮкабмэр", "огурец"],
+        ["pickle", "пИкл", "мариновать"],
+        ["add", "эд", "добавить"],
+        ["more", "мор", "более"],
+        ["fresh", "фрэш", "свежий"],
+        ["tasty", "тЭйсти", "вкусный"],
+        ["dish", "диш", "блюдо"],
+        ["another", "энАзэр", "другой"],
+        ["flavor", "флЭйвэр", "аромат"],
+      ];
+
+      const arrayLvl2Words = [
+        ["abruptly", "эбрАптли", "внезапно"],
+        ["adverse", "Эдвёрс", "неблагоприятный"],
+        ["apparently", "апЭрэнтли", "видимо"],
+        ["apprehension", "априхЭншн", "опасение"],
+        ["astonishing", "астОнишинг", "удивительный"],
+        ["bargain", "бАргэн", "сделка"],
+        ["bowels", "бАуэлс", "недра"],
+        ["brittle", "бритл", "хрупкий"],
+        ["cease", "сиз", "прекращать"],
+        ["claim", "клэйм", "заявить"],
+        ["conscience", "кОншэнс", "совесть"],
+        ["contempt", "кантЭмпт", "презрение"],
+        ["conviction", "канвИкшн", "убеждение"],
+        ["culprit", "кАлприт", "виновник"],
+        ["deft", "дэфт", "ловкий"],
+        ["dignity", "дИгнити", "достоинство"],
+        ["dour", "дАуэр", "мрачный"],
+        ["elaborate", "илАбэрэт", "подробный"],
+        ["embarrass", "имбЭрэс", "смущать"],
+        ["encounter", "инкАунтэр", "сталкиваться с"],
+        ["fascinating", "фАсинэйтинг", "захватывающий"],
+        ["finicky", "фИники", "привередливый"],
+        ["frantic", "фрЭнтик", "безумный"],
+        ["grim", "грим", "мрачный"],
+        ["grin", "грин", "усмешка"],
+        ["grope", "грОуп", "шарить"],
+        ["guile", "гайл", "хитрость"],
+        ["hence", "хэнс", "следовательно"],
+        ["hiss", "хисс", "шипение"],
+        ["huddle", "хадл", "толпиться"],
+        ["husky", "хАски", "хриплый"],
+        ["leisure", "лИжэр", "досуг"],
+        ["morose", "морОус", "угрюмый"],
+        ["mutter", "мАтэр", "бормотать"],
+        ["nasty", "нЭсти", "мерзкий"],
+        ["neat", "нит", "аккуратный"],
+        ["numb", "нам", "онемевший"],
+        ["orchard", "Орчэрд", "фруктовый сад"],
+        ["plausible", "плОзибл", "правдоподобный"],
+        ["profound", "профАунд", "глубокие (знания)"],
+        ["quarrel", "куОрэл", "ссора"],
+        ["refute", "рифьЮт", "опровергать"],
+        ["reluctant", "рилАктэнт", "неохотный"],
+        ["remnant", "рЭмнант", "остаток"],
+        ["resemble", "ризЭмбл", "походить"],
+        ["ruddy", "рАди", "румяный"],
+        ["rueful", "руфл", "печальный"],
+        ["scarcely", "скЭрсли", "едва"],
+        ["scrutiny", "скрУтэни", "внимательное изучение"],
+        ["seize", "", "схватить"],
+        ["seldom", "", "редко"],
+        ["shudder", "шАдэр", "вздрагивать"],
+        ["sinister", "сИнистэр", "зловещий"],
+        ["sombre", "сОмбэр", "хмурый"],
+        ["startled", "стАртэлт", "испуганный"],
+        ["tamper", "тЭмпэр", "вмешаться (подделать)"],
+        ["temper", "тЭмпэр", "характер"],
+        ["tempt", "тЭмпт", "искушать"],
+        ["temptation", "", "искушение"],
+        ["trite", "трайт", "банальный"],
+        ["unbearable", "анбЭрэбл", "невыносимый"],
+        ["vague", "вэйг", "расплывчатый"],
+        ["virtually", "вЁрчили", "практически"],
+        ["voluntary", "вАлэнтэри", "добровольный"],
+        ["pledge", "плэдж", "обязуется"],
+        ["tempest", "тЭмпэст", "буря"],
+        ["downplay", "", "преуменьшать"],
+        ["robust", "робАст", "надежный"],
+        ["vicious", "вИшэз", "злобный"],
+        ["haunted", "хАнтэд", "с привидениями"],
+        ["reckoning", "рЭкэнинг", "расплата"],
+        ["deliberate", "дилИбэрэт", "умышленный"],
+        ["sever", "сЭвэр", "разорвать"],
+        ["severed", "сЭвэрд", "отделенный"],
+        ["severe", "сивИр", "суровый"],
+        ["akin to", "экИн", "наподобие"],
+        ["prejudice", "прЭджэдис", "предвзятость"],
+        ["argue", "Аргью", "утверждать"],
+        ["stand out", "стэнд Аут", "выделяться"],
+        ["counterparts", "кАунтэрпарт", "коллеги"],
+        ["complementary", "камплимЭнтари", "дополняющий"],
+        ["amid", "эмИд", "на фоне"],
+        ["embed", "имбЭд", "встроить"],
+        ["peculiar", "пикьЮлиар", "своеобразный"],
+        ["height", "хАйт", "высота, рост"],
+        ["concise", "кансАйс", "краткий"],
+        ["redundant", "ридАндэнт", "излишний"],
+        ["raised", "рЭйзд", "вырощен (воспитан)"],
+        ["expelled", "икспЭлд", "изгнан"],
+        ["humble", "хАмбэл", "смиренный"],
+        ["hilarious", "хилЭриэс", "уморительный"],
+        ["peril", "пЭрил", "угроза"],
+        ["perish", "пЭриш", "погибать"],
+        ["suspense", "саспЭнс", "напряжение (ожидание)"],
+        ["violate", "вАялэйт", "нарушать"],
+        ["ravage", "рЭвэдж", "опустошать (разорять)"],
+        ["ravish", "рЭвиш", "восхитить (аним)"],
+        ["intricate", "Интрикэт", "замысловатый"],
+        ["obnoxious", "эбнОкшэс", "неприятный"],
+        ["restrain", "ристрЭйн", "сдерживать"],
+        ["endure", "эндЁр", "выдержать"],
+        ["streak", "стрик", "полоса (удач)"],
+        ["trope", "трОуп", "прием (клише)"],
+        ["contradiction", "контрэдИкшн", "противоречие"],
+        ["mislead", "мислИд", "ввести в заблуждение"],
+        ["gradually", "грЭджюали", "постепенно"],
+        ["legitimate", "лэджИтимэт", "законный"],
+        ["alleged", "алЭджд", "предполагаемый"],
+        ["allegedly", "алЭджидли", "якобы"],
+        ["comprehend", "кАмприхэнд", "постичь"],
+        ["compassion", "кампЭшн", "сострадание"],
+        ["predominantly", "придОминэнтли", "преимущественно"],
+        ["distinct", "дистИнкт", "различный"],
+        ["genuinely", "джЭньюэнли", "искренне"],
+        ["ambiguous", "эмбИгьюэс", "неоднозначный"],
+        ["obstacle", "Обстэкэл", "препятствие"],
+        ["circumstances", "сЁркамстэнсиз", "обстоятельства"],
+        ["interfere", "интэрфИр", "вмешиваться"],
+        ["turns out", "тёрнз Аут", "оказывается"],
+        ["eligible", "Элиджибл", "подходящий"],
+        ["frustration", "фрастрЭйшн", "недовольство"],
+      ];
+
+      const arrayCelpipWords = [
+        ["infer", "", "делать вывод"],
+        ["interpret", "", "интерпретировать"],
+        ["predict", "", "предсказывать"],
+        ["analyze", "", "анализировать"],
+        ["capacity", "", "способность"],
+        ["cognition", "", "познание"],
+        ["conduct", "", "проводить"],
+        ["discipline", "", "дисциплина"],
+        ["experiment", "", "эксперимент"],
+        ["hypothesize", "", "выдвигать гипотезу"],
+        ["invention", "", "изобретение"],
+        ["malfunction", "", "неисправность"],
+        ["mechanism", "", "механизм"],
+        ["organism", "", "организм"],
+        ["synthetic", "", "синтетический"],
+        ["theory", "", "теория"],
+        ["thermometer", "", "термометр"],
+        ["variable", "", "переменная"],
+        ["activist", "", "активист"],
+        ["economy", "", "экономика"],
+        ["industry", "", "промышленность"],
+        ["bias", "", "предвзятость"],
+        ["education", "", "образование"],
+        ["inflation", "", "инфляция"],
+        ["broadcast", "", "трансляция"],
+        ["elections", "", "выборы"],
+        ["liberal", "", "либеральный"],
+        ["conservative", "", "консервативный"],
+        ["government", "", "правительство"],
+        ["poverty", "", "бедность"],
+        ["culture", "", "культура"],
+        ["immigration", "", "иммиграция"],
+        ["public", "", "общественный"],
+        ["accommodations", "", "жилье"],
+        ["campsite", "", "кемпинг"],
+        ["resort", "", "курорт"],
+        ["layover", "", "остановка"],
+        ["sightseeing", "", "осмотр достопримечательностей"],
+        ["destination", "", "пункт назначения"],
+        ["journey", "", "путешествие"],
+        ["passengers", "", "пассажиры"],
+        ["excursion", "", "экскурсия"],
+        ["motorboat", "", "моторная лодка"],
+        ["outgoing", "", "общительный"],
+        ["pessimistic", "", "пессимистичный"],
+        ["practical", "", "практичный"],
+        ["subjective", "", "субъективный"],
+        ["withdrawn", "", "замкнутый"],
+        ["humble", "", "скромный"],
+        ["idealistic", "", "идеалистический"],
+        ["miserly", "", "скупой"],
+        ["objective", "", "объективный"],
+        ["optimistic", "", "оптимистичный"],
+        ["arrogant", "", "высокомерный"],
+        ["clever", "", "умный"],
+        ["courageous", "", "смелый"],
+        ["cowardly", "", "трусливый"],
+        ["foolish", "", "глупый"],
+        ["generous", "", "щедрый"],
+        ["neighbour", "", "сосед"],
+        ["partner", "", "партнер"],
+        ["relatives", "", "родственники"],
+        ["strained", "", "напряженный"],
+        ["tenant", "", "арендатор"],
+        ["acquaintance", "", "знакомый"],
+        ["employee", "", "работник"],
+        ["close", "", "близкий"],
+        ["engaged", "", "помолвленный"],
+        ["colleague", "", "коллега"],
+        ["fiance", "", "жених"],
+        ["distant", "", "далекий"],
+        ["landlord", "", "арендодатель"],
+        ["divorce", "", "развод"],
+        ["mentor", "", "наставник"],
+        ["beard", "", "борода"],
+        ["muscular", "", "мускулистый"],
+        ["chubby", "", "пухлый"],
+        ["overweight", "", "лишний вес"],
+        ["gorgeous", "", "великолепный"],
+        ["pimples", "", "прыщи"],
+        ["handsome", "", "красивый"],
+        ["plain", "", "простой"],
+        ["moustache", "", "усы"],
+        ["scruffy", "", "неряшливый"],
+        ["stocky", "", "коренастый"],
+        ["tanned", "", "загорелый"],
+        ["tattoos", "", "татуировки"],
+        ["underweight", "", "недостаточный вес"],
+        ["wrinkles", "", "морщины"],
+        ["checkered", "", "клетчатый"],
+        ["circle", "", "круг"],
+        ["diagonal", "", "диагональный"],
+        ["diamond", "", "ромб"],
+        ["heart", "", "сердце"],
+        ["horizontal", "", "горизонтальный"],
+        ["plaid", "", "плед"],
+        ["polka-dot", "", "в горошек"],
+        ["rectangle", "", "прямоугольник"],
+        ["square", "", "квадрат"],
+        ["star", "", "звезда"],
+        ["striped", "", "полосатый"],
+        ["triangle", "", "треугольник"],
+        ["vertical", "", "вертикальный"],
+        ["zigzag", "", "зигзаг"],
+        ["accomplishment", "", "достижение"],
+        ["ambition", "", "амбиция"],
+        ["candidate", "", "кандидат"],
+        ["commute", "", "добираться"],
+        ["determined", "", "решительный"],
+        ["earnings", "", "заработок"],
+        ["evaluation", "", "оценка"],
+        ["executive", "", "руководитель"],
+        ["obstacle", "", "препятствие"],
+        ["potential", "", "потенциал"],
+        ["professional", "", "профессиональный"],
+        ["promotion", "", "продвижение по службе"],
+        ["qualified", "", "квалифицированный"],
+        ["schedule", "", "график"],
+        ["supervisor", "", "руководитель"],
+        ["assess", "", "оценивать"],
+        ["coherence", "", "связность"],
+        ["compare", "", "сравнивать"],
+        ["contrast", "", "контраст"],
+        ["demonstrate", "", "демонстрировать"],
+        ["elaborate", "", "разрабатывать"],
+        ["generalize", "", "обобщать"],
+        ["gist", "", "суть"],
+        ["bashful", "", "застенчивый"],
+        ["exhausted", "", "измученный"],
+        ["cautious", "", "осторожный"],
+        ["furious", "", "яростный"],
+        ["confident", "", "уверенный"],
+        ["gloomy", "", "мрачный"],
+        ["anxious", "", "тревожный"],
+        ["guilty", "", "виноватый"],
+        ["ecstatic", "", "в восторге"],
+        ["horrified", "", "в ужасе"],
+        ["outline", "", "наметить"],
+        ["persuade", "", "убеждать"],
+        ["response", "", "ответ"],
+        ["summarize", "", "обобщать"],
+        ["indifferent", "", "равнодушный"],
+        ["jealous", "", "ревнивый"],
+        ["lonely", "", "одинокий"],
+        ["surprised", "", "удивленный"],
+        ["sympathetic", "", "сочувствующий"],
+        ["botany", "", "ботаника"],
+        ["flora", "", "флора"],
+        ["deplete", "", "истощать"],
+        ["geology", "", "геология"],
+        ["ecosystem", "", "экосистема"],
+        ["global", "", "глобальный"],
+        ["extinction", "", "вымирание"],
+        ["impact", "", "воздействие"],
+        ["fauna", "", "фауна"],
+        ["pollution", "", "загрязнение"],
+        ["acute", "", "острый"],
+        ["effect", "", "эффект"],
+        ["antibiotics", "", "антибиотики"],
+        ["infection", "", "инфекция"],
+        ["medical", "", "медицинский"],
+        ["chronic", "", "хронический"],
+        ["metabolism", "", "метаболизм"],
+        ["audio", "Одио", "аудио"],
+        ["backspace", "", "кнопка бЭкспэйс"],
+        ["button", "", "кнопка"],
+        ["click", "", "клик"],
+        ["cursor", "", "курсор"],
+        ["delete", "", "удалить"],
+        ["enter", "", "кнопка Энтэр"],
+        ["headset", "", "гарнитура"],
+        ["keyboard", "", "клавиатура"],
+        ["monitor", "", "монитор"],
+        ["mouse", "", "мышь"],
+        ["reserve", "", "резервировать"],
+        ["resources", "", "ресурсы"],
+        ["substance", "", "вещество"],
+        ["summit", "", "саммит"],
+        ["toxic", "", "токсичный"],
+        ["muscle", "", "мышца"],
+        ["nauseating", "", "тошнотворный"],
+        ["nutrients", "", "питательные вещества"],
+        ["pulse", "", "пульс"],
+        ["unbalanced", "", "несбалансированный"],
+        ["prompt", "", "подсказка"],
+        ["scroll wheel", "", "колесо прокрутки"],
+        ["shift", "", "кнопка шифт"],
+        ["spell check", "", "проверка орфографии"],
+        ["tab", "", "кнопка тэб"],
+      ];
+
+      const arrayCelpipTexts = [
+        ["When students do not know the definition of a word, they can infer the meaning from the context of the sentence.", ""],
+        ["Sammy did not understand the results from his lab experiment, so his partner interpreted the meanlng of the results to him.", ""],
+        ["After reviewing his class notes, Mohammed predicted some questions that he thought would be on the exam.", ""],
+        ["Miss Atkins liked the class's idea about having a party on their last day of school and asked her students to elaborate on the details of the event.", ""],
+        ["Mina outlined the most important points that would be on the test.", ""],
+        ["Thiago compared his last Listening Test results with his current ones and realized that he had improved.", ""],
+        ['Mariam learned the contrast between "p" and "b" sounds, as in "pack" and "back," in her English class.', ""],
+        ["At first Camila's parents were reluctant to let her join an afterschool English class, but she was able to persuade them eventually.", ""],
+        ["The teacher demonstrated to her English class a way to change a statement into a question.", ""],
+        ["Ben generalized that taking notes in class would help all students improve their grade because it helped him.", ""],
+        ["Marc assesses his students' performance based on their class participation and test scores.", ""],
+        ["Emma forgot to do her reading homework so she asked her classmate to summarize the reading for her before class started.", ""],
+        ["Edward was feeling sleepy in class so he did not hear most of the lesson, but he got the gist of what the teacher said.", ""],
+        ["Althea asked her class a question, but there was no response. The class was shy.", ""],
+        ["Daniel could not understand anything his classmate, Shirley, was telling him because there was no coherence in the things she said.", ""],
+        ["After failing her English test, Barbara felt very gloomy and locked herself in her room, refusing to eat dinner.", ""],
+        ["Sakura was furious when she heard someone throw a rock at her window and break it.", ""],
+        ["John was ecstatic when he heard he was getting a very big promotion at work.", ""],
+        ["Terry felt confident about passing all her tests because she knew she was well-prepared.", ""],
+        ["Chloe is always cautious about sharing personal information online and never reveals her address or phone number.", ""],
+        ["Laura was indifferent about whether her little brother played basketball well. She didn't think it mattered as long as he was happy.", ""],
+        ["Lionel is usually very quiet in class. He rarely talks to others first because he feels bashful.", ""],
+        ["Heidi felt very lonely when she was home alone and had no one to talk to.", ""],
+        ["Walter didn't feel angry when Jasmine threw a tantrum. He felt sympathetic because he knew Jasmine was upset about her recent divorce.", ""],
+        ["Edmond was horrified when he came home and discovered that someone had broken into his apartment.", ""],
+        ["While his sister was away, Miguel accidentally broke her computer. He felt terribly guilty and immediately bought her a new one.", ""],
+        ["Carmen was pleasantly surprised when her husband came home with a bouquet of flowers for her.", ""],
+        ["Malak was exhausted from working one full-time job and two part-time jobs to support her family of five.", ""],
+        ["Aiden was jealous of his little brother because he thought that his parents loved his brother more than they loved him.", ""],
+        ["Julie felt very anxious the day before her final exam because she hadn't studied at all.", ""],
+        ["Some people study botany to learn about plants and how they support life on earth.", ""],
+        ["An unwanted by-product of many industries is toxic waste, because it runs into oceans and rivers and damages the environment.", ""],
+        ["Cars consume gasoline and produce carbon dioxide that depletes the ozone layer, creating holes in the atmosphere.", ""],
+        ["Water pollution, such as oil spills, negatively affect organisms that live in the ocean.", ""],
+        ["Dinosaurs were the primary animals on earth for millions of years, but they reached extinction long ago.", ""],
+        ["Water is one of our most precious natural resources and must be used wisely.", ""],
+        ["Climate change has global effects that influence many countries around the world.", ""],
+        ["Dad loves African fauna, particularly giraffes.", ""],
+        ["Mom loves colourful rainforest flora such as orchids.", ""],
+        ["On the way home, we drove by a nature reserve and saw various endangered wild animals and plants.", ""],
+        ["The extinction of one species can affect the entire ecosystem, leading to the extinction of other life forms.", ""],
+        ["Some human-produced substances, such as the materials used in fire extinguishers, are harmful to the environment.", ""],
+        ["A group of tourists hiked up Grouse Mountain and successfully made it to the summit before they came back down.", ""],
+        ["Gerard is an expert on rocks and soil because he's taken a lot of geology classes.", ""],
+        ["Destroying an entire forest by cutting down too many trees can have a significant environmental impact.", ""],
+        ["Since I got that new job, I've had this wonderful sense of accomplishment.", ""],
+        ["My earnings for last year weren't nearly as much as I thought they would be, despite the extra hours I worked.", ""],
+        ["Every day I have to commute almost three hours to work and back. I'm getting tired of it.", ""],
+        ["Yesterday, my supervisor told me that I can definitely go on the vacation I had planned with my husband.", ""],
+        ["If I work hard and get all of my work done, I might get that promotion that I've been looking for.", ""],
+        ["He knows exactly what he wants out of life, and he has the ambition to achieve his goals.", ""],
+        ["When you work in customer service or sales, you have to respond to customers' needs in a courteous and professional manner.", ""],
+        ["The bosses are all getting together today to talk about the future of the company at the executive meeting.", ""],
+        ["So many talented people want this job that it is hard to decide who is the best candidate .", ""],
+        ["She is so determined to finish that job she's been working on that I've barely seen her lately!", ""],
+        ["Since I botched that account, I'm definitely more worried about my upcoming evaluation at work .", ""],
+        ["My schedule is so busy that, by Sunday, I'll have worked almost 70 hours this week .", ""],
+        ["I really want to apply for that new position, but I don't know if I'm qualified for the job.", ""],
+        ["I don't know why she doesn't challenge herself more at school; she has so much potential.", ""],
+        ["Whenever I am faced with an obstacle or challenge, I can usually overcome it.", ""],
+        ["I drew a circle around the correct answer on my math exam.", ""],
+        ["From a distance, the mountains look like triangles against the blue sky behind them.", ""],
+        ["My new television came in a big cardboard box shaped like a rectangle.", ""],
+        ["The kite that my son just bought is shaped like a diamond.", ""],
+        ["I like playing chess with my father on our square chessboard.", ""],
+        ["My child did well on his project and got a gold star from his teacher.", ""],
+        ["On Valentine's day, people often give cards with hearts on them to the people that they care about.", ""],
+        ["We just bought new horizontal blinds for our living room. They look great!", ""],
+      ];
+
+      const arrayVerbWords = [
+        ["awake, awoke, awoken", "", "проснуться"],
+        ["be, was, were, been", "", "быть"],
+        ["beat, beat, beaten", "", "бить"],
+        ["become, became, become", "", "стать"],
+        ["begin, began, begun", "", "начать"],
+        ["bend, bent, bent", "", "гнуть"],
+        ["bite, bit, bitten", "", "кусать"],
+        ["blow, blew, blown", "", "дуть"],
+        ["break, broke, broken", "", "ломать"],
+        ["bring, brought, brought", "", "принести"],
+        ["broadcast, broadcast, broadcast", "", "транслировать"],
+        ["build, built, built", "", "строить"],
+        ["burn, burned, burned", "", "жечь"],
+        ["buy, bought, bought", "", "купить"],
+        ["catch, caught, caught", "", "ловить"],
+        ["choose, chose, chosen", "", "выбрать"],
+        ["come, came, come", "", "прихожу"],
+        ["cost, cost, cost", "", "стоить"],
+        ["cut, cut, cut", "", "резать"],
+        ["deal, dealt, dealt", "", "иметь дело с"],
+        ["dig, dug, dug", "", "копать"],
+        ["do, did, done", "", "делать"],
+        ["draw, drew, drawn", "", "рисовать"],
+        ["dream, dreamed, dreamed", "", "мечтать"],
+        ["drink, drank, drunk", "", "пить"],
+        ["drive, drove, driven", "", "водить авто"],
+        ["eat, ate, eaten", "", "кушать"],
+        ["fall, fell, fallen", "", "падать"],
+        ["feed, fed, fed", "", "кормить"],
+        ["feel, felt, felt", "", "чувствовать"],
+        ["fight, fought, fought", "", "драться"],
+        ["find, found, found", "", "найти"],
+        ["flee, fled, fled", "", "сбежать"],
+        ["fly, flew, flown", "", "летать"],
+        ["forbid, forbade, forbidden", "", "запрещать"],
+        ["forget, forgot, forgotten", "", "забыть"],
+        ["forgive, forgave, forgiven", "", "простить"],
+        ["freeze, froze, frozen", "", "заморозить"],
+        ["get, got, gotten", "", "получить"],
+        ["give, gave, given", "", "дать"],
+        ["go, went, gone", "", "идти"],
+        ["grow, grew, grown", "", "рости"],
+        ["have, had, had", "", "иметь"],
+        ["hear, heard, heard", "", "слышать"],
+        ["hide, hid, hidden", "", "прятать"],
+        ["hold, held, held", "", "держать в руке"],
+        ["keep, kept, kept", "", "держать при себе"],
+        ["knit, knitted, knitted", "", "вязать"],
+        ["know, knew, known", "", "знаю"],
+        ["lead, led, led", "", "вестИ"],
+        ["learn, learned, learned", "", "учиться"],
+        ["leave, left, left", "", "оставить"],
+        ["lend, lent, lent", "", "одолжить"],
+        ["let, let, let", "", "позволь"],
+        ["lie, lay, lain", "", "лежать"],
+        ["make, made, made", "", "делать"],
+        ["mean, meant, meant", "", "значит"],
+        ["meet, met, met", "", "встретить"],
+        ["pay, paid, paid", "", "платить"],
+        ["put, put, put", "", "класть"],
+        ["quit, quit, quit", "", "выйти / бросить"],
+        ["read, read, read", "", "читать"],
+        ["ring, rang, rung", "", "звонить"],
+        ["run, ran, run", "", "бежать"],
+        ["saw, sawed, sawed", "", "пилить"],
+        ["say, said, said", "", "сказать"],
+        ["see, saw, seen", "", "видеть"],
+        ["sell, sold, sold", "", "продать"],
+        ["send, sent, sent", "", "послать"],
+        ["set, set, set", "", "установить"],
+        ["shake, shook, shaken", "", "трясти"],
+        ["shine, shone, shone", "", "сиять"],
+        ["shoot, shot, shot", "", "стрелять"],
+        ["sing, sang, sung", "", "петь"],
+        ["sink, sank, sunk", "", "тонуть"],
+        ["sit, sat, sat", "", "сидеть"],
+        ["sleep, slept, slept", "", "спать"],
+        ["smell, smelled, smelled", "", "пахнуть"],
+        ["speak, spoke, spoken", "", "говорить"],
+        ["spend, spent, spent", "", "тратить"],
+        ["spin, spun, spun", "", "вращать"],
+        ["spit, spat, spat", "", "плевать"],
+        ["split, split, split", "", "разделить"],
+        ["spoil, spoiled, spoiled", "", "портить"],
+        ["stink, stank, stunk", "", "вонять"],
+        ["swim, swam, swum", "", "плыть"],
+        ["take, took, taken", "", "взять"],
+        ["teach, taught, taught", "", "научить"],
+        ["tear, tore, torn", "", "порвать"],
+        ["tell, told, told", "", "рассказать"],
+        ["think, thought, thought", "", "думать"],
+        ["throw, threw, thrown", "", "кинуть"],
+        ["understand, understood, understood", "", "понять"],
+        ["unfreeze, unfroze, unfrozen", "", "разморозить"],
+        ["upset, upset, upset", "", "огорчить"],
+        ["wake, woke, woken", "", "будить"],
+        ["wear, wore, worn", "", "носить одежду"],
+        ["win, won, won", "", "выиграть"],
+        ["write, wrote, written", "", "пишу"],
+      ];
+
+      const arrayWaitlist = [
+        ["abide", "abided", "abided", ""],
+        ["arise", "arose", "arisen", ""],
+        ["bear", "bore", "born", ""],
+        ["bet", "bet", "bet", ""],
+        ["bid", "bid", "bid", ""],
+        ["bleed", "bled", "bled", ""],
+        ["burst", "burst", "burst", ""],
+        ["cast", "cast", "cast", ""],
+        ["cling", "clung", "clung", ""],
+        ["creep", "crept", "crept", ""],
+        ["fling", "flung", "flung", ""],
+        ["hang", "hung", "hung", ""],
+        ["hit", "hit", "hit", ""],
+        ["hurt", "hurt", "hurt", ""],
+        ["kneel", "kneeled", "kneeled", ""],
+        ["lay", "laid", "laid", ""],
+        ["lean", "leaned", "leaned", ""],
+        ["leap", "leaped", "leaped", ""],
+        ["light", "lit", "lit", ""],
+        ["lose", "lost", "lost", ""],
+        ["mistake", "mistook", "mistaken", ""],
+        ["mow", "mowed", "mowed", ""],
+        ["overcome", "overcame", "overcome", ""],
+        ["partake", "partook", "partaken", ""],
+        ["ride", "rode", "ridden", ""],
+        ["rise", "rose", "risen", ""],
+        ["sew", "sewed", "sewn", ""],
+        ["shear", "sheared", "shorn", ""],
+        ["shrink", "shrank", "shrunk", ""],
+        ["shut", "shut", "shut", ""],
+        ["slay", "slew", "slain", ""],
+        ["slide", "slid", "slid", ""],
+        ["sling", "slung", "slung", ""],
+        ["slink", "slunk", "slunk", ""],
+        ["slit", "slit", "slit", ""],
+        ["smite", "smote", "smitten", ""],
+        ["sow", "sowed", "sown", ""],
+        ["speed", "sped", "sped", ""],
+        ["spill", "spilled", "spilled", ""],
+        ["spread", "spread", "spread", ""],
+        ["spring", "sprang", "sprung", ""],
+        ["stand", "stood", "stood", ""],
+        ["sting", "stung", "stung", ""],
+        ["stride", "strode", "stridden", ""],
+        ["strike", "struck", "struck", ""],
+        ["string", "strung", "strung", ""],
+        ["strive", "strove", "striven", ""],
+        ["sublet", "sublet", "sublet", ""],
+        ["swing", "swung", "swung", ""],
+        ["thrust", "thrust", "thrust", ""],
+        ["tread", "trod", "trodden", ""],
+        ["unbind", "unbound", "unbound", ""],
+        ["undo", "undid", "undone", ""],
+        ["uphold", "upheld", "upheld", ""],
+        ["weave", "wove", "woven", ""],
+        ["weep", "wept", "wept", ""],
+        ["wind", "wound", "wound", ""],
+        ["withdraw", "withdrew", "withdrawn", ""],
+        ["withstand", "withstood", "withstood", ""],
+        ["wring", "wrung", "wrung", ""],
+      ];
+
+      const arrayQuestionWords = [
+        ["how many", "хАу мЭни", "сколько (исч)"],
+        ["how much", "хАу мач", "сколько"],
+        ["what for", "ват фор", "зачем"],
+        ["when", "вэн", "когда"],
+        ["where", "вЭа", "где, куда"],
+        ["who", "ху", "кто"],
+        ["why", "вай", "почему"],
+        ["what", "ват", "что"],
+        ["which", "уИч", "который"],
+        ["how", "хАу", "как"],
+        ["whose", "хуз", "чей"],
+        ["about", "эбАут", "про"],
+        ["above", "эбАв", "над"],
+        ["across", "экрОс", "через"],
+        ["after", "Афтэр", "после"],
+        ["against", "эгЭнст", "против"],
+        ["along", "элОнг", "вдоль"],
+        ["among", "эмАнг", "среди"],
+        ["around", "эрАунд", "вокруг"],
+        ["before", "бифОр", "перед"],
+        ["behind", "бихАйнд", "позади"],
+        ["below", "билОу", "ниже"],
+        ["beside", "бисАйд", "рядом"],
+        ["between", "битвИн", "между"],
+        ["beyond", "бийОнд", "по ту сторону"],
+        ["during", "дьЁринг", "в течение"],
+        ["except", "иксЭпт", "кроме"],
+        ["for", "фор", "для"],
+        ["from", "фром", "от"],
+        ["in", "ин", "в"],
+        ["inside", "инсАйд", "внутри"],
+        ["into", "Инту", "внутрь"],
+        ["like", "лайк", "как (подобно)"],
+        ["near", "нИэр", "возле"],
+        ["of", "оф", "из"],
+        ["on", "он", "на"],
+        ["opposite", "Опэзит", "напротив"],
+        ["out", "Аут", "вне"],
+        ["outside", "аутсАйд", "снаружи"],
+        ["over", "Оувэр", "через"],
+        ["past", "пАст", "мимо"],
+        ["since", "синс", "с (тех пор)"],
+        ["to", "ту", "к"],
+        ["toward", "туОрд", "по направлению к"],
+        ["under", "Андэр", "под"],
+        ["until", "антИл", "пока не"],
+        ["up", "ап", "наверх"],
+        ["with", "виз", "с"],
+        ["without", "визАут", "без"],
+        ["per", "пёр", "в (км/ч)"],
+        ["plus", "плас", "плюс"],
+        ["versus", "вЁрсэс", "по сравнению с"],
+        ["via", "вАя", "посредством"],
+      ];
+
+      const arrayLongWords = [
+        ["Я ищу автобусную остановку. Скажите пожалуйста где она?"],
+        ["Можно посмотреть ту коричневую сумку пожалуйста?"],
+        ["Сколько стоит этот пиджак?"],
+        ["Отлично, наконец-то пятница. Время идти домой."],
+        ["Сколько остановок до 11-й авеню?"],
+        ["Скажите мне пожалуйста когда мы прибываем в Монреаль?"],
+        ["Мне нужен билет на сегодня, где я могу купить его?"],
+        ["Извини, я тебя не расслышал. Скажи снова пожалуйста."],
+        ["Могу я спросить у вас что-то? Как называется это дерево?"],
+        ["Спасибо за информацию."],
+        ["Я учу английский каждый день, но не на уикенд."],
+        ["Я согласна. Первый сезон этого тв шоу был лучший."],
+        ["Я недавно поменяла нитки от белой к зеленой. Все работает хорошо."],
+        ["Я могу отнести коробку в комнату завтра или сейчас."],
+        ["Клиент ждет тебя возле кухни."],
+        ["Я оставлю это здесь, ты можешь брать в любое время."],
+      ];
+
+      const arrayPhrases = [
+        ["you look great", "ты выглядишь хорошо", ""],
+        ["what a coincidence", "какое совпадение", "коИнсидэнс"],
+        ["that's great", "отлично", ""],
+        ["good for you", "ты молодец", ""],
+        ["you won't believe this", "ты не поверишь", "билИв"],
+        ["that's terrible", "это ужасно", "тЭрибл"],
+        ["you too", "тебе тоже", ""],
+        ["me too", "я тоже", ""],
+        ["have fun", "веселись", ""],
+        ["have a good day", "хорошего дня", ""],
+        ["have a great weekend", "хорошего уикенда", ""],
+        ["have a nice evening", "хорошего вечера", ""],
+        ["sounds good", "звучит хорошо", "сАундс"],
+        ["you are welcome", "пожалуйста", "вЭлкам"],
+        ["likewise", "взаимно", "лАйквайз"],
+        ["same for me", "у меня тоже самое", "сэйм"],
+        ["never mind", "неважно. не бери в голову", "нэвэмАйнд"],
+        ["do you mind?", "не возражаешь?", "майнд"],
+        ["look at me", "посмотри на меня", ""],
+        ["please give it to me", "пожалуйста дайте это мне", ""],
+        ["I speak english a little bit", "я немного говорю по английски", "бит"],
+        ["come here", "иди сюда", ""],
+        ["I am sorry but I can't", "извините но я не могу", "кэнт"],
+        ["with pleasure", "с удовольствием", "плЭжа"],
+        ["don't worry", "не волнуйтесь", "вОри"],
+        ["I can't remember", "я не могу вспомнить", "римЭмбэр"],
+        ["who did this?", "кто это сделал?", ""],
+        ["see you later", "увидимся позже", "лЭйтэр"],
+        ["that's not right", "это не правильно", "райт"],
+        ["could you repeat that?", "не могли бы вы повторить?", "рипИт"],
+        ["how much is this?", "сколько это стоит?", ""],
+        ["no, thank you", "нет, спасибо", ""],
+        ["I want to go with you", "я хочу пойти с тобой", ""],
+        ["here you are", "вот, возьмите", "хИа"],
+        ["I like to eat fruit", "я люблю есть фрукты", ""],
+        ["have a good time", "желаю хорошо провести время", ""],
+        ["nothing special", "ничего особенного", "спэшл"],
+        ["in the morning", "утром", ""],
+        ["to say the least", "мягко говоря", "лист"],
+      ];
+
+      const arrayAiText = [
+        ["Для решения этой сложной задачи нужно быть очень внимательным и терпеливым."],
+        ["Вчера вечером был сильный дождь, но к утру он прекратился."],
+        ["В прошлые выходные дни были очень теплыми и солнечными, мы гуляли в парке."],
+        ["Пожалуйста, принеси мне стакан свежего сока, я хочу пить."],
+        ["Она хочет купить новый красивый дом на берегу моря для семьи."],
+        ["Не забудь позвонить своему врачу, чтобы записаться на прием."],
+        ["Сколько будет стоить поездка на такси до аэропорта в час пик?"],
+        ["Чтобы хорошо выучить иностранный язык, нужно делать упражнения каждый день."],
+        ["Он очень любит мечтать о дальних странах и интересных приключениях."],
+        ["В жаркую погоду хочется пить прохладную воду или лимонад."],
+        ["Мой дедушка любит водить свой старый автомобиль по проселочным дорогам."],
+        ["На ужин мы будем кушать свежий салат и жареную рыбу."],
+        ["Я чувствовую себя сегодня немного уставшим после долгой работы."],
+        ["Не могу забыть интересный фильм, который мы смотрели вчера в кинотеатре."],
+        ["Мне нужно получить посылку на почте как можно скорее."],
+        ["Пожалуйста, дай мне книгу, которую ты вчера читал, на вечер."],
+        ["Я хочу иметь много друзей и проводить с ними больше времени."],
+        ["Она хочет знать все последние новости и события в мире."],
+        ["Каждый день учусь чему-то новому и интересному для себя."],
+        ["Нам нужно сделать домашнее задание по математике к завтрашнему дню."],
+        ["Я встречаю своих друзей в кафе после работы каждую пятницу."],
+        ["За этот товар нужно платить наличными или банковской картой?"],
+        ["Дети любят играть в разные игры на свежем воздухе после школы."],
+        ["Каждый вечер я люблю читать интересную книгу перед сном."],
+        ["Из окна своей комнаты я могу видеть красивый парк и озеро."],
+        ["Мы хотим продать старый дом и купить новый за городом."],
+        ["Пожалуйста, не забудь слать нам открытки из путешествия."],
+        ["После тяжелого дня так приятно спать в своей уютной кровати."],
+        ["Я говорю тебе правду, и ты должен мне верить."],
+        ["Пожалуйста, возьми с собой зонтик, на улице сегодня идет дождь."],
+        ["Учитель будет учить нас новому предмету в следующем семестре."],
+        ["Скажи мне, пожалуйста, который сейчас час, я опоздываю."],
+        ["Я люблю думать о будущем и строить планы на жизнь."],
+        ["Я стараюсь всегда быть вежливым и уважительным к другим людям."],
+        ["Каждый день я пишу письма своим друзьям, которые живут далеко."],
+        ["Не нужно ждать долго, скоро придет автобус и поедем."],
+        ["Со временем он хочет стать известным писателем и поэтом."],
+        ["Он решил начать свой собственный бизнес в сфере информационных технологий."],
+        ["Они должны выбрать правильный путь, чтобы достичь своей цели."],
+        ["Приходи ко мне в гости в воскресенье, будем пить чай с тортом."],
+        ["Нам нужно найти хорошее решение этой сложной проблемы вместе."],
+        ["Современная автоматическая сушилка значительно облегчает домашнюю работу."],
+        ["Птицы весной будут лететь на север в теплые края."],
+        ["Я хочу слышать пение птиц каждое утро за окном."],
+        ["Старик держал в руках старую фотографию и вспоминал молодость."],
+        ["Позже мы обсудим все детали этого важного проекта и примем решение."],
+        ["Не забудь оставить ключи от квартиры соседям на время отпуска."],
+        ["На берегу моря можно лежать на песке и загорать под солнцем."],
+        ["Каждое утро я люблю бежать в парке для поддержания здоровья."],
+        ["Пожалуйста, покажи мне дорогу до ближайшей станции метро, я заблудился."],
+        ["Хорошо сидеть в кресле с книгой у камина в холодный вечер."],
+        ["Летом мы будем плавать в море и загорать на пляже каждый день."],
+        ["Завтра утром я хочу проснуться рано и пойти на рыбалку."],
+        ["Наша команда должна выиграть этот важный матч, чтобы выйти в финал."],
+        ["В этом году в городе построили новый современный торговый центр."],
+        ["Сейчас самое лучшее время для прогулок в парке, погода прекрасная."],
+        ["На вершине горы открывается высокий вид на окрестности и долину."],
+        ["Мой дедушка уже старый, но он еще очень бодрый и энергичный."],
+        ["Самый длинный день в году - это летнее солнцестояние, 22 июня."],
+        ["У меня есть маленький щенок, который любит играть со мной."],
+        ["Этот торт - лучший подарок на день рождения для моего друга."],
+        ["Все нужно делать правильно и аккуратно, чтобы не допустить ошибок."],
+        ["В этом магазине продается только свежий хлеб и выпечка."],
+        ["Вчера я проснулся рано утром, чтобы успеть на поезд."],
+        ["Сегодня я пришел на работу поздно из-за сильных пробок на дороге."],
+        ["Этот материал очень жесткий и прочный, он подойдет для строительства."],
+        ["Он очень сильный человек, он всегда добивается поставленных целей."],
+        ["Наконец-то я свободен от работы и могу отдохнуть в выходные."],
+        ["Этот ящик был полный разных инструментов для ремонта автомобиля."],
+        ["Недавно в городе открыли новый современный художественный музей."],
+        ["Нужно открыть окно, чтобы проветрить комнату и сделать воздух свежим."],
+        ["Это абсолютно неправильно, нужно сделать все по-другому."],
+        ["Эти два платья очень похожий по стилю и цвету, какое выбрать?"],
+        ["В пустыне днем очень горячий песок и воздух, а ночью холодно."],
+        ["Он был очень счастлив получить подарок на свой день рождения."],
+        ["Мы готовы начать работу над новым проектом в любое время."],
+        ["В темный лес лучше не ходить одному, можно заблудиться и испугаться."],
+        ["На улице холодно, нужно одеться тепло перед выходом из дома."],
+        ["Главный инженер проекта будет руководить строительством этого здания."],
+        ["В этом году построили огромный новый стадион для проведения чемпионата."],
+        ["Всё будет хорошо, не нужно волноваться и переживать по пустякам."],
+        ["Ничего страшного не случилось, просто немного задержались в пути."],
+        ["Каждый человек имеет право на свободу слова и вероисповедания."],
+        ["Интересная вещь произошла вчера, когда я шел домой с работы."],
+        ["Все мои друзья пришли на мой день рождения, было очень весело."],
+        ["Что случается в жизни, всегда к лучшему, нужно верить в это."],
+        ["Тонкая нить связывает прошлое и будущее, нужно помнить об этом."],
+        ["Этот старинный предмет является настоящим произведением искусства."],
+        ["Медленный темп жизни позволяет наслаждаться каждым моментом."],
+        ["Быстро летит время, не успеешь оглянуться, как прошел год."],
+        ["Конечно, я помогу тебе с этим заданием, если тебе нужна помощь."],
+        ["Мы уже закончили работу над этим проектом, можно отдохнуть."],
+        ["Он все еще не вернулся из командировки, хотя обещал приехать вчера."],
+        ["Нужно спросить совета у специалиста, чтобы решить эту проблему правильно."],
+        ["Не нужно тратить деньги на ерунду, лучше накопить на отпуск."],
+        ["Чтобы изменить свою жизнь к лучшему, нужно начать действовать прямо сейчас."],
+        ["Нужно двигать мебель осторожно, чтобы не повредить пол и стены."],
+        ["Я люблю наслаждаться тишиной и покоем в деревне в выходные дни."],
+        ["Иногда хочется просто отдохнуть и ничего не делать целый день."],
+        ["Каждый человек должен заботиться о своем здоровье и правильно питаться."],
+        ["Я хочу поехать в путешествие вокруг света в следующем году."],
+        ["Мне нужно срочно нужно купить новые ботинки, старые совсем износились."],
+        ["На следующей неделя будет очень теплая и солнечная погода, можно поехать на природу."],
+        ["В следующем месяце мы планируем поехать в отпуск на море всей семьей."],
+        ["Через час начнется интересный фильм по телевизору, не опоздай."],
+        ["Цена на этот товар немного высоковата, нужно поискать дешевле."],
+        ["Я должен согласиться с вашим мнением, вы абсолютно правы в этом вопросе."],
+        ["Нужно искать хорошую работу, чтобы обеспечить достойную жизнь семье."],
+        ["Этот фильм очень забавный и смешной, мы смеялись до слез."],
+        ["Все будет хорошо, не волнуйся, нужно верить в лучшее и надеяться."],
+        ["Нужно кормить домашних животных вовремя и правильно, чтобы они были здоровы."],
+        ["Не нужно разбить чашку, будь осторожен, она очень хрупкая и ценная."],
+        ["Ты можешь прийти в гости в любое время, мы всегда рады гостям."],
+        ["Нужно поймать такси, чтобы не опоздать на важную встречу в центре города."],
+        ["Я использую этот компьютер для работы и развлечений каждый день."],
+        ["Я никогда не забуду этот день, он был самым счастливым в моей жизни."],
+        ["Нужно составить график работы на следующую неделю и разослать коллегам."],
+        ["Я хочу верить в чудеса и сказки, хотя понимаю, что это не всегда реально."],
+        ["Мне кажется, что сегодня будет дождь, небо затянуло тучами."],
+        ["Нужно продолжать учиться и развиваться всю жизнь, чтобы быть успешным."],
+        ["Я хочу предлагать свою помощь всем, кто в ней нуждается, всегда и везде."],
+        ["Пожалуйста, останься еще немного, не уходи так рано, мне с тобой интересно."],
+        ["Нужно нести тяжелую сумку осторожно, чтобы не повредить спину."],
+        ["Давай гулять в парке сегодня вечером, погода прекрасная и воздух свежий."],
+        ["Эти две картины такие разный по стилю и технике исполнения, какая тебе нравится больше?"],
+        ["Этот автомобиль очень дорогой, не каждый может позволить себе такую роскошь."],
+        ["Эта поверхность абсолютно плоский, можно использовать для разных целей."],
+        ["Я съел только половина пиццы, остальное оставил на завтрак."],
+        ["Свежий огурец очень полезный и вкусный овощ, особенно летом."],
+        ["Нужно мариновать огурцы на зиму, чтобы зимой были вкусные соленья."],
+        ["Не забудь добавить соль и перец в блюдо, чтобы оно было вкуснее."],
+        ["Хочу есть более свежих овощей и фруктов каждый день, чтобы быть здоровым."],
+        ["Свежий воздух и солнечный свет - это очень свежий для здоровья и хорошего настроения."],
+        ["Это очень вкусный торт, один из моих любимых блюдо на десерт."],
+        ["Мне нужен другой телефон, этот совсем старый и плохо работает."],
+        ["У этого цветка очень приятный и нежный аромат, он пахнет весной."],
+      ];
+
+      // Fisher-Yates shuffle algorithm
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      // Store references to the elements in variables
+      const body = document.querySelector("body");
+      const wrap = document.getElementById("wrap");
+      const buttonNav = document.getElementById("buttonNav");
+      const navModes = document.getElementById("navModes");
+      const navTop = document.getElementById("navTop");
+      const div1Wrap = document.getElementById("div1");
+      const div3Wrap = document.getElementById("div3");
+      const div1 = document.querySelector("#div1 span");
+      const div2 = document.querySelector("#div2 span");
+      const div3 = document.querySelector("#div3 span");
+      const htmlEntirePage = document.querySelector("html");
+      const navBottom = document.getElementById("navBottom");
+      const vocabulary = document.getElementById("vocabulary");
+      const buttonReverse = document.getElementById("buttonReverse");
+      const buttonAddWord = document.getElementById("buttonAddWord");
+      const buttonDownload = document.getElementById("buttonDownload");
+      const buttonNextWord = document.getElementById("buttonNextWord");
+      const buttonCountWord = document.getElementById("buttonCountWord");
+      const achievement40Words = document.getElementById("achievement40Words");
+      const buttonShowTranslation = document.getElementById("buttonShowTranslation");
+      const modeButtons = Array.from(document.querySelectorAll("[id^=buttonMode]")); // Array with all mode buttons
+
+      let arrayMini = [];
+      let indexMini = 0;
+      let indexOfCurrentWord = 0;
+      let arrayUnknown = [];
+
+      // Fetch words from new.html
+      /* async function initializeArray() {
+            const response = await fetch('new.html');
+
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const table = doc.querySelector('table');
+            const rows = table.querySelectorAll('tr');
+
+            // Update the global variable directly
+            arrayUnknown = Array.from(rows).map(row => {
+                const cells = row.querySelectorAll('td');
+                return Array.from(cells).map(cell => cell.textContent);
+            });
+        }
+
+        initializeArray().then(() => {
+            console.log("Data fetched:", arrayUnknown);
+            // Now update your modes object here, once arrayUnknown has been populated.
+            modes[7].array = arrayUnknown;
+        }); */
+
+      let modes = {
+        1: {
+          wordOrder: [2, 0, 1],
+          showDiv: [div2, div3],
+          hideDiv: [div1],
+          translationDiv: [div1],
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: arrayLvl1Words,
+        },
+        2: {
+          wordOrder: [2, 0, 1],
+          showDiv: [div2, div3],
+          hideDiv: [div1],
+          translationDiv: [div1],
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: arrayLvl2Words,
+        },
+        3: {
+          wordOrder: [2, 0, 1],
+          showDiv: [div2, div3],
+          hideDiv: [div1],
+          translationDiv: [div1],
+          showBtn: [],
+          hideBtn: [buttonAddWord, buttonCountWord],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: arrayQuestionWords,
+        },
+        4: {
+          wordOrder: [1, 0, 2],
+          showDiv: [div2, div3],
+          hideDiv: [div1],
+          translationDiv: [div1],
+          showBtn: [],
+          hideBtn: [buttonAddWord, buttonCountWord],
+          smallFont: true,
+          reverseAllowed: false,
+          ttsAllowed: true,
+          array: arrayPhrases,
+        },
+        5: {
+          wordOrder: [2, 0, 1],
+          showDiv: [div2, div3],
+          hideDiv: [div1],
+          translationDiv: [div1],
+          showBtn: [],
+          hideBtn: [buttonAddWord, buttonCountWord],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: arrayVerbWords,
+        },
+        6: {
+          wordOrder: [3, 0, 1],
+          showDiv: [div2],
+          hideDiv: [div1, div3],
+          translationDiv: [],
+          showBtn: [],
+          hideBtn: [buttonAddWord, buttonCountWord],
+          smallFont: true,
+          reverseAllowed: false,
+          ttsAllowed: false,
+          array: arrayAiText,
+        },
+        7: {
+          wordOrder: [2, 0, 1],
+          showDiv: [div2, div3],
+          hideDiv: [div1],
+          translationDiv: [div1],
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: arrayCelpipWords,
+        },
+        8: {
+          wordOrder: [3, 0, 1],
+          showDiv: [div2],
+          hideDiv: [div1, div3],
+          translationDiv: [],
+          showBtn: [],
+          hideBtn: [buttonAddWord, buttonCountWord],
+          smallFont: true,
+          reverseAllowed: false,
+          ttsAllowed: false,
+          array: arrayCelpipTexts,
+        },
+      };
+
+      let modesReverse = {
+        1: {
+          wordOrder: [0, 2, 1],
+          showDiv: [div2],
+          hideDiv: [div1, div3],
+          translationDiv: [div1, div3],
+        },
+      };
+
+      let currentMode = 1; // Default mode
+      let currentArray = modes[currentMode].array;
+      switchMode(1);
+
+      function switchMode(mode) {
+        currentMode = mode;
+        currentReverseMode = false;
+        currentArray = modes[currentMode].array;
+        indexOfCurrentWord = 0;
+        shuffle(currentArray);
+        clearStyles();
+        modeActiveColor(currentMode);
+        divsLayout(currentMode);
+      }
+
+      // buttonMode listener
+      modeButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+          switchMode(index + 1);
+          navModes.classList.toggle("navVisible");
+        });
+      });
+
+      // Show or hide divs
+      function divsLayout(currentMode, isMini) {
+        modes[currentMode].showDiv.forEach(showThis);
+        modes[currentMode].hideDiv.forEach(hideThis);
+        modes[currentMode].showBtn.forEach(showThis);
+        modes[currentMode].hideBtn.forEach(hideThis);
+        wordsLayout(currentMode, isMini);
+      }
+
+      // What word in what div
+      function wordsLayout(currentMode, isMini = false) {
+        let mode = modes[currentMode].wordOrder;
+        let word;
+        if (isMini) {
+          word = arrayMini[indexMini];
+        } else {
+          word = currentArray[indexOfCurrentWord];
+        }
+        div1.innerText = word[mode[0]];
+        div2.innerText = word[mode[1]];
+        div3.innerText = word[mode[2]];
+        divsStyle(currentMode, word);
+      }
+
+      function divsStyle(currentMode, word) {
+        // Small font toggle
+        div1.classList.toggle("small-font", modes[currentMode].smallFont);
+        div2.classList.toggle("small-font", modes[currentMode].smallFont);
+        div3.classList.toggle("small-font", modes[currentMode].smallFont);
+        // Text left align
+        div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
+        // Reverse mode toggle
+        if (modes[currentMode].reverseAllowed) {
+          divsLayoutReverse(currentReverseMode, word);
+        }
+      }
+
+      function divsLayoutReverse(currentReverseMode, word) {
+        if (currentReverseMode) {
+          modesReverse[1].showDiv.forEach(showThis);
+          modesReverse[1].hideDiv.forEach(hideThis);
+          [div1.innerText, div2.innerText, div3.innerText] = modesReverse[1].wordOrder.map((i) => word[i]);
+        }
+      }
+
+      buttonReverse.addEventListener("click", function () {
+        if (modes[currentMode].reverseAllowed) {
+          currentReverseMode = !currentReverseMode; // mode toggle
+          buttonReverse.classList.toggle("reverseBG");
+          shuffle(currentArray);
+          indexMini = 0;
+          indexOfCurrentWord = 0;
+          buttonNextWord.innerHTML = currentArray.length;
+          buttonCountWord.innerHTML = arrayMini.length;
+          divsLayout(currentMode);
+        }
+      });
+
+      // Show next word
+      function actionNextWord(currentMode) {
+        indexOfCurrentWord++;
+        indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
+        divsLayout(currentMode);
+        buttonNextWord.innerHTML = currentArray.length - indexOfCurrentWord;
+      }
+      buttonNextWord.addEventListener("click", function () {
+        actionNextWord(currentMode);
+        achieve40Words();
+      });
+
+      // Show next word in mini array
+      function actionNextWordMini(currentMode) {
+        indexMini++;
+        indexMini = indexMini % arrayMini.length;
+        divsLayout(currentMode, true);
+        /*buttonCountWord.innerHTML = arrayMini.length - indexMini;*/
+      }
+      buttonCountWord.addEventListener("click", function () {
+        if (arrayMini.length > 0) {
+          actionNextWordMini(currentMode);
+        }
+      });
+
+      // Add word to mini array
+      function actionAddWord(currentMode) {
+        let word = currentArray[indexOfCurrentWord];
+
+        // Prevent duplicate
+        if (arrayMini.includes(word)) {
+          console.log("Duplicate");
+        } else {
+          arrayMini.push(word);
+        }
+        buttonCountWord.innerHTML = arrayMini.length;
+      }
+      buttonAddWord.addEventListener("click", function () {
+        actionAddWord(currentMode);
+        for (a of arrayMini) {
+          console.log(a);
+        }
+        // Show button to download mini array
+        if (arrayMini.length > 0) {
+          showThis(buttonDownload);
+        }
+      });
+
+      // Show translation
+      function showTranslation(currentMode, currentReverseMode) {
+        if (currentReverseMode === true) {
+          modesReverse[1].translationDiv.forEach(showThis);
+        } else {
+          modes[currentMode].translationDiv.forEach(showThis);
+        }
+      }
+      buttonShowTranslation.addEventListener("click", function () {
+        showTranslation(currentMode, currentReverseMode);
+      });
+
+      // Active buttonMode color
+      function modeActiveColor(currentMode) {
+        buttonMode = document.getElementById(`buttonMode${currentMode}`);
+        buttonMode.style.background = "#553674";
+      }
+
+      // Text to speach
+      function textToSpeach(currentMode, div) {
+        if ("speechSynthesis" in window) {
+          const utterance = new SpeechSynthesisUtterance(div.textContent);
+          if (modes[currentMode].ttsAllowed) {
+            window.speechSynthesis.speak(utterance);
+          }
+        }
+      }
+
+      function checkifEnglish(event) {
+        const div = event.target;
+        if (/[а-яА-ЯёЁ]/.test(div.textContent)) {
+          console.log("Not english text");
+        } else {
+          textToSpeach(currentMode, div);
+        }
+      }
+      div1.addEventListener("click", checkifEnglish);
+      div2.addEventListener("click", checkifEnglish);
+
+      // Clear styles
+      function clearStyles() {
+        div1.innerHTML = "";
+        div2.innerHTML = "";
+        div3.innerHTML = "";
+        modeButtons.forEach((el) => (el.style.background = ""));
+        buttonNav.innerHTML = currentMode;
+        indexMini = 0;
+        arrayMini.length = 0;
+        currentArray.length > 0 ? (buttonNextWord.innerHTML = currentArray.length) : null;
+        buttonCountWord.innerHTML = arrayMini.length;
+        buttonReverse.classList.remove("reverseBG");
+        hideThis(achievement40Words);
+        hideThis(buttonDownload);
+      }
+
+      // Hide any element
+      function hideThis(el) {
+        el.classList.add("hidden");
+        el.classList.remove("visible");
+      }
+
+      // Show any element
+      function showThis(el) {
+        el.classList.add("visible");
+        el.classList.remove("hidden");
+      }
+
+      // every 40 words achievement is shown
+      function achieve40Words(currentMode) {
+        const wordsCount = [40, 80, 120];
+        const bgColors = ["#007905", "#007279", "#ff5400"];
+
+        wordsCount.forEach((val, i) => {
+          if (indexOfCurrentWord === wordsCount[i]) {
+            showThis(achievement40Words);
+            achievement40Words.style.background = bgColors[i];
+            achievement40Words.innerHTML = indexOfCurrentWord;
+          }
+        });
+        if (indexOfCurrentWord < 40) {
+          hideThis(achievement40Words);
+        }
+      }
+
+      // Download mini array
+      function downloadArrayMini() {
+        if (arrayMini.length === 0) {
+          alert("arrayMini is empty. Nothing to download.");
+          return;
+        }
+
+        // Get current date and time for filename
+        const now = new Date();
+        const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        const month = months[now.getMonth()];
+        const day = now.getDate();
+        const hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const timeFormatted = `${hours}${minutes}`;
+
+        const fileName = `enWord_${month}${day}_${timeFormatted}.html`;
+
+        // Generate HTML content with a table
+        const htmlContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>enWord</title>
+            <style>
+            body {
+                font-family: sans-serif;
+                font-weight: 900;
+                color: #ffffff;
+                background: #291d27;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 2px solid #553674;
+                padding: 2svh;
+                text-align: center;
+                word-break: break-all;                
+                line-height: 1.1;
+            }
+            </style>
+            </head>
+            <body>
+                <h2>${month} ${day}</h2>
+                <table>
+                    ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
+                </table>
+            </body>
+            </html>
+            `;
+
+        // Create a Blob with the HTML content
+        const blob = new Blob(["\ufeff" + htmlContent], {
+          type: "text/html;charset=utf-8",
+        });
+
+        // Create a link and trigger the download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+      buttonDownload.addEventListener("click", downloadArrayMini);
+
+      // Modes menu toggle
+      buttonNav.addEventListener("click", function () {
+        navModes.classList.toggle("navVisible");
+      });
+    </script>
+  </body>
+</html>
