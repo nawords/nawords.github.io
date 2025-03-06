@@ -217,22 +217,30 @@
         position: fixed;
         bottom: 0;
         background: #1d181e;
+        width: 99%;
         height: 89svh;
         z-index: 1000;
         overflow-y: scroll;
+        border-collapse: collapse;
       }
 
       #tableBody {
         height: 100%;
       }
 
+      #tableBody tr {
+        box-shadow: 0 -1px 0 0 var(--title-color);
+        border-radius: 0;
+      }
+
       #tableBody td {
-        padding: 1.7svh;
+        padding: 14px 4px;
         font-size: 2.5svh;
         font-weight: 700;
         line-height: 1;
         text-align: left;
         overflow-wrap: break-word;
+        border-radius: 0;
       }
 
       .small-font {
