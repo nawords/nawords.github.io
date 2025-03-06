@@ -44,7 +44,8 @@
       #div2 > span,
       #div3 > span,
       #navModes > div,
-      #achievement40Words {
+      #achievement40Words,
+      #tableContainer {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -212,6 +213,28 @@
         background: #372237;
       }
 
+      #tableContainer {
+        position: fixed;
+        bottom: 0;
+        background: #1d181e;
+        height: 89svh;
+        z-index: 1000;
+        overflow-y: scroll;
+      }
+
+      #tableBody {
+        height: 100%;
+      }
+
+      #tableBody td {
+        padding: 1.7svh;
+        font-size: 2.5svh;
+        font-weight: 700;
+        line-height: 1;
+        text-align: left;
+        overflow-wrap: break-word;
+      }
+
       .small-font {
         font-size: 5svh !important;
       }
@@ -264,7 +287,11 @@
         <div id="buttonMode6">6 AI</div>
         <div id="buttonMode7">7 CELPIP</div>
         <div id="buttonMode8">8 CELPIP.txt</div>
+        <div id="buttonShowTable">vocab</div>
       </div>
+      <table id="tableContainer">
+        <tbody id="tableBody"></tbody>
+      </table>
     </div>
     <script>
       // Preload TTS voices
@@ -1279,7 +1306,8 @@
       const div3 = document.querySelector("#div3 span");
       const htmlEntirePage = document.querySelector("html");
       const navBottom = document.getElementById("navBottom");
-      const vocabulary = document.getElementById("vocabulary");
+      const buttonShowTable = document.getElementById("buttonShowTable");
+      const tableContainer = document.getElementById("tableContainer");
       const buttonReverse = document.getElementById("buttonReverse");
       const buttonAddWord = document.getElementById("buttonAddWord");
       const buttonDownload = document.getElementById("buttonDownload");
@@ -1607,18 +1635,19 @@
         buttonReverse.classList.remove("reverseBG");
         hideThis(achievement40Words);
         hideThis(buttonDownload);
+        hideThis(tableContainer);
       }
 
       // Hide any element
       function hideThis(el) {
-        el.classList.add("hidden");
         el.classList.remove("visible");
+        el.classList.add("hidden");
       }
 
       // Show any element
       function showThis(el) {
-        el.classList.add("visible");
         el.classList.remove("hidden");
+        el.classList.add("visible");
       }
 
       // every 40 words achievement is shown
@@ -1679,7 +1708,7 @@
                 border: 2px solid #553674;
                 padding: 2svh;
                 text-align: center;
-                word-break: break-all;                
+                word-break: break-all;
                 line-height: 1.1;
             }
             </style>
@@ -1714,7 +1743,36 @@
       // Modes menu toggle
       buttonNav.addEventListener("click", function () {
         navModes.classList.toggle("navVisible");
+        hideThis(tableContainer);
       });
+
+      // Table
+      const sortedArray = [...arrayLvl1Words].sort((a, b) => {
+        const column3A = a[2].toLowerCase(); // Get 3rd column and lowercase for case-insensitive sort
+        const column3B = b[2].toLowerCase();
+        if (column3A < column3B) {
+          return -1; // a comes before b
+        }
+        if (column3A > column3B) {
+          return 1; // a comes after b
+        }
+        return 0; // a and b are equal in terms of sort order
+      });
+
+      // Generate table rows from the array
+      sortedArray.forEach((wordArray) => {
+        let row = tableBody.insertRow(); // Create a new row
+        wordArray.forEach((word) => {
+          let cell = row.insertCell(); // Create a new cell in the row
+          cell.textContent = word; // Set cell text content to the array element
+        });
+      });
+
+      buttonShowTable.addEventListener("click", function () {
+        showThis(tableContainer);
+      });
+
+      //
     </script>
   </body>
 </html>
