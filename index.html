@@ -295,6 +295,7 @@
         <div id="buttonMode6">6 AI</div>
         <div id="buttonMode7">7 CELPIP</div>
         <div id="buttonMode8">8 CELPIP.txt</div>
+        <div id="buttonMode9">9 repeat</div>
         <div id="buttonShowTable">vocab</div>
       </div>
       <table id="tableContainer">
@@ -478,6 +479,10 @@
         ["october", "октОубэр", "октябрь"],
         ["november", "новЭмбэр", "ноябрь"],
         ["december", "дэсЭмбэр", "декабрь"],
+        ["fall", "фол", "осень"],
+        ["summer", "сАмэр", "лето"],
+        ["winter", "вИнтэр", "зима"],
+        ["spring", "спринг", "весна"],
       ];
 
       const arrayLvl2Words = [
@@ -1331,27 +1336,38 @@
       let arrayUnknown = [];
 
       // Fetch words from new.html
-      /* async function initializeArray() {
-            const response = await fetch('new.html');
+      async function initializeArray() {
+        try {
+          const checkResponse = await fetch("new.html", { method: "HEAD" });
+          if (!checkResponse.ok) {
+            console.log("new.html does not exist.");
+            hideThis(buttonMode9);
+            return; // Exit the function if new.html doesn't exist
+          }
 
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const table = doc.querySelector('table');
-            const rows = table.querySelectorAll('tr');
+          const response = await fetch("new.html");
+          const html = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "text/html");
+          const table = doc.querySelector("table");
+          const rows = table.querySelectorAll("tr");
 
-            // Update the global variable directly
-            arrayUnknown = Array.from(rows).map(row => {
-                const cells = row.querySelectorAll('td');
-                return Array.from(cells).map(cell => cell.textContent);
-            });
+          // Update the global variable directly
+          arrayUnknown = Array.from(rows).map((row) => {
+            const cells = row.querySelectorAll("td");
+            return Array.from(cells).map((cell) => cell.textContent);
+          });
+        } catch (error) {
+          console.error("Error checking or fetching new.html:", error);
+          return; // Exit the function if there's an error during fetch
         }
+      }
 
-        initializeArray().then(() => {
-            console.log("Data fetched:", arrayUnknown);
-            // Now update your modes object here, once arrayUnknown has been populated.
-            modes[7].array = arrayUnknown;
-        }); */
+      initializeArray().then(() => {
+        console.log("Data fetched:", arrayUnknown);
+        // Now update your modes object here, once arrayUnknown has been populated.
+        modes[9].array = arrayUnknown;
+      });
 
       let modes = {
         1: {
@@ -1449,6 +1465,18 @@
           reverseAllowed: false,
           ttsAllowed: false,
           array: arrayCelpipTexts,
+        },
+        9: {
+          wordOrder: [2, 0, 1],
+          showDiv: [div2, div3],
+          hideDiv: [div1],
+          translationDiv: [div1],
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: arrayUnknown,
         },
       };
 
