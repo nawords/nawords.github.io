@@ -157,8 +157,8 @@
         height: 100%;
         font-size: 7svh;
         line-height: 1;
-        overflow-wrap: anywhere;
         cursor: pointer;
+        overflow-wrap: anywhere;
       }
 
       #div1 > span {
@@ -170,6 +170,8 @@
 
       #div3 > span {
         color: #ffffff80;
+        overflow-wrap: normal;
+        font-size: 5svh;
       }
 
       #buttonDownload {
@@ -543,7 +545,7 @@
         ["startled", "стАртэлт", "испуганный"],
         ["tamper", "тЭмпэр", "вмешаться (подделать)"],
         ["temper", "тЭмпэр", "характер"],
-        ["tempt", "тЭмпт", "искушать"],
+        ["tempt", "тэмпт", "искушать"],
         ["temptation", "тэмптЭйшн", "искушение"],
         ["trite", "трайт", "банальный"],
         ["unbearable", "анбЭрэбл", "невыносимый"],
@@ -565,7 +567,7 @@
         ["prejudice", "прЭджэдис", "предвзятость"],
         ["argue", "Аргью", "утверждать"],
         ["stand out", "стэнд Аут", "выделяться"],
-        ["counterparts", "кАунтэрпарт", "коллеги"],
+        ["counterparts", "кАунтэрпартс", "коллеги"],
         ["complementary", "камплимЭнтари", "дополняющий"],
         ["amid", "эмИд", "на фоне"],
         ["embed", "имбЭд", "встроить"],
@@ -604,7 +606,7 @@
         ["obstacle", "Обстэкэл", "препятствие"],
         ["circumstances", "сЁркамстэнсиз", "обстоятельства"],
         ["interfere", "интэрфИр", "вмешиваться"],
-        ["turns out", "тёрнз Аут", "оказывается"],
+        ["turns out", "тёрнз_Аут", "оказывается"],
         ["eligible", "Элиджибл", "подходящий"],
         ["frustration", "фрастрЭйшн", "недовольство"],
         ["thus", "зас", "таким образом"],
@@ -1570,7 +1572,7 @@
         let styledWord = "";
         for (let i = 0; i < word[mode[2]].length; i++) {
           if (word[mode[2]][i] === word[mode[2]][i].toUpperCase() && word[mode[2]][i].match(/[А-ЯЁ]/)) {
-            styledWord += '<span style="color: white;">' + word[mode[2]][i] + "</span>";
+            styledWord += '<span style="color: #ffe200;">' + word[mode[2]][i] + "</span>";
           } else {
             styledWord += word[mode[2]][i];
           }
@@ -1749,7 +1751,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>enWord</title>
+                <title>NA words</title>
             <style>
             body {
                 font-family: sans-serif;
