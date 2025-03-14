@@ -245,6 +245,10 @@
         border-radius: 0;
       }
 
+      #tableBody td:nth-child(2) {
+        color: #b6a2f9;
+      }
+
       .small-font {
         font-size: 5svh !important;
       }
@@ -370,7 +374,7 @@
         ["choose", "чуз", "выбрать"],
         ["come", "кам", "приходи"],
         ["find", "файнд", "найти"],
-        ["dryer", "дрАер", "сушилка"],
+        ["dryer", "дрАйер", "сушилка"],
         ["fly", "флай", "лететь"],
         ["hear", "хИа", "слышать"],
         ["hold", "холд", "держать"],
@@ -486,6 +490,8 @@
         ["winter", "вИнтэр", "зима"],
         ["spring", "спринг", "весна"],
         ["over there", "Оувэр зЭар", "вон там"],
+        ["here", "хИар", "здесь"],
+        ["there", "зЭар", "там"],
       ];
 
       const arrayLvl2Words = [
@@ -1713,8 +1719,8 @@
 
       // every 40 words achievement is shown
       function achieve40Words(currentMode) {
-        const wordsCount = [40, 80, 120];
-        const bgColors = ["#007905", "#007279", "#ff5400"];
+        const wordsCount = [40, 80, 120, 160];
+        const bgColors = ["#007905", "#007279", "#ff5400", "#007279"];
 
         wordsCount.forEach((val, i) => {
           if (indexOfCurrentWord === wordsCount[i]) {
@@ -1744,7 +1750,7 @@
         const minutes = now.getMinutes().toString().padStart(2, "0");
         const timeFormatted = `${hours}${minutes}`;
 
-        const fileName = `enWord_${month}${day}_${timeFormatted}.html`;
+        const fileName = `NAwords_${month}${day}_${timeFormatted}.html`;
 
         // Generate HTML content with a table
         const htmlContent = `
