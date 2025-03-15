@@ -398,7 +398,7 @@
         ["right", "райт", "правильно"],
         ["only", "Онли", "только"],
         ["low", "лОу", "низкий"],
-        ["early", "Ёрли", "рано"],
+        ["early", "Öрли", "рано"],
         ["late", "лЭйт", "поздно"],
         ["hard", "хард", "жесткий"],
         ["strong", "стронг", "сильный"],
@@ -1580,7 +1580,7 @@
         let mode = modes[currentMode].wordOrder;
         let styledWord = "";
         for (let i = 0; i < word[mode[2]].length; i++) {
-          if (word[mode[2]][i] === word[mode[2]][i].toUpperCase() && word[mode[2]][i].match(/[А-ЯЁ]/)) {
+          if (word[mode[2]][i] === word[mode[2]][i].toUpperCase() && word[mode[2]][i].match(/[A-ZА-ЯЁÖ]/)) {
             styledWord += '<span style="color: #ffe200;">' + word[mode[2]][i] + "</span>";
           } else {
             styledWord += word[mode[2]][i];
