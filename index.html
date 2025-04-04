@@ -506,6 +506,7 @@
         ["thick", "сИк", "толстый (неживое)"],
         ["thickness", "сИкнэс", "толщина"],
         ["better", "бЭтэр", "лучше"],
+        ["slowly", "слОули", "медленно"],
       ];
 
       const arrayLvl2Words = [
@@ -1795,13 +1796,19 @@
                    word-break: break-all;
                    line-height: 1.1;
                }
+                   pre { /* Use pre tag to preserve formatting */
+                   white-space: pre-wrap; /* Allow wrapping of long arrays */
+                   word-break: break-all;     
+                   font-size: 4px;              
+               }
                </style>             
                </head>
                <body>
                    <h2>${month} ${day}</h2>
                    <table>
                        ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
-                   </table>        
+                   </table>                 
+                   <pre>${arrayMiniString}</pre>
                </body>
                </html>
                `;
