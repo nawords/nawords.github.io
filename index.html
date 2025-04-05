@@ -509,6 +509,46 @@
         ["slowly", "слОули", "медленно"],
       ];
 
+      const arrayMode9 = [
+        ["forget", "фогЭт", "забыть"],
+        ["find", "файнд", "найти"],
+        ["wet", "вЭт", "мокрый"],
+        ["flavor", "флЭйвэр", "аромат"],
+        ["were", "вЭа", "были"],
+        ["wrong", "ронг", "неправильно"],
+        ["lie", "лай", "лежать"],
+        ["low", "лОу", "низкий"],
+        ["believe", "билИв", "верить"],
+        ["leave", "лив", "оставить"],
+        ["light", "лАйт", "свет, светить"],
+        ["many", "мЭни", "много"],
+        ["huge", "хьюдж", "огромный"],
+        ["thickness", "сИкнэс", "толщина"],
+        ["say", "сЭй", "говорить"],
+        ["send", "сэнд", "слать"],
+        ["already", "олрЭди", "уже"],
+        ["nothing", "нАсинг", "ничего"],
+        ["thick", "сИк", "толстый (неживое)"],
+        ["carry", "кЭри", "нести"],
+        ["slow", "слОу", "медленный"],
+        ["recently", "рИсэнтли", "недавно"],
+        ["add", "эд", "добавить"],
+        ["must", "маст", "должен"],
+        ["was", "воз", "был"],
+        ["happen", "хЭпн", "случается"],
+        ["enjoy", "энджОй", "наслаждаться"],
+        ["another", "энАзэр", "другой"],
+        ["similar", "сИмилар", "похожий"],
+        ["yet", "йет", "еще"],
+        ["wait", "вэйт", "ждать"],
+        ["seem", "сим", "кажется"],
+        ["high", "хай", "высокий"],
+        ["slowly", "слОули", "медленно"],
+        ["hold", "холд", "держать"],
+        ["continue", "контИнью", "продолжать"],
+        ["hear", "хИа", "слышать"],
+      ];
+
       const arrayLvl2Words = [
         ["abruptly", "эбрАптли", "внезапно"],
         ["adverse", "Эдвёрс", "негативный"],
@@ -1366,38 +1406,38 @@
       let arrayUnknown = [];
 
       // Fetch words from new.html
-      async function initializeArray() {
-        try {
-          const checkResponse = await fetch("new.html", { method: "HEAD" });
-          if (!checkResponse.ok) {
-            console.log("new.html does not exist.");
-            hideThis(buttonMode9);
-            return; // Exit the function if new.html doesn't exist
-          }
+      // async function initializeArray() {
+      //   try {
+      //     const checkResponse = await fetch("new.html", { method: "HEAD" });
+      //     if (!checkResponse.ok) {
+      //       console.log("new.html does not exist.");
+      //       // hideThis(buttonMode9);
+      //       return; // Exit the function if new.html doesn't exist
+      //     }
 
-          const response = await fetch("new.html");
-          const html = await response.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, "text/html");
-          const table = doc.querySelector("table");
-          const rows = table.querySelectorAll("tr");
+      //     const response = await fetch("new.html");
+      //     const html = await response.text();
+      //     const parser = new DOMParser();
+      //     const doc = parser.parseFromString(html, "text/html");
+      //     const table = doc.querySelector("table");
+      //     const rows = table.querySelectorAll("tr");
 
-          // Update the global variable directly
-          arrayUnknown = Array.from(rows).map((row) => {
-            const cells = row.querySelectorAll("td");
-            return Array.from(cells).map((cell) => cell.textContent);
-          });
-        } catch (error) {
-          console.error("Error checking or fetching new.html:", error);
-          return; // Exit the function if there's an error during fetch
-        }
-      }
+      //     // Update the global variable directly
+      //     arrayUnknown = Array.from(rows).map((row) => {
+      //       const cells = row.querySelectorAll("td");
+      //       return Array.from(cells).map((cell) => cell.textContent);
+      //     });
+      //   } catch (error) {
+      //     console.error("Error checking or fetching new.html:", error);
+      //     return; // Exit the function if there's an error during fetch
+      //   }
+      // }
 
-      initializeArray().then(() => {
-        console.log("Data fetched:", arrayUnknown);
-        // Now update your modes object here, once arrayUnknown has been populated.
-        modes[9].array = arrayUnknown;
-      });
+      // initializeArray().then(() => {
+      //   console.log("Data fetched:", arrayUnknown);
+      //   // Now update your modes object here, once arrayUnknown has been populated.
+      //   modes[9].array = arrayUnknown;
+      // });
 
       let modes = {
         1: {
@@ -1506,7 +1546,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayUnknown,
+          array: arrayMode9,
         },
       };
 
