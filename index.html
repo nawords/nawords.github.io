@@ -45,6 +45,7 @@
       #div3 > span,
       #navModes > div,
       #achievement40Words,
+      #buttonAudioTest,
       #tableContainer {
         display: flex;
         justify-content: center;
@@ -88,6 +89,18 @@
         background: #372237;
         font-size: 3svh;
         aspect-ratio: 2.1/1;
+      }
+
+      #buttonAudioTest {
+        display: none;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 5svh;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        background: #1e90ff;
+        font-size: 3svh;
       }
 
       #navBottom {
@@ -308,6 +321,7 @@
       <table id="tableContainer">
         <tbody id="tableBody"></tbody>
       </table>
+      <div id="buttonAudioTest">a</div>
     </div>
     <script>
       // Preload TTS voices
@@ -408,6 +422,7 @@
         ["open", "Оупн", "открыть"],
         ["wrong", "ронг", "неправильно"],
         ["similar", "сИмилар", "похожий"],
+        ["same", "сЭйм", "такой же, одинаковый"],
         ["hot", "хот", "горячий"],
         ["happy", "хЭпи", "счастлив"],
         ["ready", "рЭди", "готовый"],
@@ -475,18 +490,18 @@
         ["flavor", "флЭйвэр", "аромат"],
         ["the most", "зэ мОуст", "самый"],
         ["year", "йИар", "год"],
-        ["january", "джЭньюари", "январь"],
-        ["february", "фЭбьюэри", "февраль"],
-        ["march", "марч", "март"],
-        ["april", "Эйприл", "апрель"],
-        ["may", "мэй", "май"],
-        ["june", "джЮн", "июнь"],
-        ["july", "джулАй", "июль"],
-        ["august", "Огаст", "август"],
-        ["september", "сэптЭмбэр", "сентябрь"],
-        ["october", "октОубэр", "октябрь"],
-        ["november", "новЭмбэр", "ноябрь"],
-        ["december", "дэсЭмбэр", "декабрь"],
+        // ["january", "джЭньюари", "январь"],
+        // ["february", "фЭбьюэри", "февраль"],
+        // ["march", "марч", "март"],
+        // ["april", "Эйприл", "апрель"],
+        // ["may", "мэй", "май"],
+        // ["june", "джЮн", "июнь"],
+        // ["july", "джулАй", "июль"],
+        // ["august", "Огаст", "август"],
+        // ["september", "сэптЭмбэр", "сентябрь"],
+        // ["october", "октОубэр", "октябрь"],
+        // ["november", "новЭмбэр", "ноябрь"],
+        // ["december", "дэсЭмбэр", "декабрь"],
         ["fall", "фол", "осень"],
         ["summer", "сАмэр", "лето"],
         ["winter", "вИнтэр", "зима"],
@@ -526,6 +541,8 @@
         ["match", "мЭч", "сочетается"],
         ["about", "эбАут", "про, о"],
         ["that", "зЭт", "который"],
+        ["just", "джАст", "только, лишь"],
+        ["really", "рИли", "действительно"],
       ];
 
       const arrayMode9 = [];
@@ -622,13 +639,14 @@
         ["expelled", "икспЭлд", "изгнан"],
         ["humble", "хАмбэл", "смиренный"],
         ["hilarious", "хилЭриэс", "уморительный"],
-        ["peril", "пЭрил", "угроза"],
+        ["peril", "пЭрил", "опасность"],
         ["perish", "пЭриш", "погибать"],
         ["suspense", "саспЭнс", "напряжение (ожидание)"],
         ["violate", "вАялэйт", "нарушать"],
         ["ravage", "рЭвэдж", "опустошать (разорять)"],
         ["ravish", "рЭвиш", "восхитить (аним)"],
         ["intricate", "Интрикэт", "замысловатый"],
+        ["vile", "вАйл", "гнусный"],
         ["obnoxious", "эбнОкшэс", "неприятный"],
         ["restrain", "ристрЭйн", "сдерживать"],
         ["endure", "эндЁр", "выдержать"],
@@ -664,6 +682,9 @@
         ["impudent", "Импьюдэнт", "наглый"],
         ["appealing", "эпИлинг", "привлекательный"],
         ["yield", "йИлд", "доходность"],
+        ["slight", "слАйт", "небольшой (не размер)"],
+        ["defer", "дифЭр", "отложить (время)"],
+        ["arbitrary", "Арбитрэри", "произвольный"],
       ];
 
       const arrayCelpipWords = [
@@ -1295,6 +1316,7 @@
       const htmlEntirePage = document.querySelector("html");
       const navBottom = document.getElementById("navBottom");
       const buttonShowTable = document.getElementById("buttonShowTable");
+      const buttonAudioTest = document.getElementById("buttonAudioTest");
       const tableContainer = document.getElementById("tableContainer");
       const buttonReverse = document.getElementById("buttonReverse");
       const buttonAddWord = document.getElementById("buttonAddWord");
@@ -1805,6 +1827,26 @@
 
       buttonShowTable.addEventListener("click", function () {
         showThis(tableContainer);
+      });
+
+      // Audio Test
+      function audioTestTTS(text) {
+        if ("speechSynthesis" in window) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          window.speechSynthesis.speak(utterance);
+        }
+      }
+      buttonAudioTest.addEventListener("click", function () {
+        let i = 0;
+        const intervalId = setInterval(function () {
+          if (i < arrayLvl1Words.length) {
+            const thirdString = arrayLvl1Words[i][0];
+            audioTestTTS(thirdString);
+            i++;
+          } else {
+            clearInterval(intervalId); // Stop the interval when all words are spoken
+          }
+        }, 3000); // 3000 milliseconds = 3 seconds
       });
 
       //
