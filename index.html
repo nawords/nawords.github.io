@@ -1018,6 +1018,7 @@
         ["write, wrote, written", "рАйт, рОут, рИтн", "пишу"],
         ["give, gave, given", "гив, гЭйв, гИвэн", "дать"],
         ["can, could", "кЭн, кУд", "могу, мог"],
+        ["tell, told, told", "тэл, толд, толд", "сказать"],
       ];
 
       // const arrayVerbWords = [
@@ -1105,7 +1106,6 @@
       //   ["take, took, taken", "", "взять"],
       //   ["teach, taught, taught", "", "научить"],
       //   ["tear, tore, torn", "", "порвать"],
-      //   ["tell, told, told", "", "рассказать"],
       //   ["think, thought, thought", "", "думать"],
       //   ["throw, threw, thrown", "", "кинуть"],
       //   ["understand, understood, understood", "", "понять"],
@@ -1815,16 +1815,16 @@
                }
                    pre { /* Use pre tag to preserve formatting */
                    white-space: pre-wrap; /* Allow wrapping of long arrays */
-                   word-break: break-all;     
-                   font-size: 4px;              
+                   word-break: break-all;
+                   font-size: 4px;
                }
-               </style>             
+               </style>
                </head>
                <body>
                    <h2>${month} ${day}</h2>
                    <table>
                        ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
-                   </table>                 
+                   </table>
                    <pre>${arrayMiniString}</pre>
                </body>
                </html>
