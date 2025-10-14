@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="icon" href="./favicon.svg" type="image/x-icon" />
     <title>NA words</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+
     <style>
       :root {
         --title-color: #b6a2f9;
@@ -21,8 +26,10 @@
         color: #ffffff;
         text-align: center;
         border-radius: 1.2svh;
-        font-family: sans-serif;
-        font-weight: 900;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-optical-sizing: auto;
+        font-style: normal;
       }
 
       *:focus,
@@ -339,7 +346,7 @@
       }
 
       // Arrays
-      const arrayLvl1Words = [
+      const level_1_words = [
         // ["play", "плэй", "играть"],
         // ["new", "нью", "новый"],
         // ["take", "тэйк", "брать"],
@@ -446,6 +453,7 @@
         // ["here", "хИар", "здесь"],
         //
         //
+        ["zoo", "зУ", "зоопарк"],
         ["hoop", "хУп", "окружить, обруч"],
         ["heavy", "хЭви", "тяжелый"],
         ["light*", "лАйт", "легкий"],
@@ -509,7 +517,6 @@
         ["add", "эд", "добавить"],
         ["more", "мОр", "более"],
         ["less", "лЭс", "менее"],
-        ["another", "энАзэр", "другой"],
         ["flavor", "флЭйвэр", "аромат"],
         ["the most", "зэ мОуст", "самый"],
         ["soon", "сУн", "скоро"],
@@ -560,7 +567,6 @@
         ["flavor", "флЭйвэр", "аромат"],
         ["seem", "сим", "кажется"],
         ["leave", "лив", "оставить"],
-        ["another", "энАзэр", "другой"],
         ["paint", "пЭйнт", "краска, красить"],
         ["happen", "хЭпн", "случается"],
         ["light", "лАйт", "свет, светить"],
@@ -595,7 +601,8 @@
         ["count", "кАунт", "считать"],
       ];
 
-      const arrayLvl2Words = [
+      const level_2_words = [
+        ["tedious", "тИдиэс", "утомительный"],
         ["intact", "интЭкт", "нетронутый"],
         ["essential", "эсЭншл", "необходимый"],
         ["underlying", "андэрлАинг", "лежащий в основе"],
@@ -1435,7 +1442,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayLvl1Words,
+          array: level_1_words,
         },
         2: {
           wordOrder: [2, 0, 1],
@@ -1447,7 +1454,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayLvl2Words,
+          array: level_2_words,
         },
         3: {
           wordOrder: [2, 0, 1],
@@ -1550,7 +1557,7 @@
 
       function switchMode(mode) {
         currentMode = mode;
-        currentReverseMode = false;
+        isReverseMode = true;
         currentArray = modes[currentMode].array;
         indexOfCurrentWord = 0;
         shuffle(currentArray);
@@ -1600,14 +1607,14 @@
         div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
         // Reverse mode toggle
         if (modes[currentMode].reverseAllowed) {
-          divsLayoutReverse(currentReverseMode, word);
+          divsLayoutReverse(isReverseMode, word);
         } else {
           // capitalLetterColor(word);
         }
       }
 
-      function divsLayoutReverse(currentReverseMode, word) {
-        if (currentReverseMode) {
+      function divsLayoutReverse(isReverseMode, word) {
+        if (isReverseMode) {
           modesReverse[1].showDiv.forEach(showThis);
           modesReverse[1].hideDiv.forEach(hideThis);
           [div1.innerHTML, div2.innerHTML, div3.innerHTML] = modesReverse[1].wordOrder.map((i) => word[i]);
@@ -1630,7 +1637,7 @@
 
       buttonReverse.addEventListener("click", function () {
         if (modes[currentMode].reverseAllowed) {
-          currentReverseMode = !currentReverseMode; // mode toggle
+          isReverseMode = !isReverseMode; // mode toggle
           buttonReverse.classList.toggle("reverseBG");
           shuffle(currentArray);
           indexMini = 0;
@@ -1690,15 +1697,15 @@
       });
 
       // Show translation
-      function showTranslation(currentMode, currentReverseMode) {
-        if (currentReverseMode === true) {
+      function showTranslation(currentMode, isReverseMode) {
+        if (isReverseMode === true) {
           modesReverse[1].translationDiv.forEach(showThis);
         } else {
           modes[currentMode].translationDiv.forEach(showThis);
         }
       }
       buttonShowTranslation.addEventListener("click", function () {
-        showTranslation(currentMode, currentReverseMode);
+        showTranslation(currentMode, isReverseMode);
       });
 
       // Active buttonMode color
@@ -1862,7 +1869,7 @@
       });
 
       // Table
-      const sortedArray = [...arrayLvl1Words].sort((a, b) => {
+      const sortedArray = [...level_1_words].sort((a, b) => {
         const column3A = a[2].toLowerCase(); // Get 3rd column and lowercase for case-insensitive sort
         const column3B = b[2].toLowerCase();
         if (column3A < column3B) {
@@ -1897,8 +1904,8 @@
       buttonAudioTest.addEventListener("click", function () {
         let i = 0;
         const intervalId = setInterval(function () {
-          if (i < arrayLvl1Words.length) {
-            const thirdString = arrayLvl1Words[i][0];
+          if (i < level_1_words.length) {
+            const thirdString = level_1_words[i][0];
             audioTestTTS(thirdString);
             i++;
           } else {
