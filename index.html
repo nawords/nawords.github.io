@@ -452,6 +452,13 @@
         // ["here", "хИар", "здесь"],
         //
         //
+        ["put on", "пут он", "одеть"],
+        ["take off", "тЭйк оф", "снять"],
+        ["find out", "фАйнд Аут", "узнать"],
+        ["bring up", "брИнг ап", "затронуть тему"],
+        ["get along", "гЭт элОнг", "ладить"],
+        ["give up", "гив ап", "бросить (отказаться от)"],
+        ["put, put, put", "", "класть"],
         ["zoo", "зУ", "зоопарк"],
         ["hoop", "хУп", "окружить, обруч"],
         ["heavy", "хЭви", "тяжелый"],
@@ -1755,46 +1762,46 @@
 
         // Generate HTML content with a table
         const htmlContent = `
-               <!DOCTYPE html>
-               <html lang="en">
-               <head>
-                   <meta charset="UTF-8">
-                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                   <title>NA words</title>
-               <style>
-               body {
-                   font-family: sans-serif;
-                   font-weight: 900;
-                   color: #ffffff;
-                   background: #291d27;
-               }
-               table {
-                   width: 100%;
-                   border-collapse: collapse;
-               }
-               th, td {
-                   border: 2px solid #553674;
-                   padding: 2svh;
-                   text-align: center;
-                   word-break: break-all;
-                   line-height: 1.1;
-               }
-                   pre { /* Use pre tag to preserve formatting */
-                   white-space: pre-wrap; /* Allow wrapping of long arrays */
-                   word-break: break-all;
-                   font-size: 4px;
-               }
-               </style>
-               </head>
-               <body>
-                   <h2>${month} ${day}</h2>
-                   <table>
-                       ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
-                   </table>
-                   <pre>${arrayMiniString}</pre>
-               </body>
-               </html>
-               `;
+                     <!DOCTYPE html>
+                     <html lang="en">
+                     <head>
+                         <meta charset="UTF-8">
+                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                         <title>NA words</title>
+                     <style>
+                     body {
+                         font-family: sans-serif;
+                         font-weight: 900;
+                         color: #ffffff;
+                         background: #291d27;
+                     }
+                     table {
+                         width: 100%;
+                         border-collapse: collapse;
+                     }
+                     th, td {
+                         border: 2px solid #553674;
+                         padding: 2svh;
+                         text-align: center;
+                         word-break: break-all;
+                         line-height: 1.1;
+                     }
+                         pre { /* Use pre tag to preserve formatting */
+                         white-space: pre-wrap; /* Allow wrapping of long arrays */
+                         word-break: break-all;
+                         font-size: 4px;
+                     }
+                     </style>
+                     </head>
+                     <body>
+                         <h2>${month} ${day}</h2>
+                         <table>
+                             ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
+                         </table>
+                         <pre>${arrayMiniString}</pre>
+                     </body>
+                     </html>
+                     `;
         // Create a Blob with the HTML content
         const blob = new Blob(["\ufeff" + htmlContent], {
           type: "text/html;charset=utf-8",
