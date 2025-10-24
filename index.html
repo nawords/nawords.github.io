@@ -221,23 +221,27 @@
         z-index: 1000;
         overflow-y: scroll;
         border-collapse: collapse;
+        table-layout: fixed;
       }
 
       #tableBody {
+        width: auto;
         height: 100%;
       }
 
       #tableBody tr {
+        width: auto;
         box-shadow: 0 -1px 0 0 var(--title-color);
         border-radius: 0;
       }
 
       #tableBody td {
-        padding: 14px 4px;
+        width: 33.33%;
+        overflow-wrap: anywhere;
         font-size: calc(var(--font9vh) * 0.24);
+        padding: 14px 4px;
         line-height: 1;
         text-align: left;
-        overflow-wrap: break-word;
         border-radius: 0;
       }
 
