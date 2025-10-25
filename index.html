@@ -6,7 +6,7 @@
     <meta http-equiv="Expires" content="0" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="icon" href="./favicon.svg" type="image/x-icon" />
+    <link rel="icon" href="./favicon.svg" />
     <title>NA words</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +18,7 @@
         --title-color: #b6a2f9;
         --bg-color: linear-gradient(180deg, rgba(41, 29, 39, 1) 0%, rgba(32, 31, 36, 1) 100%);
         --gradient-color: linear-gradient(128.87deg, #9780e5 14.05%, #53ceda 89.3%);
-        --font9vh: 9vh;
+        --font9: 9svh;
       }
 
       * {
@@ -93,7 +93,7 @@
         height: 100%;
         cursor: pointer;
         background: #372237;
-        font-size: calc(var(--font9vh) * 0.34);
+        font-size: calc(var(--font9) * 0.34);
         aspect-ratio: 2.1/1;
       }
 
@@ -107,7 +107,7 @@
       #navBottom > div {
         height: 100%;
         cursor: pointer;
-        font-size: calc(var(--font9vh) * 0.4);
+        font-size: calc(var(--font9) * 0.4);
         aspect-ratio: 1/1;
       }
 
@@ -154,7 +154,7 @@
       #div3 > span {
         width: 100%;
         height: 100%;
-        font-size: var(--font9vh);
+        font-size: var(--font9);
         line-height: 1;
         cursor: pointer;
         overflow-wrap: anywhere;
@@ -208,7 +208,7 @@
       #navModes > div {
         overflow-wrap: break-word;
         aspect-ratio: 2/1;
-        font-size: calc(var(--font9vh) * 0.34);
+        font-size: calc(var(--font9) * 0.34);
         background: #372237;
       }
 
@@ -238,7 +238,7 @@
       #tableBody td {
         width: 33.33%;
         overflow-wrap: anywhere;
-        font-size: calc(var(--font9vh) * 0.24);
+        font-size: calc(var(--font9) * 0.24);
         padding: 14px 4px;
         line-height: 1;
         text-align: left;
@@ -250,7 +250,7 @@
       }
 
       .small-font {
-        font-size: calc(var(--font9vh) * 0.55) !important;
+        font-size: calc(var(--font9) * 0.55) !important;
         line-height: 1.1 !important;
       }
 
@@ -303,7 +303,7 @@
         <div id="buttonMode7">7 CELPIP</div>
         <div id="buttonMode8">8 CELPIP.txt</div>
         <div id="buttonMode9">9 archive</div>
-        <div id="buttonShowTable">vocab</div>
+        <div id="buttonVocab">vocab</div>
       </div>
       <table id="tableContainer">
         <tbody id="tableBody"></tbody>
@@ -334,6 +334,12 @@
 
       // Arrays
       const level1Words = [
+        ["first", "фЁрст", "первый"],
+        ["second", "сЭконд", "второй"],
+        ["third", "сЁрд", "третий"],
+        ["forth", "фОрс", "четвертый"],
+        ["fifth", "фИфс", "пятый"],
+        ["hundred", "хАндрэд", "сто"],
         ["until", "антИл", "до (время)"],
         ["more*", "мОр", "еще (кол-во)"],
         ["yet", "йет", "еще (время)"],
@@ -1332,7 +1338,7 @@
       const div3 = document.querySelector("#div3 span");
       const htmlEntirePage = document.querySelector("html");
       const navBottom = document.getElementById("navBottom");
-      const buttonShowTable = document.getElementById("buttonShowTable");
+      const buttonVocab = document.getElementById("buttonVocab");
       const tableContainer = document.getElementById("tableContainer");
       const buttonReverse = document.getElementById("buttonReverse");
       const buttonAddWord = document.getElementById("buttonAddWord");
@@ -1382,11 +1388,11 @@
       //   modes[9].array = arrayUnknown;
       // });
 
-      let modes = {
+      const modes = {
         1: {
           wordOrder: [2, 0, 1],
-          showDiv: [div2, div3],
-          hideDiv: [div1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
           translationDiv: [div1],
           showBtn: [buttonAddWord, buttonCountWord],
           hideBtn: [],
@@ -1397,8 +1403,8 @@
         },
         2: {
           wordOrder: [2, 0, 1],
-          showDiv: [div2, div3],
-          hideDiv: [div1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
           translationDiv: [div1],
           showBtn: [buttonAddWord, buttonCountWord],
           hideBtn: [],
@@ -1409,8 +1415,8 @@
         },
         3: {
           wordOrder: [2, 0, 1],
-          showDiv: [div2, div3],
-          hideDiv: [div1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
           translationDiv: [div1],
           showBtn: [],
           hideBtn: [buttonAddWord, buttonCountWord],
@@ -1421,8 +1427,8 @@
         },
         4: {
           wordOrder: [1, 0, 2],
-          showDiv: [div2, div3],
-          hideDiv: [div1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
           translationDiv: [div1],
           showBtn: [],
           hideBtn: [buttonAddWord, buttonCountWord],
@@ -1433,8 +1439,8 @@
         },
         5: {
           wordOrder: [2, 0, 1],
-          showDiv: [div2, div3],
-          hideDiv: [div1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
           translationDiv: [div1],
           showBtn: [buttonAddWord, buttonCountWord],
           hideBtn: [],
@@ -1445,8 +1451,8 @@
         },
         6: {
           wordOrder: [3, 0, 1],
-          showDiv: [div2],
-          hideDiv: [div1, div3],
+          divToShow: [div2],
+          divToHide: [div1, div3],
           translationDiv: [],
           showBtn: [],
           hideBtn: [buttonAddWord, buttonCountWord],
@@ -1457,8 +1463,8 @@
         },
         7: {
           wordOrder: [2, 0, 1],
-          showDiv: [div2, div3],
-          hideDiv: [div1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
           translationDiv: [div1],
           showBtn: [buttonAddWord, buttonCountWord],
           hideBtn: [],
@@ -1469,8 +1475,8 @@
         },
         8: {
           wordOrder: [3, 0, 1],
-          showDiv: [div2],
-          hideDiv: [div1, div3],
+          divToShow: [div2],
+          divToHide: [div1, div3],
           translationDiv: [],
           showBtn: [],
           hideBtn: [buttonAddWord, buttonCountWord],
@@ -1481,8 +1487,8 @@
         },
         9: {
           wordOrder: [2, 0, 1],
-          showDiv: [div2, div3],
-          hideDiv: [div1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
           translationDiv: [div1],
           showBtn: [buttonAddWord, buttonCountWord],
           hideBtn: [],
@@ -1493,14 +1499,27 @@
         },
       };
 
-      let modesReverse = {
+      const reverseMode = {
         1: {
           wordOrder: [0, 2, 1],
-          showDiv: [div2],
-          hideDiv: [div1, div3],
+          divToShow: [div2],
+          divToHide: [div1, div3],
           translationDiv: [div1, div3],
         },
       };
+
+      function reverseModeLayout(isReverseMode, word) {
+        if (isReverseMode) {
+          reverseMode[1].divToShow.forEach(showThis); // all div2 will be shown
+          reverseMode[1].divToHide.forEach(hideThis); // all div1 and div3 will be hidden
+
+          div1.innerHTML = word[reverseMode[1].wordOrder[0]]; // same as word[0]
+          div2.innerHTML = word[reverseMode[1].wordOrder[1]]; // same as word[2]
+          div3.innerHTML = word[reverseMode[1].wordOrder[2]]; // same as word[1]
+        }
+
+        // capitalLetterColor(word);
+      }
 
       let currentMode = 1; // Default mode
       let currentArray = modes[currentMode].array;
@@ -1508,7 +1527,7 @@
 
       function switchMode(mode) {
         currentMode = mode;
-        isReverseMode = true;
+        isReverseMode = true; // starts app with reverse mode by default
         currentArray = modes[currentMode].array;
         indexOfCurrentWord = 0;
         shuffle(currentArray);
@@ -1527,14 +1546,14 @@
 
       // Show or hide divs
       function divsLayout(currentMode, isMini) {
-        modes[currentMode].showDiv.forEach(showThis);
-        modes[currentMode].hideDiv.forEach(hideThis);
+        modes[currentMode].divToShow.forEach(showThis);
+        modes[currentMode].divToHide.forEach(hideThis);
         modes[currentMode].showBtn.forEach(showThis);
         modes[currentMode].hideBtn.forEach(hideThis);
         wordsLayout(currentMode, isMini);
       }
 
-      // What word in what div
+      // Which word in what div
       function wordsLayout(currentMode, isMini = false) {
         let mode = modes[currentMode].wordOrder;
         let word;
@@ -1558,19 +1577,10 @@
         div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
         // Reverse mode toggle
         if (modes[currentMode].reverseAllowed) {
-          divsLayoutReverse(isReverseMode, word);
+          reverseModeLayout(isReverseMode, word);
         } else {
           // capitalLetterColor(word);
         }
-      }
-
-      function divsLayoutReverse(isReverseMode, word) {
-        if (isReverseMode) {
-          modesReverse[1].showDiv.forEach(showThis);
-          modesReverse[1].hideDiv.forEach(hideThis);
-          [div1.innerHTML, div2.innerHTML, div3.innerHTML] = modesReverse[1].wordOrder.map((i) => word[i]);
-        }
-        // capitalLetterColor(word);
       }
 
       function capitalLetterColor(word) {
@@ -1588,8 +1598,14 @@
 
       buttonReverse.addEventListener("click", function () {
         if (modes[currentMode].reverseAllowed) {
-          isReverseMode = !isReverseMode; // mode toggle
-          buttonReverse.classList.toggle("reverseBG");
+          // Condition must be in parentheses
+          if (isReverseMode) {
+            isReverseMode = false;
+          } else {
+            isReverseMode = true;
+          }
+          // isReverseMode = !isReverseMode; // modern way is unreabable for me for now
+          buttonReverse.classList.toggle("reverseBG"); // button background color
           shuffle(currentArray);
           indexMini = 0;
           indexOfCurrentWord = 0;
@@ -1601,10 +1617,15 @@
 
       // Show next word
       function actionNextWord(currentMode) {
-        indexOfCurrentWord++;
+        indexOfCurrentWord++; // 11 becomes 12
+
+        // Use the modulo operator (%) to "wrap" the index back to 0
+        // when it reaches the end of the array (creating a loop).
+        // If the index is 12 and length is 99, 12 % 99 = 12.
+        // If the index was 99 and length is 99, 99 % 99 = 0.
         indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
+        buttonNextWord.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
         divsLayout(currentMode);
-        buttonNextWord.innerHTML = currentArray.length - indexOfCurrentWord;
       }
       buttonNextWord.addEventListener("click", function () {
         actionNextWord(currentMode);
@@ -1650,7 +1671,7 @@
       // Show translation
       function showTranslation(currentMode, isReverseMode) {
         if (isReverseMode === true) {
-          modesReverse[1].translationDiv.forEach(showThis);
+          reverseMode[1].translationDiv.forEach(showThis);
         } else {
           modes[currentMode].translationDiv.forEach(showThis);
         }
@@ -1842,7 +1863,7 @@
         });
       });
 
-      buttonShowTable.addEventListener("click", function () {
+      buttonVocab.addEventListener("click", function () {
         showThis(tableContainer);
       });
 
