@@ -189,6 +189,24 @@
         aspect-ratio: 1/1;
       }
 
+      #helpWord {
+        position: absolute;
+        right: 1svh;
+        top: 1svh;
+        background: #553674;
+        height: 5svh;
+        font-size: 5svh;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .scale-up {
+        font-size: 9svh !important;
+        padding: 2svh;
+      }
+
       #navModes {
         position: fixed;
         bottom: 0;
@@ -264,10 +282,12 @@
 
       .visible {
         display: flex !important;
+        /* opacity: 1; */
       }
 
       .hidden {
         display: none !important;
+        /* opacity: 0; */
       }
 
       .textLeft {
@@ -293,6 +313,7 @@
         <div id="buttonNextWord">OK</div>
       </div>
       <!-- <div id="achievement40Words"></div> -->
+      <div id="helpWord">?</div>
       <div id="navModes">
         <div id="buttonMode1">1 words</div>
         <div id="buttonMode2">2 words</div>
@@ -1670,6 +1691,7 @@
 
       // Show translation
       function showTranslation(currentMode, isReverseMode) {
+        // modes[currentMode].translationDiv[0].innerHTML = "";
         if (isReverseMode === true) {
           reverseMode[1].translationDiv.forEach(showThis);
         } else {
@@ -1678,6 +1700,18 @@
       }
       buttonShowTranslation.addEventListener("click", function () {
         showTranslation(currentMode, isReverseMode);
+      });
+
+      // Show the first 2 characters
+      const helpWord = document.getElementById("helpWord");
+      helpWord.addEventListener("click", function () {
+        helpWord.classList.add("scale-up");
+        const firstChar = currentArray[indexOfCurrentWord][0].slice(0, 2);
+        helpWord.innerHTML = firstChar;
+        setTimeout(function () {
+          helpWord.classList.remove("scale-up");
+          helpWord.innerHTML = "?";
+        }, 3000);
       });
 
       // Active buttonMode color
