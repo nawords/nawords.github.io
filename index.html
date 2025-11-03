@@ -204,7 +204,7 @@
 
       .scale-up {
         font-size: 9svh !important;
-        padding: 2svh;
+        padding: 4svh 2svh;
       }
 
       #navModes {
@@ -355,6 +355,14 @@
 
       // Arrays
       const level1Words = [
+        ["top", "топ", "верх"],
+        ["bottom", "бОтом", "низ"],
+        ["title", "тАйтл", "заголовок"],
+        ["background", "бЭкграунд", "фон"],
+        ["area", "Эриа", "область"],
+        ["corner", "кОрнер", "угол"],
+        ["in", "ин", "в"],
+        ["of*", "оф", "кого? чего?"],
         ["cartoons", "картУнс", "мультики"],
         ["gloves", "глАвс", "перчатки"],
         ["mittens", "мИтэнс", "варежки"],
@@ -410,7 +418,6 @@
       ];
 
       const archiveWords = [
-        ["never", "нЭвэр", "никогда"],
         ["paint", "пЭйнт", "краска, красить"],
         ["care", "кЭар", "забота, заботиться"],
         ["about", "эбАут", "про"],
@@ -432,6 +439,7 @@
         ["hoop", "хУп", "окружить, обруч"],
         ["relax", "рилЭкс", "расслабиться"],
         ["agree", "эгрИ", "согласиться"],
+        ["never", "нЭвэр", "никогда"],
         ["match", "мЭч", "сочетается"],
         ["just", "джАст", "только, лишь"],
         ["remember", "римЭмбэр", "помнить, вспомнить"],
@@ -714,7 +722,7 @@
         ["obstacle", "Обстэкэл", "препятствие"],
         ["circumstances", "сЁркамстэнсиз", "обстоятельства"],
         ["interfere", "интэрфИр", "вмешиваться"],
-        ["turns out", "тёрнз_Аут", "оказывается"],
+        ["turns out", "тёрнс Аут", "оказывается"],
         ["eligible", "Элиджибл", "подходящий"],
         ["frustration", "фрастрЭйшн", "недовольство"],
         ["thus", "зас", "таким образом"],
@@ -722,7 +730,7 @@
         ["meddle", "мЭдэл", "соваться"],
         ["perceive", "пэрсИв", "воспринимать"],
         ["turmoil", "тЁрмоил", "потрясение"],
-        ["engage", "ингЭйдж", "вовлечь"],
+        ["engage", "ингЭйдж", "участвовать"],
         ["caveat", "кАвиат", "оговорка (нюанс)"],
         ["abolish", "эбОлиш", "отменить"],
         ["convey", "канвЭй", "донести"],
@@ -1702,12 +1710,13 @@
         showTranslation(currentMode, isReverseMode);
       });
 
-      // Show the first 2 characters
+      // Show the first two characters
       const helpWord = document.getElementById("helpWord");
       helpWord.addEventListener("click", function () {
         helpWord.classList.add("scale-up");
         const firstChar = currentArray[indexOfCurrentWord][0].slice(0, 2);
         helpWord.innerHTML = firstChar;
+        // Return to default state after a few seconds
         setTimeout(function () {
           helpWord.classList.remove("scale-up");
           helpWord.innerHTML = "?";
