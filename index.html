@@ -355,6 +355,7 @@
 
       // Arrays
       const level1Words = [
+        ["ago", "эгОу", "назад (время)"],
         ["top", "топ", "верх"],
         ["bottom", "бОтом", "низ"],
         ["title", "тАйтл", "заголовок"],
@@ -407,7 +408,7 @@
         ["already", "олрЭди", "уже"],
         ["sometimes", "самтАймс", "иногда"],
         ["look for", "лук фор", "искать"],
-        ["less", "лЭс", "менее"],
+        ["less", "лЭс", "менее (меньше)"],
         ["soon", "сУн", "скоро"],
         ["fall", "фОл", "осень"],
         ["spring", "спрИнг", "весна"],
@@ -1355,6 +1356,7 @@
       }
 
       // Store references to the elements in variables
+      const helpWord = document.getElementById("helpWord");
       const body = document.querySelector("body");
       const wrap = document.getElementById("wrap");
       const buttonNav = document.getElementById("buttonNav");
@@ -1642,6 +1644,14 @@
           buttonCountWord.innerHTML = arrayMini.length;
           divsLayout(currentMode);
         }
+
+        // Hide the help button
+        if (!isReverseMode) {
+          hideThis(helpWord);
+        }
+        if (isReverseMode) {
+          showThis(helpWord);
+        }
       });
 
       // Show next word
@@ -1711,8 +1721,11 @@
       });
 
       // Show the first two characters
-      const helpWord = document.getElementById("helpWord");
       helpWord.addEventListener("click", function () {
+        // Inactive if reverse mode in off
+        if (!isReverseMode) {
+          return;
+        }
         helpWord.classList.add("scale-up");
         const firstChar = currentArray[indexOfCurrentWord][0].slice(0, 2);
         helpWord.innerHTML = firstChar;
@@ -1819,46 +1832,46 @@
 
         // Generate HTML content with a table
         const htmlContent = `
-                     <!DOCTYPE html>
-                     <html lang="en">
-                     <head>
-                         <meta charset="UTF-8">
-                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                         <title>NA words</title>
-                     <style>
-                     body {
-                         font-family: sans-serif;
-                         font-weight: 900;
-                         color: #ffffff;
-                         background: #291d27;
-                     }
-                     table {
-                         width: 100%;
-                         border-collapse: collapse;
-                     }
-                     th, td {
-                         border: 2px solid #553674;
-                         padding: 2svh;
-                         text-align: center;
-                         word-break: break-all;
-                         line-height: 1.1;
-                     }
-                         pre { /* Use pre tag to preserve formatting */
-                         white-space: pre-wrap; /* Allow wrapping of long arrays */
-                         word-break: break-all;
-                         font-size: 4px;
-                     }
-                     </style>
-                     </head>
-                     <body>
-                         <h2>${month} ${day}</h2>
-                         <table>
-                             ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
-                         </table>
-                         <pre>${arrayMiniString}</pre>
-                     </body>
-                     </html>
-                     `;
+                           <!DOCTYPE html>
+                           <html lang="en">
+                           <head>
+                               <meta charset="UTF-8">
+                               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                               <title>NA words</title>
+                           <style>
+                           body {
+                               font-family: sans-serif;
+                               font-weight: 900;
+                               color: #ffffff;
+                               background: #291d27;
+                           }
+                           table {
+                               width: 100%;
+                               border-collapse: collapse;
+                           }
+                           th, td {
+                               border: 2px solid #553674;
+                               padding: 2svh;
+                               text-align: center;
+                               word-break: break-all;
+                               line-height: 1.1;
+                           }
+                               pre { /* Use pre tag to preserve formatting */
+                               white-space: pre-wrap; /* Allow wrapping of long arrays */
+                               word-break: break-all;
+                               font-size: 4px;
+                           }
+                           </style>
+                           </head>
+                           <body>
+                               <h2>${month} ${day}</h2>
+                               <table>
+                                   ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
+                               </table>
+                               <pre>${arrayMiniString}</pre>
+                           </body>
+                           </html>
+                           `;
         // Create a Blob with the HTML content
         const blob = new Blob(["\ufeff" + htmlContent], {
           type: "text/html;charset=utf-8",
