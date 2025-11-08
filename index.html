@@ -315,15 +315,15 @@
       <!-- <div id="achievement40Words"></div> -->
       <div id="helpWord">?</div>
       <div id="navModes">
-        <div id="buttonMode1">1 words</div>
-        <div id="buttonMode2">2 words</div>
-        <div id="buttonMode3">3 question</div>
-        <div id="buttonMode4">4 phrase</div>
-        <div id="buttonMode5">5 verbs</div>
-        <div id="buttonMode6">AI</div>
-        <div id="buttonMode7">7 CELPIP</div>
-        <div id="buttonMode8">8 CELPIP.txt</div>
-        <div id="buttonMode9">9 archive</div>
+        <div id="buttonMode1">A 1</div>
+        <div id="buttonMode2">A 2</div>
+        <div id="buttonMode3">B 1</div>
+        <div id="buttonMode4">B 2</div>
+        <div id="buttonMode5">C 1</div>
+        <div id="buttonMode6">C 2</div>
+        <div id="buttonMode7">???</div>
+        <div id="buttonMode8">verbs</div>
+        <!-- <div id="buttonMode9">9 archive</div>  -->
         <div id="buttonVocab">vocab</div>
       </div>
       <table id="tableContainer">
@@ -354,7 +354,7 @@
       }
 
       // Arrays
-      const level1Words = [
+      const array1a = [
         ["ago", "эгОу", "назад (время)"],
         ["top", "топ", "верх"],
         ["bottom", "бОтом", "низ"],
@@ -418,7 +418,7 @@
         ["again", "эгЭн", "опять"],
       ];
 
-      const archiveWords = [
+      const array2a = [
         ["paint", "пЭйнт", "краска, красить"],
         ["care", "кЭар", "забота, заботиться"],
         ["about", "эбАут", "про"],
@@ -591,7 +591,14 @@
         ["hour", "Ауэр", "час"],
       ];
 
-      const level2Words = [
+      const array1c = [
+        ["adjacent", "эджЭйсэнт", "прилегающий"],
+        ["endorse", "эндОрс", "одобрить"],
+        ["tedious", "тИдиэс", "утомительный"],
+      ];
+
+      const array2c = [
+        ["adjacent", "эджЭйсэнт", "прилегающий"],
         ["endorse", "эндОрс", "одобрить"],
         ["tedious", "тИдиэс", "утомительный"],
         ["intact", "интЭкт", "нетронутый"],
@@ -1430,7 +1437,8 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: level1Words,
+          array: array1a,
+          name: "A 1",
         },
         2: {
           wordOrder: [2, 0, 1],
@@ -1442,32 +1450,59 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: level2Words,
+          array: array2a,
+          name: "A 2",
         },
         3: {
           wordOrder: [2, 0, 1],
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [],
-          hideBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayQuestionWords,
+          array: array1a,
+          name: "B 1",
         },
         4: {
-          wordOrder: [1, 0, 2],
+          wordOrder: [2, 0, 1],
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [],
-          hideBtn: [buttonAddWord, buttonCountWord],
-          smallFont: true,
-          reverseAllowed: false,
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
+          smallFont: false,
+          reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayPhrases,
+          array: array2a,
+          name: "B 2",
         },
+        // 3: {
+        //   wordOrder: [2, 0, 1],
+        //   divToShow: [div2, div3],
+        //   divToHide: [div1],
+        //   translationDiv: [div1],
+        //   showBtn: [],
+        //   hideBtn: [buttonAddWord, buttonCountWord],
+        //   smallFont: false,
+        //   reverseAllowed: true,
+        //   ttsAllowed: true,
+        //   array: arrayQuestionWords,
+        // },
+        // 4: {
+        //   wordOrder: [1, 0, 2],
+        //   divToShow: [div2, div3],
+        //   divToHide: [div1],
+        //   translationDiv: [div1],
+        //   showBtn: [],
+        //   hideBtn: [buttonAddWord, buttonCountWord],
+        //   smallFont: true,
+        //   reverseAllowed: false,
+        //   ttsAllowed: true,
+        //   array: arrayPhrases,
+        // },
         5: {
           wordOrder: [2, 0, 1],
           divToShow: [div2, div3],
@@ -1478,19 +1513,21 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayVerbWords,
+          array: array1c,
+          name: "C 1",
         },
         6: {
-          wordOrder: [3, 0, 1],
-          divToShow: [div2],
-          divToHide: [div1, div3],
-          translationDiv: [],
-          showBtn: [],
-          hideBtn: [buttonAddWord, buttonCountWord],
-          smallFont: true,
-          reverseAllowed: false,
-          ttsAllowed: false,
-          array: arrayAiText,
+          wordOrder: [2, 0, 1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
+          translationDiv: [div1],
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: array2c,
+          name: "C 2",
         },
         7: {
           wordOrder: [2, 0, 1],
@@ -1502,20 +1539,70 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayCelpipWords,
+          array: arrayQuestionWords,
+          name: "???",
         },
         8: {
-          wordOrder: [3, 0, 1],
-          divToShow: [div2],
-          divToHide: [div1, div3],
-          translationDiv: [],
-          showBtn: [],
-          hideBtn: [buttonAddWord, buttonCountWord],
-          smallFont: true,
-          reverseAllowed: false,
-          ttsAllowed: false,
-          array: arrayCelpipTexts,
+          wordOrder: [2, 0, 1],
+          divToShow: [div2, div3],
+          divToHide: [div1],
+          translationDiv: [div1],
+          showBtn: [buttonAddWord, buttonCountWord],
+          hideBtn: [],
+          smallFont: false,
+          reverseAllowed: true,
+          ttsAllowed: true,
+          array: arrayVerbWords,
+          name: "verbs",
         },
+        // 5: {
+        //   wordOrder: [2, 0, 1],
+        //   divToShow: [div2, div3],
+        //   divToHide: [div1],
+        //   translationDiv: [div1],
+        //   showBtn: [buttonAddWord, buttonCountWord],
+        //   hideBtn: [],
+        //   smallFont: false,
+        //   reverseAllowed: true,
+        //   ttsAllowed: true,
+        //   array: arrayVerbWords,
+        // },
+        // 6: {
+        //   wordOrder: [3, 0, 1],
+        //   divToShow: [div2],
+        //   divToHide: [div1, div3],
+        //   translationDiv: [],
+        //   showBtn: [],
+        //   hideBtn: [buttonAddWord, buttonCountWord],
+        //   smallFont: true,
+        //   reverseAllowed: false,
+        //   ttsAllowed: false,
+        //   array: arrayAiText,
+        // },
+        // 7: {
+        //   wordOrder: [2, 0, 1],
+        //   divToShow: [div2, div3],
+        //   divToHide: [div1],
+        //   translationDiv: [div1],
+        //   showBtn: [buttonAddWord, buttonCountWord],
+        //   hideBtn: [],
+        //   smallFont: false,
+        //   reverseAllowed: true,
+        //   ttsAllowed: true,
+        //   array: arrayCelpipWords,
+        // },
+        // 8: {
+        //   wordOrder: [3, 0, 1],
+        //   divToShow: [div2],
+        //   divToHide: [div1, div3],
+        //   translationDiv: [],
+        //   showBtn: [],
+        //   hideBtn: [buttonAddWord, buttonCountWord],
+        //   smallFont: true,
+        //   reverseAllowed: false,
+        //   ttsAllowed: false,
+        //   array: arrayCelpipTexts,
+        // },
         9: {
           wordOrder: [2, 0, 1],
           divToShow: [div2, div3],
@@ -1526,7 +1613,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: archiveWords,
+          array: array2a,
         },
       };
 
@@ -1605,7 +1692,7 @@
         div2.classList.toggle("small-font", modes[currentMode].smallFont);
         div3.classList.toggle("small-font", modes[currentMode].smallFont);
         // Text left align
-        div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
+        // div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
         // Reverse mode toggle
         if (modes[currentMode].reverseAllowed) {
           reverseModeLayout(isReverseMode, word);
@@ -1769,7 +1856,7 @@
         div2.innerHTML = "";
         div3.innerHTML = "";
         modeButtons.forEach((el) => (el.style.background = ""));
-        buttonNav.innerHTML = currentMode;
+        buttonNav.innerHTML = modes[currentMode].name;
         indexMini = 0;
         arrayMini.length = 0;
         currentArray.length > 0 ? (buttonNextWord.innerHTML = currentArray.length) : null;
@@ -1832,46 +1919,46 @@
 
         // Generate HTML content with a table
         const htmlContent = `
-                           <!DOCTYPE html>
-                           <html lang="en">
-                           <head>
-                               <meta charset="UTF-8">
-                               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                               <title>NA words</title>
-                           <style>
-                           body {
-                               font-family: sans-serif;
-                               font-weight: 900;
-                               color: #ffffff;
-                               background: #291d27;
-                           }
-                           table {
-                               width: 100%;
-                               border-collapse: collapse;
-                           }
-                           th, td {
-                               border: 2px solid #553674;
-                               padding: 2svh;
-                               text-align: center;
-                               word-break: break-all;
-                               line-height: 1.1;
-                           }
-                               pre { /* Use pre tag to preserve formatting */
-                               white-space: pre-wrap; /* Allow wrapping of long arrays */
-                               word-break: break-all;
-                               font-size: 4px;
-                           }
-                           </style>
-                           </head>
-                           <body>
-                               <h2>${month} ${day}</h2>
-                               <table>
-                                   ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
-                               </table>
-                               <pre>${arrayMiniString}</pre>
-                           </body>
-                           </html>
-                           `;
+                             <!DOCTYPE html>
+                             <html lang="en">
+                             <head>
+                                 <meta charset="UTF-8">
+                                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                 <title>NA words</title>
+                             <style>
+                             body {
+                                 font-family: sans-serif;
+                                 font-weight: 900;
+                                 color: #ffffff;
+                                 background: #291d27;
+                             }
+                             table {
+                                 width: 100%;
+                                 border-collapse: collapse;
+                             }
+                             th, td {
+                                 border: 2px solid #553674;
+                                 padding: 2svh;
+                                 text-align: center;
+                                 word-break: break-all;
+                                 line-height: 1.1;
+                             }
+                                 pre { /* Use pre tag to preserve formatting */
+                                 white-space: pre-wrap; /* Allow wrapping of long arrays */
+                                 word-break: break-all;
+                                 font-size: 4px;
+                             }
+                             </style>
+                             </head>
+                             <body>
+                                 <h2>${month} ${day}</h2>
+                                 <table>
+                                     ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
+                                 </table>
+                                 <pre>${arrayMiniString}</pre>
+                             </body>
+                             </html>
+                             `;
         // Create a Blob with the HTML content
         const blob = new Blob(["\ufeff" + htmlContent], {
           type: "text/html;charset=utf-8",
@@ -1897,7 +1984,7 @@
       });
 
       // Table
-      const combinedWords = [...archiveWords, ...level1Words];
+      const combinedWords = [...array2a, ...array1a];
       const sortedArray = [...combinedWords].sort((a, b) => {
         const column3A = a[2].toLowerCase(); // Get 3rd column and lowercase for case-insensitive sort
         const column3B = b[2].toLowerCase();
