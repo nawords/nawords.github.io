@@ -354,7 +354,7 @@
       }
 
       // Arrays
-      const array1a = [
+      const array_a1 = [
         ["ago", "эгОу", "назад (время)"],
         ["top", "топ", "верх"],
         ["bottom", "бОтом", "низ"],
@@ -418,7 +418,7 @@
         ["again", "эгЭн", "опять"],
       ];
 
-      const array2a = [
+      const array_a2 = [
         ["paint", "пЭйнт", "краска, красить"],
         ["care", "кЭар", "забота, заботиться"],
         ["about", "эбАут", "про"],
@@ -591,13 +591,35 @@
         ["hour", "Ауэр", "час"],
       ];
 
-      const array1c = [
-        ["adjacent", "эджЭйсэнт", "прилегающий"],
-        ["endorse", "эндОрс", "одобрить"],
-        ["tedious", "тИдиэс", "утомительный"],
+      const array_b1 = [
+        ["thick", "сИк", "толстый"],
+        ["thin", "сИн", "тонкий"],
+        ["narrow", "нЭроу", "узкий"],
+        ["wide", "вАйд", "широкий"],
       ];
 
-      const array2c = [
+      const array_b2 = [
+        ["thick", "сИк", "толстый"],
+        ["thin", "сИн", "тонкий"],
+        ["narrow", "нЭроу", "узкий"],
+        ["wide", "вАйд", "широкий"],
+      ];
+
+      const array_c1 = [
+        ["adjacent", "эджЭйсэнт", "прилегающий"],
+        ["endorse", "эндОрс", "одобрить"],
+        ["defer", "дифЭр", "отложить (время)"],
+        ["refute", "рифьЮт", "опровергать"],
+        ["obnoxious", "эбнОкшэс", "неприятный"],
+        ["suspense", "саспЭнс", "напряжение (ожидание)"],
+        ["restrain", "ристрЭйн", "сдерживать"],
+        ["courteous", "кЁртиэс", "вежливый"],
+        ["adverse", "Эдвёрс", "негативный"],
+        ["apprehension", "априхЭншн", "опасение"],
+        ["hence", "хэнс", "следовательно"],
+      ];
+
+      const array_c2 = [
         ["adjacent", "эджЭйсэнт", "прилегающий"],
         ["endorse", "эндОрс", "одобрить"],
         ["tedious", "тИдиэс", "утомительный"],
@@ -1437,7 +1459,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: array1a,
+          array: array_a1,
           name: "A 1",
         },
         2: {
@@ -1450,7 +1472,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: array2a,
+          array: array_a2.concat(array_a1),
           name: "A 2",
         },
         3: {
@@ -1463,7 +1485,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: array1a,
+          array: array_b1,
           name: "B 1",
         },
         4: {
@@ -1476,33 +1498,9 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: array2a,
+          array: array_b2,
           name: "B 2",
         },
-        // 3: {
-        //   wordOrder: [2, 0, 1],
-        //   divToShow: [div2, div3],
-        //   divToHide: [div1],
-        //   translationDiv: [div1],
-        //   showBtn: [],
-        //   hideBtn: [buttonAddWord, buttonCountWord],
-        //   smallFont: false,
-        //   reverseAllowed: true,
-        //   ttsAllowed: true,
-        //   array: arrayQuestionWords,
-        // },
-        // 4: {
-        //   wordOrder: [1, 0, 2],
-        //   divToShow: [div2, div3],
-        //   divToHide: [div1],
-        //   translationDiv: [div1],
-        //   showBtn: [],
-        //   hideBtn: [buttonAddWord, buttonCountWord],
-        //   smallFont: true,
-        //   reverseAllowed: false,
-        //   ttsAllowed: true,
-        //   array: arrayPhrases,
-        // },
         5: {
           wordOrder: [2, 0, 1],
           divToShow: [div2, div3],
@@ -1513,7 +1511,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: array1c,
+          array: array_c1,
           name: "C 1",
         },
         6: {
@@ -1526,7 +1524,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: array2c,
+          array: array_c2,
           name: "C 2",
         },
         7: {
@@ -1555,6 +1553,30 @@
           array: arrayVerbWords,
           name: "verbs",
         },
+        // 3: {
+        //   wordOrder: [2, 0, 1],
+        //   divToShow: [div2, div3],
+        //   divToHide: [div1],
+        //   translationDiv: [div1],
+        //   showBtn: [],
+        //   hideBtn: [buttonAddWord, buttonCountWord],
+        //   smallFont: false,
+        //   reverseAllowed: true,
+        //   ttsAllowed: true,
+        //   array: arrayQuestionWords,
+        // },
+        // 4: {
+        //   wordOrder: [1, 0, 2],
+        //   divToShow: [div2, div3],
+        //   divToHide: [div1],
+        //   translationDiv: [div1],
+        //   showBtn: [],
+        //   hideBtn: [buttonAddWord, buttonCountWord],
+        //   smallFont: true,
+        //   reverseAllowed: false,
+        //   ttsAllowed: true,
+        //   array: arrayPhrases,
+        // },
         // 5: {
         //   wordOrder: [2, 0, 1],
         //   divToShow: [div2, div3],
@@ -1613,7 +1635,7 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: array2a,
+          array: array_a2,
         },
       };
 
@@ -1984,7 +2006,7 @@
       });
 
       // Table
-      const combinedWords = [...array2a, ...array1a];
+      const combinedWords = [...array_a2, ...array_a1];
       const sortedArray = [...combinedWords].sort((a, b) => {
         const column3A = a[2].toLowerCase(); // Get 3rd column and lowercase for case-insensitive sort
         const column3B = b[2].toLowerCase();
