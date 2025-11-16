@@ -59,7 +59,7 @@
         width: 100%;
         height: 100%;
         font-family: "Montserrat", sans-serif;
-        font-weight: 800;
+        font-weight: 900;
         font-size: 100%;
       }
 
@@ -355,6 +355,7 @@
 
       // Arrays
       const array_a1 = [
+        ["as", "эз", "как"],
         ["after", "Афтэр", "после"],
         ["apprehensive", "апрэхЭнсив", "опасающийся"],
         ["celebration", "сэлэбрЭйшн", "празднование"],
@@ -659,6 +660,7 @@
       const array_b2 = [];
 
       const array_c1 = [
+        ["advent", "Эдвэнт", "появление, наступление"],
         ["vigilant", "вИджилэнт", "бдительный"],
         ["adjacent", "эджЭйсэнт", "прилегающий"],
         ["endorse", "эндОрс", "одобрить"],
@@ -674,6 +676,7 @@
       ];
 
       const array_c2 = [
+        ["advent", "Эдвэнт", "появление, наступление"],
         ["vigilant", "вИджилэнт", "бдительный"],
         ["adjacent", "эджЭйсэнт", "прилегающий"],
         ["endorse", "эндОрс", "одобрить"],
@@ -1269,6 +1272,7 @@
       ];
 
       const arrayQuestionWords = [
+        ["as", "эз", "как"],
         ["how many", "хАу мЭни", "сколько (исч)"],
         ["how much", "хАу мач", "сколько"],
         ["what for", "ват фор", "зачем"],
@@ -2062,7 +2066,7 @@
       });
 
       // Table
-      const combinedWords = [...array_a2, ...array_a1];
+      const combinedWords = [...array_a2];
       const sortedArray = [...combinedWords].sort((a, b) => {
         const column3A = a[2].toLowerCase(); // Get 3rd column and lowercase for case-insensitive sort
         const column3B = b[2].toLowerCase();
