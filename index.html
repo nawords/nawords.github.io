@@ -1759,6 +1759,19 @@
         },
       };
 
+      let isReverseMode;
+      // Get the current day of the month (1-31)
+      const dayOfMonth = new Date().getDate();
+      // Check if the day is odd or even
+      // day % 2 === 0 means it's EVEN
+      // day % 2 !== 0 means it's ODD
+      const isEvenDay = dayOfMonth % 2 === 0;
+      if (isEvenDay) {
+        isReverseMode = true;
+      } else {
+        isReverseMode = false;
+      }
+
       function reverseModeLayout(isReverseMode, word) {
         if (isReverseMode) {
           reverseMode[1].divToShow.forEach(showThis); // all div2 will be shown
@@ -1778,7 +1791,7 @@
 
       function switchMode(mode) {
         currentMode = mode;
-        isReverseMode = true; // starts app with reverse mode by default
+        // isReverseMode = true; // starts app with reverse mode by default
         currentArray = modes[currentMode].array;
         indexOfCurrentWord = 0;
         shuffle(currentArray);
