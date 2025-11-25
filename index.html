@@ -707,6 +707,7 @@
       const array_b2 = [];
 
       const array_c1 = [
+        ["adhere", "эдхИр", "придерживаться"],
         ["rigorous", "рИгорэс", "строгий (good)"],
         ["recluse", "риклУс", "затворник"],
         ["advent", "Эдвэнт", "появление, наступление"],
@@ -725,6 +726,7 @@
       ];
 
       const array_c2 = [
+        ["adhere", "эдхИр", "придерживаться"],
         ["rigorous", "рИгорэс", "строгий (good)"],
         ["recluse", "риклУс", "затворник"],
         ["advent", "Эдвэнт", "появление, наступление"],
@@ -1511,10 +1513,10 @@
       const buttonVocab = document.getElementById("buttonVocab");
       const tableContainer = document.getElementById("tableContainer");
       const buttonReverse = document.getElementById("buttonReverse");
-      const buttonAddWord = document.getElementById("buttonAddWord");
       const buttonDownload = document.getElementById("buttonDownload");
-      const buttonNextWord = document.getElementById("buttonNextWord");
+      const buttonAddWord = document.getElementById("buttonAddWord");
       const buttonCountWord = document.getElementById("buttonCountWord");
+      const buttonNextWord = document.getElementById("buttonNextWord");
       // const achievement40Words = document.getElementById("achievement40Words");
       const buttonShowTranslation = document.getElementById("buttonShowTranslation");
       const modeButtons = Array.from(document.querySelectorAll("[id^=buttonMode]")); // Array with all mode buttons
@@ -1759,20 +1761,29 @@
         },
       };
 
+      // Forward declaration
+      let currentMode = 1;
+      let currentArray = modes[currentMode].array;
       let isReverseMode;
+      let isMini;
+      let word;
+      switchMode();
+
       // Get the current day of the month (1-31)
-      const dayOfMonth = new Date().getDate();
-      // Check if the day is odd or even
-      // day % 2 === 0 means it's EVEN
-      // day % 2 !== 0 means it's ODD
-      const isEvenDay = dayOfMonth % 2 === 0;
-      if (isEvenDay) {
-        isReverseMode = true;
-      } else {
-        isReverseMode = false;
+      function checkReverseMode() {
+        const dayOfMonth = new Date().getDate();
+        // Check if the day is odd or even
+        // day % 2 === 0 means it's EVEN
+        // day % 2 !== 0 means it's ODD
+        const isEvenDay = dayOfMonth % 2 === 0;
+        if (isEvenDay) {
+          isReverseMode = true;
+        } else {
+          isReverseMode = false;
+        }
       }
 
-      function reverseModeLayout(isReverseMode, word) {
+      function reverseModeLayout() {
         if (isReverseMode) {
           reverseMode[1].divToShow.forEach(showThis); // all div2 will be shown
           reverseMode[1].divToHide.forEach(hideThis); // all div1 and div3 will be hidden
@@ -1785,54 +1796,53 @@
         // capitalLetterColor(word);
       }
 
-      let currentMode = 1; // Default mode
-      let currentArray = modes[currentMode].array;
-      switchMode(1);
-
-      function switchMode(mode) {
-        currentMode = mode;
-        // isReverseMode = true; // starts app with reverse mode by default
+      function switchMode() {
+        isMini = false;
         currentArray = modes[currentMode].array;
         indexOfCurrentWord = 0;
         shuffle(currentArray);
+        checkReverseMode();
+        checkHelpWord();
         clearStyles();
-        modeActiveColor(currentMode);
-        divsLayout(currentMode);
+        divsLayout();
       }
 
       // buttonMode listener
       modeButtons.forEach((button, index) => {
         button.addEventListener("click", () => {
-          switchMode(index + 1);
+          // The + 1 is used to convert the zero-based index of the modeButtons array into the one-based mode number
+          currentMode = index + 1;
           navModes.classList.toggle("navVisible");
+          switchMode();
         });
       });
 
       // Show or hide divs
-      function divsLayout(currentMode, isMini) {
+      function divsLayout() {
         modes[currentMode].divToShow.forEach(showThis);
         modes[currentMode].divToHide.forEach(hideThis);
         modes[currentMode].showBtn.forEach(showThis);
         modes[currentMode].hideBtn.forEach(hideThis);
-        wordsLayout(currentMode, isMini);
+        wordsLayout();
       }
 
       // Which word in what div
-      function wordsLayout(currentMode, isMini = false) {
+      function wordsLayout() {
         let mode = modes[currentMode].wordOrder;
-        let word;
+
         if (isMini) {
           word = arrayMini[indexMini];
         } else {
           word = currentArray[indexOfCurrentWord];
         }
+
         div1.innerHTML = word[mode[0]];
         div2.innerHTML = word[mode[1]];
         div3.innerHTML = word[mode[2]];
-        divsStyle(currentMode, word);
+        divsStyle();
       }
 
-      function divsStyle(currentMode, word) {
+      function divsStyle() {
         // Small font toggle
         div1.classList.toggle("small-font", modes[currentMode].smallFont);
         div2.classList.toggle("small-font", modes[currentMode].smallFont);
@@ -1841,7 +1851,7 @@
         // div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
         // Reverse mode toggle
         if (modes[currentMode].reverseAllowed) {
-          reverseModeLayout(isReverseMode, word);
+          reverseModeLayout();
         } else {
           // capitalLetterColor(word);
         }
@@ -1869,23 +1879,26 @@
             isReverseMode = true;
           }
           // isReverseMode = !isReverseMode; // modern way is unreabable for me for now
-          buttonReverse.classList.toggle("reverseBG"); // button background color
+          // buttonReverse.classList.toggle("reverseBG"); // button background color
           shuffle(currentArray);
           indexMini = 0;
           indexOfCurrentWord = 0;
           buttonNextWord.innerHTML = currentArray.length;
           buttonCountWord.innerHTML = arrayMini.length;
-          divsLayout(currentMode);
+          divsLayout();
         }
+        checkHelpWord();
+      });
 
-        // Hide the help button
+      // Hide the help button
+      function checkHelpWord() {
         if (!isReverseMode) {
           hideThis(helpWord);
         }
         if (isReverseMode) {
           showThis(helpWord);
         }
-      });
+      }
 
       // Show next word
       function actionNextWord(currentMode) {
@@ -1897,28 +1910,31 @@
         // If the index was 99 and length is 99, 99 % 99 = 0.
         indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
         buttonNextWord.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
-        divsLayout(currentMode);
+        divsLayout();
       }
       buttonNextWord.addEventListener("click", function () {
+        isMini = false;
         actionNextWord(currentMode);
         // achieve40Words();
       });
 
       // Show next word in mini array
-      function actionNextWordMini(currentMode) {
+      function actionNextWordMini() {
         indexMini++;
         indexMini = indexMini % arrayMini.length;
-        divsLayout(currentMode, true);
+        isMini = true;
+        divsLayout();
+        // divsLayout(currentMode, true);
         /*buttonCountWord.innerHTML = arrayMini.length - indexMini;*/
       }
       buttonCountWord.addEventListener("click", function () {
         if (arrayMini.length > 0) {
-          actionNextWordMini(currentMode);
+          actionNextWordMini();
         }
       });
 
       // Add word to mini array
-      function actionAddWord(currentMode) {
+      function actionAddWord() {
         let word = currentArray[indexOfCurrentWord];
 
         // Prevent duplicate
@@ -1931,9 +1947,9 @@
       }
       buttonAddWord.addEventListener("click", function () {
         actionAddWord(currentMode);
-        for (a of arrayMini) {
-          console.log(a);
-        }
+        // for (a of arrayMini) {
+        //   console.log(a);
+        // }
         // Show button to download mini array
         if (arrayMini.length > 0) {
           showThis(buttonDownload);
@@ -1941,7 +1957,7 @@
       });
 
       // Show translation
-      function showTranslation(currentMode, isReverseMode) {
+      function showTranslation(isReverseMode) {
         // modes[currentMode].translationDiv[0].innerHTML = "";
         if (isReverseMode === true) {
           reverseMode[1].translationDiv.forEach(showThis);
@@ -1950,7 +1966,7 @@
         }
       }
       buttonShowTranslation.addEventListener("click", function () {
-        showTranslation(currentMode, isReverseMode);
+        showTranslation(isReverseMode);
       });
 
       // Show the first two characters
@@ -1968,12 +1984,6 @@
           helpWord.innerHTML = "?";
         }, 3000);
       });
-
-      // Active buttonMode color
-      function modeActiveColor(currentMode) {
-        buttonMode = document.getElementById(`buttonMode${currentMode}`);
-        buttonMode.style.background = "#553674";
-      }
 
       // Text to speach
       function textToSpeach(currentMode, div) {
@@ -2125,6 +2135,8 @@
 
       // Modes menu toggle
       buttonNav.addEventListener("click", function () {
+        const activeButton = document.getElementById("buttonMode" + currentMode);
+        activeButton.style.background = "#553674";
         navModes.classList.toggle("navVisible");
         hideThis(tableContainer);
       });
