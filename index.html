@@ -118,16 +118,16 @@
         opacity: 0.5;
       }
 
-      #buttonAddWord {
+      #buttonNo {
         background: #372237;
       }
 
-      #buttonCountWord {
+      #buttonNextWord_Mini {
         background: transparent;
         box-shadow: inset 0 0 0 0.3svh var(--title-color);
       }
 
-      #buttonNextWord {
+      #buttonNextWord_Big {
         background: #553674;
       }
 
@@ -298,9 +298,9 @@
   <body>
     <div id="wrap">
       <div id="navTop">
-        <div id="buttonNav">1</div>
+        <div id="buttonSelectMode">1</div>
         <div id="buttonDownload">SAVE</div>
-        <div id="buttonReverse">+</div>
+        <div id="buttonReverseMode">+</div>
       </div>
       <div id="buttonShowTranslation">
         <div id="div1"><span></span></div>
@@ -308,9 +308,9 @@
         <div id="div3"><span></span></div>
       </div>
       <div id="navBottom">
-        <div id="buttonAddWord">NO</div>
-        <div id="buttonCountWord">0</div>
-        <div id="buttonNextWord">OK</div>
+        <div id="buttonNo">NO</div>
+        <div id="buttonNextWord_Mini">0</div>
+        <div id="buttonNextWord_Big">OK</div>
       </div>
       <!-- <div id="achievement40Words"></div> -->
       <div id="helpWord">?</div>
@@ -331,28 +331,6 @@
       </table>
     </div>
     <script>
-      // Preload TTS voices
-      window.speechSynthesis.getVoices();
-      let ttsVoices;
-      function populateVoices() {
-        const v = window.speechSynthesis.getVoices();
-        if (v.length > 0) {
-          ttsVoices = v;
-          console.log("Voices populated:", ttsVoices);
-          // You can now use ttsVoices
-          window.speechSynthesis.removeEventListener("voiceschanged", populateVoices); //remove the event listener after it is no longer needed.
-        }
-      }
-
-      // Check if voices are already available (in some cases, they might be)
-      if (window.speechSynthesis.getVoices().length > 0) {
-        ttsVoices = window.speechSynthesis.getVoices();
-        console.log("Voices already available:", ttsVoices);
-      } else {
-        // Listen for the voiceschanged event
-        window.speechSynthesis.addEventListener("voiceschanged", populateVoices);
-      }
-
       // Arrays
       const array_a1 = [
         ["invite", "инвАйт", "приглашать"],
@@ -1500,31 +1478,45 @@
       const helpWord = document.getElementById("helpWord");
       const body = document.querySelector("body");
       const wrap = document.getElementById("wrap");
-      const buttonNav = document.getElementById("buttonNav");
       const navModes = document.getElementById("navModes");
       const navTop = document.getElementById("navTop");
-      const div1Wrap = document.getElementById("div1");
-      const div3Wrap = document.getElementById("div3");
+      const navBottom = document.getElementById("navBottom");
       const div1 = document.querySelector("#div1 span");
       const div2 = document.querySelector("#div2 span");
       const div3 = document.querySelector("#div3 span");
-      const htmlEntirePage = document.querySelector("html");
-      const navBottom = document.getElementById("navBottom");
-      const buttonVocab = document.getElementById("buttonVocab");
       const tableContainer = document.getElementById("tableContainer");
-      const buttonReverse = document.getElementById("buttonReverse");
+      const buttonSelectMode = document.getElementById("buttonSelectMode");
+      const buttonVocab = document.getElementById("buttonVocab");
+      const buttonReverseMode = document.getElementById("buttonReverseMode");
       const buttonDownload = document.getElementById("buttonDownload");
-      const buttonAddWord = document.getElementById("buttonAddWord");
-      const buttonCountWord = document.getElementById("buttonCountWord");
-      const buttonNextWord = document.getElementById("buttonNextWord");
-      // const achievement40Words = document.getElementById("achievement40Words");
+      const buttonNo = document.getElementById("buttonNo");
+      const buttonNextWord_Mini = document.getElementById("buttonNextWord_Mini");
+      const buttonNextWord_Big = document.getElementById("buttonNextWord_Big");
       const buttonShowTranslation = document.getElementById("buttonShowTranslation");
       const modeButtons = Array.from(document.querySelectorAll("[id^=buttonMode]")); // Array with all mode buttons
+      // const achievement40Words = document.getElementById("achievement40Words");
 
-      let arrayMini = [];
-      let indexMini = 0;
-      let indexOfCurrentWord = 0;
-      let arrayUnknown = [];
+      // Preload TTS voices
+      window.speechSynthesis.getVoices();
+      let ttsVoices;
+      function populateVoices() {
+        const v = window.speechSynthesis.getVoices();
+        if (v.length > 0) {
+          ttsVoices = v;
+          console.log("Voices populated:", ttsVoices);
+          // You can now use ttsVoices
+          window.speechSynthesis.removeEventListener("voiceschanged", populateVoices); //remove the event listener after it is no longer needed.
+        }
+      }
+
+      // Check if voices are already available (in some cases, they might be)
+      if (window.speechSynthesis.getVoices().length > 0) {
+        ttsVoices = window.speechSynthesis.getVoices();
+        console.log("Voices already available:", ttsVoices);
+      } else {
+        // Listen for the voiceschanged event
+        window.speechSynthesis.addEventListener("voiceschanged", populateVoices);
+      }
 
       // Fetch words from new.html
       // async function initializeArray() {
@@ -1566,7 +1558,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1579,7 +1571,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1593,7 +1585,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1606,7 +1598,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1619,7 +1611,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1632,7 +1624,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1645,7 +1637,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1658,7 +1650,7 @@
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1666,84 +1658,12 @@
           array: arrayVerbWords,
           name: "verbs",
         },
-        // 3: {
-        //   wordOrder: [2, 0, 1],
-        //   divToShow: [div2, div3],
-        //   divToHide: [div1],
-        //   translationDiv: [div1],
-        //   showBtn: [],
-        //   hideBtn: [buttonAddWord, buttonCountWord],
-        //   smallFont: false,
-        //   reverseAllowed: true,
-        //   ttsAllowed: true,
-        //   array: arrayQuestionWords,
-        // },
-        // 4: {
-        //   wordOrder: [1, 0, 2],
-        //   divToShow: [div2, div3],
-        //   divToHide: [div1],
-        //   translationDiv: [div1],
-        //   showBtn: [],
-        //   hideBtn: [buttonAddWord, buttonCountWord],
-        //   smallFont: true,
-        //   reverseAllowed: false,
-        //   ttsAllowed: true,
-        //   array: arrayPhrases,
-        // },
-        // 5: {
-        //   wordOrder: [2, 0, 1],
-        //   divToShow: [div2, div3],
-        //   divToHide: [div1],
-        //   translationDiv: [div1],
-        //   showBtn: [buttonAddWord, buttonCountWord],
-        //   hideBtn: [],
-        //   smallFont: false,
-        //   reverseAllowed: true,
-        //   ttsAllowed: true,
-        //   array: arrayVerbWords,
-        // },
-        // 6: {
-        //   wordOrder: [3, 0, 1],
-        //   divToShow: [div2],
-        //   divToHide: [div1, div3],
-        //   translationDiv: [],
-        //   showBtn: [],
-        //   hideBtn: [buttonAddWord, buttonCountWord],
-        //   smallFont: true,
-        //   reverseAllowed: false,
-        //   ttsAllowed: false,
-        //   array: arrayAiText,
-        // },
-        // 7: {
-        //   wordOrder: [2, 0, 1],
-        //   divToShow: [div2, div3],
-        //   divToHide: [div1],
-        //   translationDiv: [div1],
-        //   showBtn: [buttonAddWord, buttonCountWord],
-        //   hideBtn: [],
-        //   smallFont: false,
-        //   reverseAllowed: true,
-        //   ttsAllowed: true,
-        //   array: arrayCelpipWords,
-        // },
-        // 8: {
-        //   wordOrder: [3, 0, 1],
-        //   divToShow: [div2],
-        //   divToHide: [div1, div3],
-        //   translationDiv: [],
-        //   showBtn: [],
-        //   hideBtn: [buttonAddWord, buttonCountWord],
-        //   smallFont: true,
-        //   reverseAllowed: false,
-        //   ttsAllowed: false,
-        //   array: arrayCelpipTexts,
-        // },
         9: {
           wordOrder: [2, 0, 1],
           divToShow: [div2, div3],
           divToHide: [div1],
           translationDiv: [div1],
-          showBtn: [buttonAddWord, buttonCountWord],
+          showBtn: [buttonNo, buttonNextWord_Mini],
           hideBtn: [],
           smallFont: false,
           reverseAllowed: true,
@@ -1764,10 +1684,25 @@
       // Forward declaration
       let currentMode = 1;
       let currentArray = modes[currentMode].array;
+      let currentWord;
       let isReverseMode;
       let isMini;
-      let word;
+      let arrayMini = [];
+      let arrayUnknown = [];
+      let indexOfMiniWord = 0;
+      let indexOfCurrentWord = 0;
       switchMode();
+
+      function switchMode() {
+        isMini = false;
+        currentArray = modes[currentMode].array;
+        indexOfCurrentWord = 0;
+        shuffle(currentArray);
+        checkReverseMode();
+        checkHelpWord();
+        clearStyles();
+        divsLayout();
+      }
 
       // Get the current day of the month (1-31)
       function checkReverseMode() {
@@ -1781,30 +1716,6 @@
         } else {
           isReverseMode = false;
         }
-      }
-
-      function reverseModeLayout() {
-        if (isReverseMode) {
-          reverseMode[1].divToShow.forEach(showThis); // all div2 will be shown
-          reverseMode[1].divToHide.forEach(hideThis); // all div1 and div3 will be hidden
-
-          div1.innerHTML = word[reverseMode[1].wordOrder[0]]; // same as word[0]
-          div2.innerHTML = word[reverseMode[1].wordOrder[1]]; // same as word[2]
-          div3.innerHTML = word[reverseMode[1].wordOrder[2]]; // same as word[1]
-        }
-
-        // capitalLetterColor(word);
-      }
-
-      function switchMode() {
-        isMini = false;
-        currentArray = modes[currentMode].array;
-        indexOfCurrentWord = 0;
-        shuffle(currentArray);
-        checkReverseMode();
-        checkHelpWord();
-        clearStyles();
-        divsLayout();
       }
 
       // buttonMode listener
@@ -1831,60 +1742,72 @@
         let mode = modes[currentMode].wordOrder;
 
         if (isMini) {
-          word = arrayMini[indexMini];
+          currentWord = arrayMini[indexOfMiniWord];
         } else {
-          word = currentArray[indexOfCurrentWord];
+          currentWord = currentArray[indexOfCurrentWord];
         }
 
-        div1.innerHTML = word[mode[0]];
-        div2.innerHTML = word[mode[1]];
-        div3.innerHTML = word[mode[2]];
-        divsStyle();
+        div1.innerHTML = currentWord[mode[0]];
+        div2.innerHTML = currentWord[mode[1]];
+        div3.innerHTML = currentWord[mode[2]];
+
+        updateFonts();
       }
 
-      function divsStyle() {
+      function reverseModeLayout() {
+        if (isReverseMode) {
+          reverseMode[1].divToShow.forEach(showThis); // all div2 will be shown
+          reverseMode[1].divToHide.forEach(hideThis); // all div1 and div3 will be hidden
+
+          div1.innerHTML = currentWord[reverseMode[1].wordOrder[0]]; // same as currentWord[0]
+          div2.innerHTML = currentWord[reverseMode[1].wordOrder[1]]; // same as currentWord[2]
+          div3.innerHTML = currentWord[reverseMode[1].wordOrder[2]]; // same as currentWord[1]
+        }
+
+        // capitalLetterColor(currentWord);
+      }
+
+      function updateFonts() {
         // Small font toggle
         div1.classList.toggle("small-font", modes[currentMode].smallFont);
         div2.classList.toggle("small-font", modes[currentMode].smallFont);
         div3.classList.toggle("small-font", modes[currentMode].smallFont);
-        // Text left align
+
+        // Text align left
         // div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
+
         // Reverse mode toggle
         if (modes[currentMode].reverseAllowed) {
           reverseModeLayout();
-        } else {
-          // capitalLetterColor(word);
         }
       }
 
-      function capitalLetterColor(word) {
+      function capitalLetterColor(currentWord) {
         let mode = modes[currentMode].wordOrder;
         let styledWord = "";
-        for (let i = 0; i < word[mode[2]].length; i++) {
-          if (word[mode[2]][i] === word[mode[2]][i].toUpperCase() && word[mode[2]][i].match(/[A-ZА-ЯЁÖ]/)) {
-            styledWord += '<span style="color: #ffe200;">' + word[mode[2]][i] + "</span>";
+        for (let i = 0; i < currentWord[mode[2]].length; i++) {
+          if (currentWord[mode[2]][i] === currentWord[mode[2]][i].toUpperCase() && currentWord[mode[2]][i].match(/[A-ZА-ЯЁÖ]/)) {
+            styledWord += '<span style="color: #ffe200;">' + currentWord[mode[2]][i] + "</span>";
           } else {
-            styledWord += word[mode[2]][i];
+            styledWord += currentWord[mode[2]][i];
           }
         }
         div3.innerHTML = styledWord;
       }
 
-      buttonReverse.addEventListener("click", function () {
+      buttonReverseMode.addEventListener("click", function () {
         if (modes[currentMode].reverseAllowed) {
-          // Condition must be in parentheses
           if (isReverseMode) {
             isReverseMode = false;
           } else {
             isReverseMode = true;
           }
-          // isReverseMode = !isReverseMode; // modern way is unreabable for me for now
-          // buttonReverse.classList.toggle("reverseBG"); // button background color
+          // buttonReverseMode.classList.toggle("reverseBG"); // button background color
           shuffle(currentArray);
-          indexMini = 0;
+          indexOfMiniWord = 0;
           indexOfCurrentWord = 0;
-          buttonNextWord.innerHTML = currentArray.length;
-          buttonCountWord.innerHTML = arrayMini.length;
+          buttonNextWord_Big.innerHTML = currentArray.length;
+          buttonNextWord_Mini.innerHTML = arrayMini.length;
           divsLayout();
         }
         checkHelpWord();
@@ -1900,56 +1823,48 @@
         }
       }
 
-      // Show next word
-      function actionNextWord(currentMode) {
-        indexOfCurrentWord++; // 11 becomes 12
+      // Show next word in big array
+      buttonNextWord_Big.addEventListener("click", function () {
+        isMini = false;
 
+        indexOfCurrentWord++; // 11 becomes 12
         // Use the modulo operator (%) to "wrap" the index back to 0
         // when it reaches the end of the array (creating a loop).
         // If the index is 12 and length is 99, 12 % 99 = 12.
         // If the index was 99 and length is 99, 99 % 99 = 0.
         indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
-        buttonNextWord.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
+        buttonNextWord_Big.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
         divsLayout();
-      }
-      buttonNextWord.addEventListener("click", function () {
-        isMini = false;
-        actionNextWord(currentMode);
+
         // achieve40Words();
       });
 
       // Show next word in mini array
-      function actionNextWordMini() {
-        indexMini++;
-        indexMini = indexMini % arrayMini.length;
-        isMini = true;
-        divsLayout();
-        // divsLayout(currentMode, true);
-        /*buttonCountWord.innerHTML = arrayMini.length - indexMini;*/
-      }
-      buttonCountWord.addEventListener("click", function () {
-        if (arrayMini.length > 0) {
-          actionNextWordMini();
+      buttonNextWord_Mini.addEventListener("click", function () {
+        if (arrayMini.length === 0) {
+          console.log("Mini array is empty");
+          return;
         }
+
+        isMini = true;
+        indexOfMiniWord++;
+        indexOfMiniWord = indexOfMiniWord % arrayMini.length;
+        divsLayout();
+        /*buttonNextWord_Mini.innerHTML = arrayMini.length - indexOfMiniWord;*/
       });
 
-      // Add word to mini array
-      function actionAddWord() {
-        let word = currentArray[indexOfCurrentWord];
+      // Add words to mini array
+      buttonNo.addEventListener("click", function () {
+        const wordToAdd = currentArray[indexOfCurrentWord];
 
         // Prevent duplicate
-        if (arrayMini.includes(word)) {
+        if (arrayMini.includes(wordToAdd)) {
           console.log("Duplicate");
         } else {
-          arrayMini.push(word);
+          arrayMini.push(wordToAdd);
         }
-        buttonCountWord.innerHTML = arrayMini.length;
-      }
-      buttonAddWord.addEventListener("click", function () {
-        actionAddWord(currentMode);
-        // for (a of arrayMini) {
-        //   console.log(a);
-        // }
+        buttonNextWord_Mini.innerHTML = arrayMini.length;
+
         // Show button to download mini array
         if (arrayMini.length > 0) {
           showThis(buttonDownload);
@@ -1957,7 +1872,7 @@
       });
 
       // Show translation
-      function showTranslation(isReverseMode) {
+      function showTranslation() {
         // modes[currentMode].translationDiv[0].innerHTML = "";
         if (isReverseMode === true) {
           reverseMode[1].translationDiv.forEach(showThis);
@@ -1966,7 +1881,7 @@
         }
       }
       buttonShowTranslation.addEventListener("click", function () {
-        showTranslation(isReverseMode);
+        showTranslation();
       });
 
       // Show the first two characters
@@ -2012,12 +1927,12 @@
         div2.innerHTML = "";
         div3.innerHTML = "";
         modeButtons.forEach((el) => (el.style.background = ""));
-        buttonNav.innerHTML = modes[currentMode].name;
-        indexMini = 0;
+        buttonSelectMode.innerHTML = modes[currentMode].name;
+        indexOfMiniWord = 0;
         arrayMini.length = 0;
-        currentArray.length > 0 ? (buttonNextWord.innerHTML = currentArray.length) : null;
-        buttonCountWord.innerHTML = arrayMini.length;
-        buttonReverse.classList.remove("reverseBG");
+        currentArray.length > 0 ? (buttonNextWord_Big.innerHTML = currentArray.length) : null;
+        buttonNextWord_Mini.innerHTML = arrayMini.length;
+        buttonReverseMode.classList.remove("reverseBG");
         // hideThis(achievement40Words);
         hideThis(buttonDownload);
         hideThis(tableContainer);
@@ -2134,7 +2049,7 @@
       buttonDownload.addEventListener("click", downloadArrayMini);
 
       // Modes menu toggle
-      buttonNav.addEventListener("click", function () {
+      buttonSelectMode.addEventListener("click", function () {
         const activeButton = document.getElementById("buttonMode" + currentMode);
         activeButton.style.background = "#553674";
         navModes.classList.toggle("navVisible");
