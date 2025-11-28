@@ -323,6 +323,7 @@
         <div id="buttonMode6">C 2</div>
         <div id="buttonMode7">???</div>
         <div id="buttonMode8">verbs</div>
+        <!-- <div id="buttonMode9">vocab</div> -->
         <!-- <div id="buttonMode9">9 archive</div>  -->
         <div id="buttonVocab">vocab</div>
       </div>
@@ -377,37 +378,6 @@
         ["get along", "гЭт элОнг", "дружить"],
         ["as", "эз", "как"],
         ["disaster", "дизАстер", "катастрофа"],
-      ];
-
-      const array_aaa1 = [
-        ["as", "эз", "как"],
-        ["after", "Афтэр", "после"],
-        ["apprehensive", "апрэхЭнсив", "опасающийся"],
-        ["celebration", "сэлэбрЭйшн", "празднование"],
-        ["cities", "сИтиз", "города"],
-        ["disaster", "дизАстер", "катастрофа"],
-        ["effort", "Эфорт", "усилие"],
-        ["event", "ивЭнт", "событие"],
-        ["follow", "фОлоу", "следовать"],
-        ["graduation", "грэджуЭйшн", "выпускной"],
-        ["hope", "хОуп", "надежда"],
-        ["imagine", "имЭджин", "представлять"],
-        ["invite", "инвАйт", "приглашать"],
-        ["large", "лАрдж", "большой"],
-        ["mention", "мЭншн", "упомянуть"],
-        ["miss", "мис", "скучать"],
-        ["moon", "мУн", "луна"],
-        ["other", "Азэр", "другой"],
-        ["prepare", "припЭр", "подготовиться"],
-        ["reply", "риплАй", "ответ, ответить"],
-        ["sightseeing", "сАйтсиинг", "осмотр достоп-тей"],
-        ["step", "стэп", "шаг"],
-        ["tough", "тАф", "трудный"],
-        ["truly", "трУли", "по-настоящему"],
-        ["tutor", "тЮтор", "репетитор"],
-        ["ago", "эгОу", "назад (время)"],
-        ["title", "тАйтл", "заголовок"],
-        ["area", "Эриа", "область"],
       ];
 
       const array_a2 = [
@@ -685,7 +655,7 @@
       const array_b2 = [];
 
       const array_c1 = [
-        ["adhere", "эдхИр", "придерживаться"],
+        ["adhere", "эдхИр", "держАться (клей, правил)"],
         ["rigorous", "рИгорэс", "строгий (good)"],
         ["recluse", "риклУс", "затворник"],
         ["advent", "Эдвэнт", "появление, наступление"],
@@ -701,10 +671,11 @@
         ["adverse", "Эдвёрс", "негативный"],
         ["apprehension", "априхЭншн", "опасение"],
         ["hence", "хэнс", "следовательно"],
+        ["arbitrary", "Арбитрэри", "произвольный"],
       ];
 
       const array_c2 = [
-        ["adhere", "эдхИр", "придерживаться"],
+        ["adhere", "эдхИр", "держАться (клей, правил)"],
         ["rigorous", "рИгорэс", "строгий (good)"],
         ["recluse", "риклУс", "затворник"],
         ["advent", "Эдвэнт", "появление, наступление"],
@@ -1122,7 +1093,7 @@
         ["We just bought new horizontal blinds for our living room. They look great!", ""],
       ];
 
-      const arrayVerbWords = [
+      const arrayVerbs = [
         ["get, got, gotten", "гэт, гот, гОтэн", "получить"],
         ["read, read, read", "рид, рэд, рэд", "читать"],
         ["make, made, made", "мэйк, мэйд, мэйд", "делать"],
@@ -1143,101 +1114,101 @@
         ["tell, told, told", "тэл, толд, толд", "сказать"],
       ];
 
-      // const arrayVerbWords = [      //
-      //   ["awake, awoke, awoken", "", "проснуться"],
-      //   ["be, was, were, been", "", "быть"],
-      //   ["beat, beat, beaten", "", "бить"],
-      //   ["become, became, become", "", "стать"],
-      //   ["bend, bent, bent", "", "гнуть"],
-      //   ["bite, bit, bitten", "", "кусать"],
-      //   ["blow, blew, blown", "", "дуть"],
-      //   ["break, broke, broken", "", "ломать"],
-      //   ["broadcast, broadcast, broadcast", "", "транслировать"],
-      //   ["build, built, built", "", "строить"],
-      //   ["burn, burned, burned", "", "жечь"],
-      //   ["buy, bought, bought", "", "купить"],
-      //   ["catch, caught, caught", "", "ловить"],
-      //   ["choose, chose, chosen", "", "выбрать"],
-      //   ["come, came, come", "", "прихожу"],
-      //   ["cost, cost, cost", "", "стоить"],
-      //   ["cut, cut, cut", "", "резать"],
-      //   ["deal, dealt, dealt", "", "иметь дело с"],
-      //   ["dig, dug, dug", "", "копать"],
-      //   ["do, did, done", "", "делать"],
-      //   ["draw, drew, drawn", "", "рисовать"],
-      //   ["dream, dreamed, dreamed", "", "мечтать"],
-      //   ["drink, drank, drunk", "", "пить"],
-      //   ["drive, drove, driven", "", "водить авто"],
-      //   ["eat, ate, eaten", "", "кушать"],
-      //   ["fall, fell, fallen", "", "падать"],
-      //   ["feed, fed, fed", "", "кормить"],
-      //   ["feel, felt, felt", "фил, фэлт, фэлт", "чувствовать"],
-      //   ["fight, fought, fought", "", "драться"],
-      //   ["find, found, found", "", "найти"],
-      //   ["flee, fled, fled", "", "сбежать"],
-      //   ["fly, flew, flown", "", "летать"],
-      //   ["forbid, forbade, forbidden", "", "запрещать"],
-      //   ["forget, forgot, forgotten", "", "забыть"],
-      //   ["forgive, forgave, forgiven", "", "простить"],
-      //   ["freeze, froze, frozen", "", "заморозить"],
-      //   ["get, got, gotten", "", "получить"],
-      //   ["go, went, gone", "", "идти"],
-      //   ["grow, grew, grown", "", "рости"],
-      //   ["have, had, had", "", "иметь"],
-      //   ["hear, heard, heard", "", "слышать"],
-      //   ["hide, hid, hidden", "", "прятать"],
-      //   ["hold, held, held", "", "держать в руке"],
-      //   ["keep, kept, kept", "", "держать при себе"],
-      //   ["knit, knitted, knitted", "", "вязать"],
-      //   ["know, knew, known", "", "знаю"],
-      //   ["lead, led, led", "", "вестИ"],
-      //   ["learn, learned, learned", "", "учиться"],
-      //   ["leave, left, left", "", "оставить"],
-      //   ["lend, lent, lent", "", "одолжить"],
-      //   ["let, let, let", "", "позволь"],
-      //   ["lie, lay, lain", "", "лежать"],
-      //   ["make, made, made", "", "делать"],
-      //   ["mean, meant, meant", "", "значит"],
-      //   ["meet, met, met", "", "встретить"],
-      //   ["pay, paid, paid", "", "платить"],
-      //   ["put, put, put", "", "класть"],
-      //   ["quit, quit, quit", "", "выйти / бросить"],
-      //   ["read, read, read", "", "читать"],
-      //   ["ring, rang, rung", "", "звонить"],
-      //   ["run, ran, run", "", "бежать"],
-      //   ["saw, sawed, sawed", "", "пилить"],
-      //   ["sell, sold, sold", "", "продать"],
-      //   ["send, sent, sent", "", "послать"],
-      //   ["set, set, set", "", "установить"],
-      //   ["shake, shook, shaken", "", "трясти"],
-      //   ["shine, shone, shone", "", "сиять"],
-      //   ["shoot, shot, shot", "", "стрелять"],
-      //   ["sing, sang, sung", "", "петь"],
-      //   ["sink, sank, sunk", "", "тонуть"],
-      //   ["sit, sat, sat", "", "сидеть"],
-      //   ["sleep, slept, slept", "", "спать"],
-      //   ["smell, smelled, smelled", "", "пахнуть"],
-      //   ["speak, spoke, spoken", "", "говорить"],
-      //   ["spend, spent, spent", "", "тратить"],
-      //   ["spin, spun, spun", "", "вращать"],
-      //   ["spit, spat, spat", "", "плевать"],
-      //   ["split, split, split", "", "разделить"],
-      //   ["spoil, spoiled, spoiled", "", "портить"],
-      //   ["stink, stank, stunk", "", "вонять"],
-      //   ["swim, swam, swum", "", "плыть"],
-      //   ["take, took, taken", "", "взять"],
-      //   ["teach, taught, taught", "", "научить"],
-      //   ["tear, tore, torn", "", "порвать"],
-      //   ["think, thought, thought", "", "думать"],
-      //   ["throw, threw, thrown", "", "кинуть"],
-      //   ["understand, understood, understood", "", "понять"],
-      //   ["unfreeze, unfroze, unfrozen", "", "разморозить"],
-      //   ["upset, upset, upset", "", "огорчить"],
-      //   ["wake, woke, woken", "", "будить"],
-      //   ["wear, wore, worn", "", "носить одежду"],
-      //   ["win, won, won", "", "выиграть"],
-      //   ["say, said, said", "сэй, сэд, сэд", "сказать"],
-      // ];
+      const arrayVerbs_waitList = [
+        ["awake, awoke, awoken", "", "проснуться"],
+        ["be, was, were, been", "", "быть"],
+        ["beat, beat, beaten", "", "бить"],
+        ["become, became, become", "", "стать"],
+        ["bend, bent, bent", "", "гнуть"],
+        ["bite, bit, bitten", "", "кусать"],
+        ["blow, blew, blown", "", "дуть"],
+        ["break, broke, broken", "", "ломать"],
+        ["broadcast, broadcast, broadcast", "", "транслировать"],
+        ["build, built, built", "", "строить"],
+        ["burn, burned, burned", "", "жечь"],
+        ["buy, bought, bought", "", "купить"],
+        ["catch, caught, caught", "", "ловить"],
+        ["choose, chose, chosen", "", "выбрать"],
+        ["come, came, come", "", "прихожу"],
+        ["cost, cost, cost", "", "стоить"],
+        ["cut, cut, cut", "", "резать"],
+        ["deal, dealt, dealt", "", "иметь дело с"],
+        ["dig, dug, dug", "", "копать"],
+        ["do, did, done", "", "делать"],
+        ["draw, drew, drawn", "", "рисовать"],
+        ["dream, dreamed, dreamed", "", "мечтать"],
+        ["drink, drank, drunk", "", "пить"],
+        ["drive, drove, driven", "", "водить авто"],
+        ["eat, ate, eaten", "", "кушать"],
+        ["fall, fell, fallen", "", "падать"],
+        ["feed, fed, fed", "", "кормить"],
+        ["feel, felt, felt", "фил, фэлт, фэлт", "чувствовать"],
+        ["fight, fought, fought", "", "драться"],
+        ["find, found, found", "", "найти"],
+        ["flee, fled, fled", "", "сбежать"],
+        ["fly, flew, flown", "", "летать"],
+        ["forbid, forbade, forbidden", "", "запрещать"],
+        ["forget, forgot, forgotten", "", "забыть"],
+        ["forgive, forgave, forgiven", "", "простить"],
+        ["freeze, froze, frozen", "", "заморозить"],
+        ["get, got, gotten", "", "получить"],
+        ["go, went, gone", "", "идти"],
+        ["grow, grew, grown", "", "рости"],
+        ["have, had, had", "", "иметь"],
+        ["hear, heard, heard", "", "слышать"],
+        ["hide, hid, hidden", "", "прятать"],
+        ["hold, held, held", "", "держать в руке"],
+        ["keep, kept, kept", "", "держать при себе"],
+        ["knit, knitted, knitted", "", "вязать"],
+        ["know, knew, known", "", "знаю"],
+        ["lead, led, led", "", "вестИ"],
+        ["learn, learned, learned", "", "учиться"],
+        ["leave, left, left", "", "оставить"],
+        ["lend, lent, lent", "", "одолжить"],
+        ["let, let, let", "", "позволь"],
+        ["lie, lay, lain", "", "лежать"],
+        ["make, made, made", "", "делать"],
+        ["mean, meant, meant", "", "значит"],
+        ["meet, met, met", "", "встретить"],
+        ["pay, paid, paid", "", "платить"],
+        ["put, put, put", "", "класть"],
+        ["quit, quit, quit", "", "выйти / бросить"],
+        ["read, read, read", "", "читать"],
+        ["ring, rang, rung", "", "звонить"],
+        ["run, ran, run", "", "бежать"],
+        ["saw, sawed, sawed", "", "пилить"],
+        ["sell, sold, sold", "", "продать"],
+        ["send, sent, sent", "", "послать"],
+        ["set, set, set", "", "установить"],
+        ["shake, shook, shaken", "", "трясти"],
+        ["shine, shone, shone", "", "сиять"],
+        ["shoot, shot, shot", "", "стрелять"],
+        ["sing, sang, sung", "", "петь"],
+        ["sink, sank, sunk", "", "тонуть"],
+        ["sit, sat, sat", "", "сидеть"],
+        ["sleep, slept, slept", "", "спать"],
+        ["smell, smelled, smelled", "", "пахнуть"],
+        ["speak, spoke, spoken", "", "говорить"],
+        ["spend, spent, spent", "", "тратить"],
+        ["spin, spun, spun", "", "вращать"],
+        ["spit, spat, spat", "", "плевать"],
+        ["split, split, split", "", "разделить"],
+        ["spoil, spoiled, spoiled", "", "портить"],
+        ["stink, stank, stunk", "", "вонять"],
+        ["swim, swam, swum", "", "плыть"],
+        ["take, took, taken", "", "взять"],
+        ["teach, taught, taught", "", "научить"],
+        ["tear, tore, torn", "", "порвать"],
+        ["think, thought, thought", "", "думать"],
+        ["throw, threw, thrown", "", "кинуть"],
+        ["understand, understood, understood", "", "понять"],
+        ["unfreeze, unfroze, unfrozen", "", "разморозить"],
+        ["upset, upset, upset", "", "огорчить"],
+        ["wake, woke, woken", "", "будить"],
+        ["wear, wore, worn", "", "носить одежду"],
+        ["win, won, won", "", "выиграть"],
+        ["say, said, said", "сэй, сэд, сэд", "сказать"],
+      ];
 
       const arrayWaitlist = [
         ["abide", "abided", "abided", ""],
@@ -1493,7 +1464,7 @@
       const buttonNextWord_Mini = document.getElementById("buttonNextWord_Mini");
       const buttonNextWord_Big = document.getElementById("buttonNextWord_Big");
       const buttonShowTranslation = document.getElementById("buttonShowTranslation");
-      const modeButtons = Array.from(document.querySelectorAll("[id^=buttonMode]")); // Array with all mode buttons
+      const buttonModes = Array.from(document.querySelectorAll("[id^=buttonMode]")); // Array with all mode buttons
       // const achievement40Words = document.getElementById("achievement40Words");
 
       // Preload TTS voices
@@ -1655,20 +1626,8 @@
           smallFont: false,
           reverseAllowed: true,
           ttsAllowed: true,
-          array: arrayVerbWords,
+          array: arrayVerbs,
           name: "verbs",
-        },
-        9: {
-          wordOrder: [2, 0, 1],
-          divToShow: [div2, div3],
-          divToHide: [div1],
-          translationDiv: [div1],
-          showBtn: [buttonNo, buttonNextWord_Mini],
-          hideBtn: [],
-          smallFont: false,
-          reverseAllowed: true,
-          ttsAllowed: true,
-          array: array_a2,
         },
       };
 
@@ -1698,14 +1657,14 @@
         currentArray = modes[currentMode].array;
         indexOfCurrentWord = 0;
         shuffle(currentArray);
-        checkReverseMode();
+        checkDateForReverseMode();
         checkHelpWord();
         clearStyles();
-        divsLayout();
+        processWords();
       }
 
       // Get the current day of the month (1-31)
-      function checkReverseMode() {
+      function checkDateForReverseMode() {
         const dayOfMonth = new Date().getDate();
         // Check if the day is odd or even
         // day % 2 === 0 means it's EVEN
@@ -1719,26 +1678,23 @@
       }
 
       // buttonMode listener
-      modeButtons.forEach((button, index) => {
+      buttonModes.forEach((button, index) => {
         button.addEventListener("click", () => {
-          // The + 1 is used to convert the zero-based index of the modeButtons array into the one-based mode number
+          // The + 1 is used to convert the zero-based index of the buttonModes array into the one-based mode number
           currentMode = index + 1;
           navModes.classList.toggle("navVisible");
           switchMode();
         });
       });
 
-      // Show or hide divs
-      function divsLayout() {
+      // Main process
+      function processWords() {
         modes[currentMode].divToShow.forEach(showThis);
         modes[currentMode].divToHide.forEach(hideThis);
         modes[currentMode].showBtn.forEach(showThis);
         modes[currentMode].hideBtn.forEach(hideThis);
-        wordsLayout();
-      }
 
-      // Which word in what div
-      function wordsLayout() {
+        // Which word in what div
         let mode = modes[currentMode].wordOrder;
 
         if (isMini) {
@@ -1751,11 +1707,8 @@
         div2.innerHTML = currentWord[mode[1]];
         div3.innerHTML = currentWord[mode[2]];
 
-        updateFonts();
-      }
-
-      function reverseModeLayout() {
-        if (isReverseMode) {
+        // Reverse Mode
+        if (isReverseMode && modes[currentMode].reverseAllowed) {
           reverseMode[1].divToShow.forEach(showThis); // all div2 will be shown
           reverseMode[1].divToHide.forEach(hideThis); // all div1 and div3 will be hidden
 
@@ -1764,22 +1717,13 @@
           div3.innerHTML = currentWord[reverseMode[1].wordOrder[2]]; // same as currentWord[1]
         }
 
-        // capitalLetterColor(currentWord);
-      }
-
-      function updateFonts() {
-        // Small font toggle
+        // Fonts styles
         div1.classList.toggle("small-font", modes[currentMode].smallFont);
         div2.classList.toggle("small-font", modes[currentMode].smallFont);
         div3.classList.toggle("small-font", modes[currentMode].smallFont);
 
         // Text align left
         // div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
-
-        // Reverse mode toggle
-        if (modes[currentMode].reverseAllowed) {
-          reverseModeLayout();
-        }
       }
 
       function capitalLetterColor(currentWord) {
@@ -1808,7 +1752,7 @@
           indexOfCurrentWord = 0;
           buttonNextWord_Big.innerHTML = currentArray.length;
           buttonNextWord_Mini.innerHTML = arrayMini.length;
-          divsLayout();
+          processWords();
         }
         checkHelpWord();
       });
@@ -1834,7 +1778,7 @@
         // If the index was 99 and length is 99, 99 % 99 = 0.
         indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
         buttonNextWord_Big.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
-        divsLayout();
+        processWords();
 
         // achieve40Words();
       });
@@ -1849,7 +1793,7 @@
         isMini = true;
         indexOfMiniWord++;
         indexOfMiniWord = indexOfMiniWord % arrayMini.length;
-        divsLayout();
+        processWords();
         /*buttonNextWord_Mini.innerHTML = arrayMini.length - indexOfMiniWord;*/
       });
 
@@ -1926,7 +1870,7 @@
         div1.innerHTML = "";
         div2.innerHTML = "";
         div3.innerHTML = "";
-        modeButtons.forEach((el) => (el.style.background = ""));
+        buttonModes.forEach((el) => (el.style.background = ""));
         buttonSelectMode.innerHTML = modes[currentMode].name;
         indexOfMiniWord = 0;
         arrayMini.length = 0;
@@ -2048,14 +1992,6 @@
       }
       buttonDownload.addEventListener("click", downloadArrayMini);
 
-      // Modes menu toggle
-      buttonSelectMode.addEventListener("click", function () {
-        const activeButton = document.getElementById("buttonMode" + currentMode);
-        activeButton.style.background = "#553674";
-        navModes.classList.toggle("navVisible");
-        hideThis(tableContainer);
-      });
-
       // Table
       const combinedWords = [...array_a2];
       const sortedArray = [...combinedWords].sort((a, b) => {
@@ -2079,8 +2015,28 @@
         });
       });
 
+      // Vocab toggle
+      let tableContainerVisible = false;
       buttonVocab.addEventListener("click", function () {
-        showThis(tableContainer);
+        if (tableContainerVisible === true) {
+          hideThis(tableContainer);
+          buttonSelectMode.innerHTML = modes[currentMode].name;
+          tableContainerVisible = false;
+        } else {
+          showThis(tableContainer);
+          buttonSelectMode.innerHTML = "vocab";
+          tableContainerVisible = true;
+        }
+      });
+
+      // Modes menu toggle
+      buttonSelectMode.addEventListener("click", function () {
+        const activeButton = document.getElementById("buttonMode" + currentMode);
+        activeButton.style.background = "#553674";
+        navModes.classList.toggle("navVisible");
+        hideThis(tableContainer);
+        buttonSelectMode.innerHTML = modes[currentMode].name;
+        tableContainerVisible = false;
       });
 
       //
