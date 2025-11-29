@@ -323,8 +323,6 @@
         <div id="buttonMode6">C 2</div>
         <div id="buttonMode7">???</div>
         <div id="buttonMode8">verbs</div>
-        <!-- <div id="buttonMode9">vocab</div> -->
-        <!-- <div id="buttonMode9">9 archive</div>  -->
         <div id="buttonVocab">vocab</div>
       </div>
       <table id="tableContainer">
@@ -668,7 +666,7 @@
         ["suspense", "саспЭнс", "напряжение (ожидание)"],
         ["restrain", "ристрЭйн", "сдерживать"],
         ["courteous", "кЁртиэс", "вежливый"],
-        ["adverse", "Эдвёрс", "негативный"],
+        ["adverse", "Эдвёрс", "неблагоприятный"],
         ["apprehension", "априхЭншн", "опасение"],
         ["hence", "хэнс", "следовательно"],
         ["arbitrary", "Арбитрэри", "произвольный"],
@@ -694,7 +692,7 @@
         ["asset", "Эсэт", "актив, имущество"],
         ["cohesive", "кохИсив", "единый, целостный"],
         ["abruptly", "эбрАптли", "внезапно"],
-        ["adverse", "Эдвёрс", "негативный"],
+        ["adverse", "Эдвёрс", "неблагоприятный"],
         ["apparently", "апЭрэнтли", "видимо"],
         ["apprehension", "априхЭншн", "опасение"],
         ["astonishing", "астОнишинг", "удивительный"],
@@ -1646,7 +1644,7 @@
       let currentWord;
       let isReverseMode;
       let isMini;
-      let arrayMini = [];
+      let miniArray = [];
       let arrayUnknown = [];
       let indexOfMiniWord = 0;
       let indexOfCurrentWord = 0;
@@ -1687,22 +1685,22 @@
         });
       });
 
-      // Main process
       function processWords() {
+        // Which divs to show or hide
         modes[currentMode].divToShow.forEach(showThis);
         modes[currentMode].divToHide.forEach(hideThis);
         modes[currentMode].showBtn.forEach(showThis);
         modes[currentMode].hideBtn.forEach(hideThis);
 
-        // Which word in what div
+        // Big array or mini array
         let mode = modes[currentMode].wordOrder;
-
         if (isMini) {
-          currentWord = arrayMini[indexOfMiniWord];
+          currentWord = miniArray[indexOfMiniWord];
         } else {
           currentWord = currentArray[indexOfCurrentWord];
         }
 
+        // Which word in what div
         div1.innerHTML = currentWord[mode[0]];
         div2.innerHTML = currentWord[mode[1]];
         div3.innerHTML = currentWord[mode[2]];
@@ -1751,7 +1749,7 @@
           indexOfMiniWord = 0;
           indexOfCurrentWord = 0;
           buttonNextWord_Big.innerHTML = currentArray.length;
-          buttonNextWord_Mini.innerHTML = arrayMini.length;
+          buttonNextWord_Mini.innerHTML = miniArray.length;
           processWords();
         }
         checkHelpWord();
@@ -1785,16 +1783,16 @@
 
       // Show next word in mini array
       buttonNextWord_Mini.addEventListener("click", function () {
-        if (arrayMini.length === 0) {
+        if (miniArray.length === 0) {
           console.log("Mini array is empty");
           return;
         }
 
         isMini = true;
         indexOfMiniWord++;
-        indexOfMiniWord = indexOfMiniWord % arrayMini.length;
+        indexOfMiniWord = indexOfMiniWord % miniArray.length;
         processWords();
-        /*buttonNextWord_Mini.innerHTML = arrayMini.length - indexOfMiniWord;*/
+        /*buttonNextWord_Mini.innerHTML = miniArray.length - indexOfMiniWord;*/
       });
 
       // Add words to mini array
@@ -1802,15 +1800,15 @@
         const wordToAdd = currentArray[indexOfCurrentWord];
 
         // Prevent duplicate
-        if (arrayMini.includes(wordToAdd)) {
+        if (miniArray.includes(wordToAdd)) {
           console.log("Duplicate");
         } else {
-          arrayMini.push(wordToAdd);
+          miniArray.push(wordToAdd);
         }
-        buttonNextWord_Mini.innerHTML = arrayMini.length;
+        buttonNextWord_Mini.innerHTML = miniArray.length;
 
         // Show button to download mini array
-        if (arrayMini.length > 0) {
+        if (miniArray.length > 0) {
           showThis(buttonDownload);
         }
       });
@@ -1870,13 +1868,22 @@
         div1.innerHTML = "";
         div2.innerHTML = "";
         div3.innerHTML = "";
-        buttonModes.forEach((el) => (el.style.background = ""));
+
+        buttonModes.forEach(function (el) {
+          el.style.background = "";
+        });
+
         buttonSelectMode.innerHTML = modes[currentMode].name;
         indexOfMiniWord = 0;
-        arrayMini.length = 0;
-        currentArray.length > 0 ? (buttonNextWord_Big.innerHTML = currentArray.length) : null;
-        buttonNextWord_Mini.innerHTML = arrayMini.length;
+        miniArray.length = 0;
+
+        if (currentArray.length > 0) {
+          buttonNextWord_Big.innerHTML = currentArray.length;
+        }
+
+        buttonNextWord_Mini.innerHTML = miniArray.length;
         buttonReverseMode.classList.remove("reverseBG");
+
         // hideThis(achievement40Words);
         hideThis(buttonDownload);
         hideThis(tableContainer);
@@ -1913,8 +1920,8 @@
 
       // Download mini array
       function downloadArrayMini() {
-        if (arrayMini.length === 0) {
-          alert("arrayMini is empty. Nothing to download.");
+        if (miniArray.length === 0) {
+          alert("miniArray is empty. Nothing to download.");
           return;
         }
 
@@ -1929,8 +1936,8 @@
 
         const fileName = `NAwords_${month}${day}_${timeFormatted}.html`;
 
-        // Create a string representation of arrayMini for JavaScript in HTML
-        const arrayMiniString = JSON.stringify(arrayMini);
+        // Create a string representation of miniArray for JavaScript in HTML
+        const arrayMiniString = JSON.stringify(miniArray);
 
         // Generate HTML content with a table
         const htmlContent = `
@@ -1968,7 +1975,7 @@
                              <body>
                                  <h2>${month} ${day}</h2>
                                  <table>
-                                     ${arrayMini.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
+                                     ${miniArray.map((item) => `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td></tr>`).join("")}
                                  </table>
                                  <pre>${arrayMiniString}</pre>
                              </body>
