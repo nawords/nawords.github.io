@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -168,8 +168,21 @@
       }
 
       #div3 > span {
-        color: #ffffff80;
+        /* color: #ffffff80; */
         /* overflow-wrap: normal; */
+        animation: color-change 3s infinite;
+      }
+
+      @keyframes color-change {
+        0% {
+          color: #ffffff70;
+        }
+        50% {
+          color: #ffffff;
+        }
+        100% {
+          color: #ffffff70;
+        }
       }
 
       #buttonDownload {
@@ -332,6 +345,7 @@
     <script>
       // Arrays
       const array_a1 = [
+        ["for less", "фор лЭс", "дешевле"],
         ["hope", "хОуп", "надежда"],
         ["find out", "фАйнд Аут", "узнать"],
         ["share", "шЭр", "делиться"],
@@ -378,6 +392,7 @@
       ];
 
       const array_a2 = [
+        ["for less", "фор лЭс", "дешевле"],
         ["after", "Афтэр", "после"],
         ["apprehensive", "апрэхЭнсив", "опасающийся"],
         ["celebration", "сэлэбрЭйшн", "празднование"],
@@ -652,6 +667,7 @@
       const array_b2 = [];
 
       const array_c1 = [
+        ["substantial", "сабстЭншл", "существенный"],
         ["sassy", "сЭси", "нахальный"],
         ["adhere", "эдхИр", "держАться (клей, правил)"],
         ["rigorous", "рИгорэс", "строгий (good)"],
@@ -673,6 +689,7 @@
       ];
 
       const array_c2 = [
+        ["substantial", "сабстЭншл", "существенный"],
         ["sassy", "сЭси", "нахальный"],
         ["adhere", "эдхИр", "держАться (клей, правил)"],
         ["rigorous", "рИгорэс", "строгий (good)"],
