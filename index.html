@@ -356,18 +356,57 @@
     // а́, е́, и́, о́, у́, ы́, э́, ю́, я́
     // А́, Е́, И́, О́, У́, Ы́, Э́, Ю́, Я́
 
-    const array_a1 = [
-      ["low", "лОу", "низкий"],
-      ["find", "фАйнд", "найти"],
-      ["recently", "рИснтли", "недавно"],
-      ["bottom", "бОтом", "низ"],
-      ["other", "Азэр", "другой"],
+    const array_a11 = [
       ["should", "шУд", "следует"],
-      ["after", "Афтэр", "после"],
+      ["for less", "фор лЭс", "дешевле"],
+      ["recently", "рИснтли", "недавно"],
+      ["near", "нИэр", "рядом"],
+      ["find", "фАйнд", "найти"],
+      ["other", "Азэр", "другой"],
+      ["again", "эгЭн", "опять"],
+      ["letter", "лЭтэр", "письмо"],
+      ["current", "кУрэнт", "текущий"],
+      ["without", "визАут", "без"],
+      ["envelope", "Энвэлоуп", "конверт"],
+      ["invite", "инвАйт", "приглашать"],
+      ["ago", "эгОу", "назад (время)"],
+      ["event", "ивЭнт", "событие"],
+      ["effort", "Эфорт", "усилие"],
+      ["prepare", "припЭр", "подготовиться"],
+      ["mention", "мЭншн", "упомянуть"],
+      ["follow", "фОлоу", "следовать"],
+      ["get along", "гЭт элОнг", "дружить"],
+      ["enough", "инАф", "достаточно"],
+      ["already", "олрЭди", "уже"],
+      ["advice", "эдвАйс", "совет"],
+      ["find out", "фАйнд Аут", "узнать"],
+      ["until", "антИл", "до (время)"],
+      ["imagine", "имЭджин", "представлять"],
       ["still", "стИл", "все еще"],
       ["hold", "хОлд", "держать"],
-      ["enough", "инАф", "достаточно"],
-      ["worse", "вОрс", "хуже"]];
+      ["after", "Афтэр", "после"]
+    ];
+
+    const chunkSize = 7;
+    // Calculate days since Jan 1, 1970
+    const daysSinceEpoch = Math.floor(new Date() / (1000 * 60 * 60 * 24));
+
+    // Determine starting index based on the day
+    const startIndex = (daysSinceEpoch * chunkSize) % array_a11.length;
+
+    // Create the daily array
+    const array_a1 = array_a11.slice(startIndex, startIndex + chunkSize);
+
+    // const accentMap = {
+    //   'А': 'А́', 'Е': 'Е́', 'И': 'И́', 'О': 'О́', 'У': 'У́',
+    //   'Ы': 'Ы́', 'Э': 'Э́', 'Ю': 'Ю́', 'Я': 'Я́'
+    // };
+
+    // const array_a1 = array_a11.map(row =>
+    //   row.map(cell =>
+    //     cell.replace(/[АЕИОУЫЭЮЯ]/g, match => accentMap[match])
+    //   )
+    // );
 
     const array_a2 = [
       ["without", "визАут", "без"],
