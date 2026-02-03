@@ -389,13 +389,15 @@
 
     const chunkSize = 7;
     const hoursInterval = 24;
-    // Date.now() returns milliseconds since the epoch in UTC.
-    // This value is identical globally at any given moment.
-    const daysSinceEpoch = Math.floor(Date.now() / (1000 * 60 * 60 * hoursInterval));
-    // Determine starting index based on the global day
-    const startIndex = (daysSinceEpoch * chunkSize) % array_a11.length;
-    // Create the daily array
-    const array_a1 = array_a11.slice(startIndex, startIndex + chunkSize);
+
+    const startDate = new Date("2026-02-01");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Sets time to 00:00:00.000
+    const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * hoursInterval));
+    const startIndex = (daysPassed * chunkSize) % array_a11.length;
+    const array_a1 = Array.from({ length: chunkSize }, (_, i) =>
+      array_a11[(startIndex + i) % array_a11.length]
+    );
 
     // const accentMap = {
     //   'А': 'А́', 'Е': 'Е́', 'И': 'И́', 'О': 'О́', 'У': 'У́',
