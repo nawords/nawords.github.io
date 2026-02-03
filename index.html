@@ -1833,6 +1833,14 @@
       // If the index was 99 and length is 99, 99 % 99 = 0.
       indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
       buttonNextWord_Big.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
+
+      // Shuffle words after the last word
+      const wordsLeft = currentArray.length - indexOfCurrentWord;
+      if (wordsLeft === currentArray.length) {
+        console.log("You've seen all the words!");
+        shuffle(array_a1);
+      }
+
       processWords();
 
       // achieve40Words();
