@@ -388,13 +388,23 @@
     ];
 
     const chunkSize = 7;
-    const hoursInterval = 24;
+    const hoursInterval = 48;
 
-    const startDate = new Date("2026-02-01");
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Sets time to 00:00:00.000
-    const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * hoursInterval));
-    const startIndex = (daysPassed * chunkSize) % array_a11.length;
+    // 1. Reference point in UTC
+    const startDate = new Date("2026-02-01T00:00:00Z").getTime();
+    const now = new Date().getTime();
+
+    // 2. Define the interval in milliseconds
+    const intervalMs = 1000 * 60 * 60 * hoursInterval;
+
+    // 3. Calculate how many intervals have passed globally
+    // Using Math.max(0, ...) handles cases where the system clock is behind the start date.
+    const intervalsPassed = Math.floor(Math.max(0, now - startDate) / intervalMs);
+
+    // 4. Determine the starting index
+    const startIndex = (intervalsPassed * chunkSize) % array_a11.length;
+
+    // 5. Build the array
     const array_a1 = Array.from({ length: chunkSize }, (_, i) =>
       array_a11[(startIndex + i) % array_a11.length]
     );
