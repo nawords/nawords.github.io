@@ -364,6 +364,7 @@
       ["find", "фАйнд", "найти"],
       ["other", "Азэр", "другой"],
       ["again", "эгЭн", "опять"],
+
       ["letter", "лЭтэр", "письмо"],
       ["current", "кУрэнт", "текущий"],
       ["without", "визАут", "без"],
@@ -371,6 +372,7 @@
       ["invite", "инвАйт", "приглашать"],
       ["ago", "эгОу", "назад (время)"],
       ["event", "ивЭнт", "событие"],
+
       ["effort", "Эфорт", "усилие"],
       ["prepare", "припЭр", "подготовиться"],
       ["mention", "мЭншн", "упомянуть"],
@@ -378,6 +380,7 @@
       ["get along", "гЭт элОнг", "дружить"],
       ["enough", "инАф", "достаточно"],
       ["already", "олрЭди", "уже"],
+
       ["advice", "эдвАйс", "совет"],
       ["find out", "фАйнд Аут", "узнать"],
       ["until", "антИл", "до (время)"],
@@ -405,9 +408,11 @@
     const startIndex = (intervalsPassed * chunkSize) % array_a11.length;
 
     // 5. Build the array
-    const array_a1 = Array.from({ length: chunkSize }, (_, i) =>
-      array_a11[(startIndex + i) % array_a11.length]
-    );
+    let array_a1 = array_a11.slice(startIndex, startIndex + chunkSize);
+
+    // const array_a1 = Array.from({ length: chunkSize }, (_, i) =>
+    //   array_a11[(startIndex + i) % array_a11.length]
+    // );
 
     // const accentMap = {
     //   'А': 'А́', 'Е': 'Е́', 'И': 'И́', 'О': 'О́', 'У': 'У́',
@@ -1832,9 +1837,16 @@
       }
     }
 
+    let array_flag = 0;
     // Show next word in big array
     buttonNextWord_Big.addEventListener("click", function () {
       isMini = false;
+
+      if (array_flag == 1 && currentMode === 1) {
+        array_a1 = array_a11;
+        currentArray = array_a1;
+        buttonNextWord_Big.innerHTML = array_a11.length;
+      }
 
       indexOfCurrentWord++; // 11 becomes 12
       // Use the modulo operator (%) to "wrap" the index back to 0
@@ -1859,6 +1871,15 @@
     // Show next word in mini array
     buttonNextWord_Mini.addEventListener("click", function () {
       if (miniArray.length === 0) {
+
+        // testing
+        if (currentMode === 1) {
+          array_flag = 1;
+          buttonNextWord_Big.innerHTML = array_a11.length;
+          console.log("array flad is " + array_flag);
+        }
+        // testing
+
         console.log("Mini array is empty");
         return;
       }
