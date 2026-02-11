@@ -1720,6 +1720,7 @@
 
     function switchMode() {
       isMini = false;
+      showFullArray = false;
       currentArray = modes[currentMode].array;
       indexOfCurrentWord = 0;
       shuffle(currentArray);
@@ -1768,7 +1769,7 @@
         currentWord = currentArray[indexOfCurrentWord];
       }
 
-      // Which word in what div
+      // Which word in which div
       div1.innerHTML = currentWord[mode[0]];
       div2.innerHTML = currentWord[mode[1]];
       div3.innerHTML = currentWord[mode[2]];
@@ -1790,6 +1791,18 @@
 
       // Text align left
       // div2.classList.toggle("textLeft", [6, 8].includes(currentMode));
+
+      buttonsUpdate()
+    }
+
+    function buttonsUpdate() {
+      buttonNextWord_Big.innerHTML = currentArray.length - indexOfCurrentWord;
+
+      if (currentMode === 1 && !showFullArray) {
+        buttonNextWord_Mini.innerHTML = miniArray.length || "ALL";
+      } else {
+        buttonNextWord_Mini.innerHTML = miniArray.length || "0";
+      }
     }
 
     function capitalLetterColor(currentWord) {
@@ -1816,8 +1829,6 @@
         shuffle(currentArray);
         indexOfMiniWord = 0;
         indexOfCurrentWord = 0;
-        buttonNextWord_Big.innerHTML = currentArray.length;
-        buttonNextWord_Mini.innerHTML = miniArray.length;
         processWords();
       }
       checkHelpWord();
@@ -1835,18 +1846,9 @@
 
     // Show next word in big array
     buttonNextWord_Big.addEventListener("click", function () {
-      // Show all words in A1 mode
-      if (showFullArray && currentMode === 1) {
-        array_a1 = array_a11;
-        currentArray = array_a1;
-        buttonNextWord_Big.innerHTML = array_a11.length;
-      }
-      // End of Show all words in A1 mode
-
       isMini = false;
       indexOfCurrentWord++;
       indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
-      buttonNextWord_Big.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
 
       // Shuffle words after the last word
       const wordsLeft = currentArray.length - indexOfCurrentWord;
@@ -1861,24 +1863,22 @@
 
     // Show next word in mini array
     buttonNextWord_Mini.addEventListener("click", function () {
-      if (miniArray.length === 0) {
-
-        // testing
-        if (currentMode === 1) {
-          showFullArray = true;
-          buttonNextWord_Big.innerHTML = array_a11.length;
-        }
-        // testing
-
-        console.log("Mini array is empty");
-        return;
+      // Show full array in A1 mode
+      if (currentMode === 1 && miniArray.length === 0) {
+        showFullArray = true;
+        array_a1 = array_a11;
+        currentArray = array_a11;
+        shuffle(array_a11);
+        indexOfCurrentWord = 0;
+        processWords();
       }
 
-      isMini = true;
-      indexOfMiniWord++;
-      indexOfMiniWord = indexOfMiniWord % miniArray.length;
-      processWords();
-      /*buttonNextWord_Mini.innerHTML = miniArray.length - indexOfMiniWord;*/
+      if (miniArray.length > 0) {
+        isMini = true;
+        indexOfMiniWord++;
+        indexOfMiniWord = indexOfMiniWord % miniArray.length;
+        processWords();
+      }
     });
 
     // Add words to mini array
@@ -1891,7 +1891,8 @@
       } else {
         miniArray.push(wordToAdd);
       }
-      buttonNextWord_Mini.innerHTML = miniArray.length;
+
+      buttonsUpdate();
 
       // Show button to download mini array
       if (miniArray.length > 0) {
@@ -1962,16 +1963,6 @@
       buttonSelectMode.innerHTML = modes[currentMode].name;
       indexOfMiniWord = 0;
       miniArray.length = 0;
-
-      if (currentArray.length > 0) {
-        buttonNextWord_Big.innerHTML = currentArray.length;
-      }
-
-      if (currentMode === 1) {
-        buttonNextWord_Mini.innerHTML = miniArray.length || "ALL";
-      } else {
-        buttonNextWord_Mini.innerHTML = miniArray.length;
-      }
 
       buttonReverseMode.classList.remove("reverseBG");
 
