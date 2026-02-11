@@ -330,7 +330,7 @@
     </div>
     <div id="navBottom">
       <div id="buttonNo">NO</div>
-      <div id="buttonNextWord_Mini">0</div>
+      <div id="buttonNextWord_Mini"></div>
       <div id="buttonNextWord_Big">OK</div>
     </div>
     <!-- <div id="achievement40Words"></div> -->
@@ -389,44 +389,11 @@
       ["other", "Азэр", "другой"],
       ["after", "Афтэр", "после"],
       ["should", "шУд", "следует"],
+      ["world", "вOрлд", "мир"],
     ];
 
-    const chunkSize = 7;
-    const hoursInterval = 48;
-
-    // 1. Reference point in UTC
-    const startDate = new Date("2026-02-09T00:00:00Z").getTime();
-    const now = new Date().getTime();
-
-    // 2. Define the interval in milliseconds
-    const intervalMs = 1000 * 60 * 60 * hoursInterval;
-
-    // 3. Calculate how many intervals have passed globally
-    // Using Math.max(0, ...) handles cases where the system clock is behind the start date.
-    const intervalsPassed = Math.floor(Math.max(0, now - startDate) / intervalMs);
-
-    // 4. Determine the starting index
-    const startIndex = (intervalsPassed * chunkSize) % array_a11.length;
-
-    // 5. Build the array
-    let array_a1 = array_a11.slice(startIndex, startIndex + chunkSize);
-
-    // const array_a1 = Array.from({ length: chunkSize }, (_, i) =>
-    //   array_a11[(startIndex + i) % array_a11.length]
-    // );
-
-    // const accentMap = {
-    //   'А': 'А́', 'Е': 'Е́', 'И': 'И́', 'О': 'О́', 'У': 'У́',
-    //   'Ы': 'Ы́', 'Э': 'Э́', 'Ю': 'Ю́', 'Я': 'Я́'
-    // };
-
-    // const array_a1 = array_a11.map(row =>
-    //   row.map(cell =>
-    //     cell.replace(/[АЕИОУЫЭЮЯ]/g, match => accentMap[match])
-    //   )
-    // );
-
     const array_a2 = [
+      ["world", "вOрлд", "мир"],
       ["without", "визАут", "без"],
       ["current", "кУрэнт", "текущий"],
       ["advice", "эдвАйс", "совет"],
@@ -699,6 +666,41 @@
       ["hour", "Ауэр", "час"],
     ];
 
+    const chunkSize = 7;
+    const hoursInterval = 48;
+
+    // 1. Reference point in UTC
+    const startDate = new Date("2026-02-09T00:00:00Z").getTime();
+    const now = new Date().getTime();
+
+    // 2. Define the interval in milliseconds
+    const intervalMs = 1000 * 60 * 60 * hoursInterval;
+
+    // 3. Calculate how many intervals have passed globally
+    // Using Math.max(0, ...) handles cases where the system clock is behind the start date.
+    const intervalsPassed = Math.floor(Math.max(0, now - startDate) / intervalMs);
+
+    // 4. Determine the starting index
+    const startIndex = (intervalsPassed * chunkSize) % array_a11.length;
+
+    // 5. Build the array
+    let array_a1 = array_a11.slice(startIndex, startIndex + chunkSize);
+
+    // const array_a1 = Array.from({ length: chunkSize }, (_, i) =>
+    //   array_a11[(startIndex + i) % array_a11.length]
+    // );
+
+    // const accentMap = {
+    //   'А': 'А́', 'Е': 'Е́', 'И': 'И́', 'О': 'О́', 'У': 'У́',
+    //   'Ы': 'Ы́', 'Э': 'Э́', 'Ю': 'Ю́', 'Я': 'Я́'
+    // };
+
+    // const array_a1 = array_a11.map(row =>
+    //   row.map(cell =>
+    //     cell.replace(/[АЕИОУЫЭЮЯ]/g, match => accentMap[match])
+    //   )
+    // );
+
     const array_b1 = [
       ["alphabetically", "алфабЭтикли", "по алфавиту"],
       ["sneeze", "снИз", "чихать"],
@@ -716,14 +718,6 @@
     const array_b2 = [];
 
     const array_c1 = [
-      ["stroll", "стрОул", "прогулка, прогуляться"],
-      ["substantial", "сабстЭншл", "существенный"],
-      ["sassy", "сЭси", "нахальный"],
-      ["adhere", "эдхИр", "держАться (клей, правил)"],
-      ["rigorous", "рИгорэс", "строгий (good)"],
-      ["recluse", "риклУс", "затворник"],
-      ["advent", "Эдвэнт", "появление, наступление"],
-      ["vigilant", "вИджилэнт", "бдительный"],
       ["adjacent", "эджЭйсэнт", "прилегающий"],
       ["endorse", "эндОрс", "одобрить"],
       ["defer", "дифЭр", "отложить (время)"],
@@ -1721,6 +1715,7 @@
     let arrayUnknown = [];
     let indexOfMiniWord = 0;
     let indexOfCurrentWord = 0;
+    let showFullArray = false;
     switchMode();
 
     function switchMode() {
@@ -1838,29 +1833,24 @@
       }
     }
 
-    let array_flag = 0;
     // Show next word in big array
     buttonNextWord_Big.addEventListener("click", function () {
-      isMini = false;
-
-      if (array_flag == 1 && currentMode === 1) {
+      // Show all words in A1 mode
+      if (showFullArray && currentMode === 1) {
         array_a1 = array_a11;
         currentArray = array_a1;
         buttonNextWord_Big.innerHTML = array_a11.length;
       }
+      // End of Show all words in A1 mode
 
-      indexOfCurrentWord++; // 11 becomes 12
-      // Use the modulo operator (%) to "wrap" the index back to 0
-      // when it reaches the end of the array (creating a loop).
-      // If the index is 12 and length is 99, 12 % 99 = 12.
-      // If the index was 99 and length is 99, 99 % 99 = 0.
+      isMini = false;
+      indexOfCurrentWord++;
       indexOfCurrentWord = indexOfCurrentWord % currentArray.length;
       buttonNextWord_Big.innerHTML = currentArray.length - indexOfCurrentWord; // 99 - 12 = 87
 
       // Shuffle words after the last word
       const wordsLeft = currentArray.length - indexOfCurrentWord;
       if (wordsLeft === currentArray.length) {
-        console.log("You've seen all the words!");
         shuffle(array_a1);
       }
 
@@ -1875,9 +1865,8 @@
 
         // testing
         if (currentMode === 1) {
-          array_flag = 1;
+          showFullArray = true;
           buttonNextWord_Big.innerHTML = array_a11.length;
-          console.log("array flad is " + array_flag);
         }
         // testing
 
@@ -1978,7 +1967,12 @@
         buttonNextWord_Big.innerHTML = currentArray.length;
       }
 
-      buttonNextWord_Mini.innerHTML = miniArray.length;
+      if (currentMode === 1) {
+        buttonNextWord_Mini.innerHTML = miniArray.length || "ALL";
+      } else {
+        buttonNextWord_Mini.innerHTML = miniArray.length;
+      }
+
       buttonReverseMode.classList.remove("reverseBG");
 
       // hideThis(achievement40Words);
