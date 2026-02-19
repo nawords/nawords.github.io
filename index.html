@@ -168,9 +168,10 @@
       }
 
       #div3 > span {
-        /* overflow-wrap: normal; */
-        /* color: #ffffff80; */
-        animation: color-change 2s infinite;
+        color: #b31010;
+        /* overflow-wrap: normal;
+        color: #ffffff80;
+        animation: color-change 2s infinite; */
       }
 
       @keyframes color-change {
@@ -363,7 +364,7 @@
         ["imagine", "имЭджин", "представлять"],
         ["midnight", "мИднайт", "полночь"],
         ["should", "шУд", "следует"],
-        ["world", "вOрлд", "мир"],
+        ["world", "вОрлд", "мир"],
         ["give up", "гив ап", "бросить (отказаться от)"],
         ["again", "эгЭн", "опять"],
         ["find out", "фАйнд Аут", "узнать"],
@@ -385,7 +386,7 @@
         ["noon", "нУн", "полдень"],
         ["midnight", "мИднайт", "полночь"],
         ["easy", "Изи", "легкий, простой"],
-        ["world", "вOрлд", "мир"],
+        ["world", "вОрлд", "мир"],
         ["without", "визАут", "без"],
         ["current", "кУрэнт", "текущий"],
         ["advice", "эдвАйс", "совет"],
@@ -679,19 +680,19 @@
 
       // const array_a1 = Array.from({ length: chunkSize }, (_, i) => array_a11[(startIndex + i) % array_a11.length]);
 
-      const accentMap = {
-        А: "А́",
-        Е: "Е́",
-        И: "И́",
-        О: "О́",
-        У: "У́",
-        Ы: "Ы́",
-        Э: "Э́",
-        Ю: "Ю́",
-        Я: "Я́",
-      };
+      // const accentMap = {
+      //   А: "А́",
+      //   Е: "Е́",
+      //   И: "И́",
+      //   О: "О́",
+      //   У: "У́",
+      //   Ы: "Ы́",
+      //   Э: "Э́",
+      //   Ю: "Ю́",
+      //   Я: "Я́",
+      // };
 
-      array_a1 = array_a11.map((row) => row.map((cell) => cell.replace(/[АЕИОУЫЭЮЯ]/g, (match) => accentMap[match])));
+      // array_a1 = array_a11.map((row) => row.map((cell) => cell.replace(/[АЕИОУЫЭЮЯ]/g, (match) => accentMap[match])));
 
       const array_b1 = [
         ["alphabetically", "алфабЭтикли", "по алфавиту"],
