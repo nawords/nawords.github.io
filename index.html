@@ -379,9 +379,15 @@
         ["current", "кУрэнт", "текущий"],
         ["hold", "хОлд", "держать"],
         ["without", "визАут", "без"],
+        ["helpful", "хЭлпфул", "полезный"],
+        ["kind", "кАйнд", "добрый"],
+        ["than", "зЭн", "чем (сравнение)"],
       ];
 
       const array_a2 = [
+        ["than", "зЭн", "чем (сравнение)"],
+        ["helpful", "хЭлпфул", "полезный"],
+        ["kind", "кАйнд", "добрый"],
         ["tasty", "тЭйсти", "вкусный"],
         ["noon", "нУн", "полдень"],
         ["midnight", "мИднайт", "полночь"],
@@ -677,7 +683,6 @@
 
       // 5. Build the array
       let array_a1 = array_a11.slice(startIndex, startIndex + chunkSize);
-
       // const array_a1 = Array.from({ length: chunkSize }, (_, i) => array_a11[(startIndex + i) % array_a11.length]);
 
       // const accentMap = {
@@ -691,7 +696,6 @@
       //   Ю: "Ю́",
       //   Я: "Я́",
       // };
-
       // array_a1 = array_a11.map((row) => row.map((cell) => cell.replace(/[АЕИОУЫЭЮЯ]/g, (match) => accentMap[match])));
 
       const array_b1 = [
