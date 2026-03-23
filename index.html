@@ -356,35 +356,30 @@
       // А́, Е́, И́, О́, У́, Ы́, Э́, Ю́, Я́
 
       const array_a11 = [
-        ["for less", "фор лЭс", "дешевле"],
-        ["imagine", "имЭджин", "представлять"],
-        ["easy", "Изи", "легкий, простой"],
-        ["recently", "рИснтли", "недавно"],
-        ["hold", "хОлд", "держать"],
-        ["noon", "нУн", "полдень"],
-        ["until", "антИл", "до (время)"],
+        ["effort", "Эфорт", "усилие"],
         ["regular", "рЭгьюлэр", "обычный"],
-        ["find out", "фАйнд Аут", "узнать"],
-        ["what about", "ват эбАут", "как насчет"],
-        ["worse", "вОрс", "хуже"],
-        ["event", "ивЭнт", "событие"],
-        ["loud", "лАуд", "громкий"],
-        ["sometimes", "самтАймс", "иногда"],
-        ["without", "визАут", "без"],
         ["after", "Афтэр", "после"],
-        ["tonight", "тунАйт", "сегодня вечером"],
-        ["wake up", "вэйк ап", "проснуться"],
-        ["yet", "йет", "еще (время)"],
-        ["take off", "тЭйк оф", "снять"],
-        ["ago", "эгОу", "назад (время)"],
-        ["goal", "гОул", "цель"],
-        ["true", "трУ", "настоящий"],
-        ["already", "олрЭди", "уже"],
-        ["find", "фАйнд", "найти"],
+        ["less", "лЭс", "менее (меньше)"],
+        ["worse", "вОрс", "хуже"],
         ["tough", "тАф", "трудный"],
-        ["have to", "хЭв ту", "должен*"],
-        ["hair", "хЭар", "волосы"],
-        ["put on", "пут он", "одеть"],
+        ["loud", "лАуд", "громкий"],
+        ["easy", "Изи", "легкий, простой"],
+        ["should", "шУд", "следует"],
+        ["the most", "зэ мОуст", "самый"],
+        ["midnight", "мИднайт", "полночь"],
+        ["event", "ивЭнт", "событие"],
+        ["hope", "хОуп", "надежда"],
+        ["near", "нИр", "рядом"],
+        ["recently", "рИснтли", "недавно"],
+        ["without", "визАут", "без"],
+        ["enough", "инАф", "достаточно"],
+        ["until", "антИл", "до (время)"],
+        ["what about", "ват эбАут", "как насчет"],
+        ["team", "тИм", "команда, коллектив"],
+        ["again", "эгЭн", "опять"],
+        ["find", "фАйнд", "найти"],
+        ["helpful", "хЭлпфул", "полезный"],
+        ["tonight", "тунАйт", "сегодня вечером"],
       ];
 
       const array_a2 = [
@@ -676,7 +671,7 @@
       const hoursInterval = 48;
 
       // 1. Reference point in UTC
-      const startDate = new Date("2026-03-17T00:00:00Z").getTime();
+      const startDate = new Date("2026-03-23T00:00:00Z").getTime();
       const now = new Date().getTime();
 
       // 2. Define the interval in milliseconds
@@ -692,6 +687,11 @@
       // 5. Build the array
       let array_a1 = array_a11.slice(startIndex, startIndex + chunkSize);
       // const array_a1 = Array.from({ length: chunkSize }, (_, i) => array_a11[(startIndex + i) % array_a11.length]);
+
+      // Change div3 text color randomly
+      const div3Colors = ["#ffb200", "#6dff00", "#00ffee", "#ff00f9", "#ff0064", "#b31010"];
+      const div3RandomColor = div3Colors[Math.floor(Math.random() * div3Colors.length)];
+      document.querySelector("#div3 > span").style.color = div3RandomColor;
 
       // const accentMap = {
       //   А: "А́",
