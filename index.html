@@ -147,6 +147,13 @@
       #div3 {
         flex: 1;
         width: 100%;
+        border-radius: 0;
+        overflow-y: hidden;
+      }
+
+      #div2 {
+        border-top: 2px dashed #ffffff80;
+        border-bottom: 2px dashed #ffffff80;
       }
 
       #div1 > span,
@@ -160,17 +167,17 @@
         overflow-wrap: anywhere;
       }
 
-      #div1 > span {
+      /* #div1 > span {
         background: var(--gradient-color);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-      }
+      } */
 
       #div3 > span {
-        color: #b31010;
-        /* overflow-wrap: normal;
-        color: #ffffff80;
+        color: #e9c5ff;
+        /*color: #b31010;
+        overflow-wrap: normal;
         animation: color-change 2s infinite; */
       }
 
@@ -357,34 +364,32 @@
 
       const array_a11 = [
         ["effort", "Эфорт", "усилие"],
-        ["helpful", "хЭлпфул", "полезный"],
-        ["follow", "фОлоу", "следовать"],
-        ["should", "шУд", "следует"],
-        ["bring up", "брИнг ап", "поднять (затронуть)"],
-        ["until", "антИл", "до (время)"],
-        ["own", "Оун", "собственный, владеть"],
-        ["true", "трУ", "настоящий"],
-        ["near", "нИр", "рядом"],
-        ["keep", "кип", "держать (долго)"],
+        ["goal", "гОул", "цель"],
         ["hold", "хОлд", "держать (временно)"],
-        ["kind", "кАйнд", "добрый"],
-        ["envelope", "Энвэлоуп", "конверт"],
-        ["what about", "ват эбАут", "как насчет"],
-        ["event", "ивЭнт", "событие"],
-        ["loud", "лАуд", "громкий"],
-        ["find out", "фАйнд Аут", "узнать"],
-        ["tonight", "тунАйт", "сегодня вечером"],
         ["already", "олрЭди", "уже"],
         ["after", "Афтэр", "после"],
+        ["helpful", "хЭлпфул", "полезный"],
+        ["put on", "пут он", "одеть"],
+        ["what about", "ват эбАут", "как насчет"],
+        ["celebration", "сэлэбрЭйшн", "празднование"],
+        ["other", "Азэр", "другой"],
+        ["have to", "хЭв ту", "должен*"],
+        ["tough", "тАф", "трудный"],
+        ["loud", "лАуд", "громкий"],
+        ["advice", "эдвАйс", "совет"],
+        ["true", "трУ", "настоящий"],
+        ["current", "кУрэнт", "текущий"],
+        ["take off", "тЭйк оф", "снять"],
+        ["imagine", "имЭджин", "представлять"],
         ["enough", "инАф", "достаточно"],
-        ["without", "визАут", "без"],
-        ["goal", "гОул", "цель"],
-        ["worse", "вОрс", "хуже"],
-        ["again", "эгЭн", "опять"],
-        ["team", "тИм", "команда, коллектив"],
+        ["even", "Ивэн", "даже"],
+        ["something", "сАмсинг", "что-то"],
       ];
 
       const array_a2 = [
+        ["even", "Ивэн", "даже"],
+        ["something", "сАмсинг", "что-то"],
+        ["also", "Олсо", "также"],
         ["keep", "кип", "держать (долго)"],
         ["regular", "рЭгьюлэр", "обычный"],
         ["age", "Эйдж", "возраст"],
@@ -405,7 +410,7 @@
         ["have to", "хЭв ту", "должен*"],
         ["must", "мАст", "должен"],
         ["should", "шУд", "следует"],
-        ["envelope", "Энвэлоуп", "конверт"],
+        ["envelope", "Энвэлоп", "конверт"],
         ["still", "стИл", "все еще"],
         ["goal", "гОул", "цель"],
         ["own", "Оун", "собственный, владеть"],
@@ -466,7 +471,6 @@
         ["yet", "йет", "еще (время)"],
         ["share", "шЭр", "делиться"],
         ["fall, fell, fallen", "фол, фэл, фОлэн", "падать"],
-        ["worse", "вОрс", "хуже"],
         ["put on", "пут он", "одеть"],
         ["take off", "тЭйк оф", "снять"],
         ["find out", "фАйнд Аут", "узнать"],
@@ -674,7 +678,7 @@
       const hoursInterval = 48;
 
       // 1. Reference point in UTC
-      const startDate = new Date("2026-03-30T00:00:00Z").getTime();
+      const startDate = new Date("2026-04-08T00:00:00Z").getTime();
       const now = new Date().getTime();
 
       // 2. Define the interval in milliseconds
@@ -692,9 +696,9 @@
       // const array_a1 = Array.from({ length: chunkSize }, (_, i) => array_a11[(startIndex + i) % array_a11.length]);
 
       // Change div3 text color randomly
-      const div3Colors = ["#ffb200", "#6dff00", "#00ffee", "#ff00f9", "#ff0064", "#b31010"];
-      const div3RandomColor = div3Colors[Math.floor(Math.random() * div3Colors.length)];
-      document.querySelector("#div3 > span").style.color = div3RandomColor;
+      // const div3Colors = ["#ffb200", "#6dff00", "#00ffee", "#ff00f9", "#ff0064", "#b31010"];
+      // const div3RandomColor = div3Colors[Math.floor(Math.random() * div3Colors.length)];
+      // document.querySelector("#div3 > span").style.color = div3RandomColor;
 
       // const accentMap = {
       //   А: "А́",
@@ -726,9 +730,10 @@
       const array_b2 = [];
 
       const array_c1 = [
-        ["arbitrary", "Арбитрэри", "произвольный"],
         ["rigorous", "рИгорэс", "строгий (good)"],
-        ["defiance", "дифАйэнс", "вызов, неповиновение"],
+        ["adhere", "эдхИр", "держАться (клей, правил)"],
+        ["grim", "грим", "мрачный"],
+        ["grin", "грин", "усмешка"],
       ];
 
       const array_c2 = [
